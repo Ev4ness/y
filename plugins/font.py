@@ -2364,17 +2364,10 @@ class Fonts:
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from pyrogram.types import CallbackQuery, Message
-from typing import Union
 from YukkiMusic import app
 
 @app.on_message(filters.command(["font", "fonts"]))
-async def style_buttons(c, m:Union[Message, CallbackQuery], cb=False):
-    if isinstance(m, Message):
-        text = m.text.split(" ", 1)[1]
-    elif isinstance(m, CallbackQuery):
-        text = m.data.split(" ", 1)[1]
-
+async def style_buttons(c, m, cb=False):
     buttons = [
         [
             InlineKeyboardButton("𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛", callback_data="style+typewriter"),
@@ -2411,14 +2404,13 @@ async def style_buttons(c, m:Union[Message, CallbackQuery], cb=False):
             InlineKeyboardButton("H̆̈ă̈p̆̈p̆̈y̆̈", callback_data="style+happy"),
             InlineKeyboardButton("S̑̈ȃ̈d̑̈", callback_data="style+sad"),
         ],
-        [
-            InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close_reply"),
-            InlineKeyboardButton("ɴᴇxᴛ ➻", callback_data="nxt"),
-        ],
+        [InlineKeyboardButton("ɴᴇxᴛ ➻", callback_data="nxt")],
     ]
     if not cb:
         await m.reply_text(
-            f"`{text}`", reply_markup=InlineKeyboardMarkup(buttons), quote=True
+            text=m.text.split(None, 1)[1],
+            reply_markup=InlineKeyboardMarkup(buttons),
+            quote=True,
         )
     else:
         await m.answer()
@@ -2459,10 +2451,7 @@ async def nxt(c, m):
                 InlineKeyboardButton("S̶t̶r̶i̶k̶e̶", callback_data="style+strike"),
                 InlineKeyboardButton("F༙r༙o༙z༙e༙n༙", callback_data="style+frozen"),
             ],
-            [
-                InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close_reply"),
-                InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="nxt+0"),
-            ],
+            [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="nxt+0")],
         ]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
@@ -2474,6 +2463,7 @@ async def nxt(c, m):
 async def style(c, m):
     await m.answer()
     cmd, style = m.data.split("+")
+
     if style == "typewriter":
         cls = Fonts.typewriter
     if style == "outline":
@@ -2552,12 +2542,15 @@ async def style(c, m):
         cls = Fonts.strike
     if style == "frozen":
         cls = Fonts.frozen
-    new_text = cls(m.message.reply_to_message.text.split(" ", 1)[1])
+    new_text = cls(m.message.reply_to_message.text.split(None, 1)[1])
     try:
-        await m.message.edit_text(f"`{new_text}`")
+        await m.message.edit_text(new_text, reply_markup=m.message.reply_markup)
     except:
         pass
-        
-__MODULE__ = "Fᴏɴᴛ"
+
+
 __HELP__ = """
-/font [ᴛᴇxᴛ] -  ᴛᴏ ᴄᴏɴᴠᴇʀᴛ ᴀ sᴛʏʟɪsʜ ᴛᴇxᴛ"""
+ ❍ /font <text> *:* ᴄᴏɴᴠᴇʀᴛs sɪᴍᴩʟᴇ ᴛᴇxᴛ ᴛᴏ ʙᴇᴀᴜᴛɪғᴜʟ ᴛᴇxᴛ ʙʏ ᴄʜᴀɴɢɪɴɢ ɪᴛ's ғᴏɴᴛ.
+ """
+
+__MODULE__ = "Fᴏɴᴛ Eᴅɪᴛᴏʀ"
