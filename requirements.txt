@@ -1,2 +1,3 @@
 pyfiglet
 googlesearch-python
+bing-image-urls
