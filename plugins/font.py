@@ -2370,9 +2370,9 @@ from YukkiMusic import app
 
 @app.on_message(filters.command(["font", "fonts"]))
 async def style_buttons(c, m:Union[Message, CallbackQuery], cb=False):
-    if isinstance(update, Message):
+    if isinstance(m, Message):
         text = m.text.split(" ", 1)[1]
-    elif isinstance(update, CallbackQuery):
+    elif isinstance(m, CallbackQuery):
         text = m.data.split(" ", 1)[1]
 
     buttons = [
