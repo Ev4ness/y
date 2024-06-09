@@ -51,7 +51,7 @@ async def pypi_info_command(client, message):
 __MODULE__ = "Pʏᴘɪ"
 __HELP__ = """
 **ᴄᴏᴍᴍᴀɴᴅs:**
-• `/pypi <package_name>`: Get details about a specified Python package from PyPI.
+• /pypi <package_name>`: Get details about a specified Python package from PyPI.
 
 **ɪɴғᴏ:**
 ᴛʜɪs ᴍᴏᴅᴜʟᴇ ᴀʟʟᴏᴡs ᴜsᴇʀs ᴛᴏ ғᴇᴛᴄʜ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴘʏᴛʜᴏɴ ᴘᴀᴄᴋᴀɢᴇs ғʀᴏᴍ ᴘʏᴘɪ, ɪɴᴄʟᴜᴅɪɴɢ ᴛʜᴇ ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ, ʟᴀᴛᴇsᴛ ᴠᴇʀsɪᴏɴ, ᴅᴇsᴄʀɪᴘᴛɪᴏɴ, ᴀɴᴅ ᴘʀᴏᴊᴇᴄᴛ ᴜʀʟ.
