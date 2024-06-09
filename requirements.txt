@@ -1,3 +1,7 @@
 pyfiglet
 googlesearch-python
 bing-image-urls
+gTTS
+MukeshAPI
+telegraph
+git+https://github.com/Vivekkumar-IN/TheApi@main
