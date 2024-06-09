@@ -5,7 +5,7 @@ from YukkiMusic.utils.permissions import adminsOnly
 
 
 @app.on_message(filters.command("pin"))
-adminsOnly("can_pin_messages")
+@adminsOnly("can_pin_messages")
 async def pin(_, message):
     replied = message.reply_to_message
     message.chat.title
@@ -31,7 +31,7 @@ async def pin(_, message):
 
 
 @app.on_message(filters.command("unpin"))
-adminsOnly("can_pin_messages")
+@adminsOnly("can_pin_messages")
 async def unpin(_, message):
     replied = message.reply_to_message
     message.chat.title
@@ -55,7 +55,7 @@ async def unpin(_, message):
 
 # ------------------------------------------------------------------------------- #
 @app.on_message(filters.command("unpinall"))
-adminsOnly("can_pin_messages")
+@adminsOnly("can_pin_messages")
 async def unpin(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
