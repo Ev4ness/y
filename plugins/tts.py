@@ -23,7 +23,18 @@ async def text_to_speech(client, message):
     audio_file.name = "audio.mp3"
     await message.reply_audio(audio_file)
 
+__HELP__ = """
+**ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅ**
+
+ᴜsᴇ ᴛʜᴇ `/tts` ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ɪɴᴛᴏ sᴘᴇᴇᴄʜ.
+
+- `/tts <ᴛᴇxᴛ>`: ᴄᴏɴᴠᴇʀᴛs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ ɪɴ ʜɪɴᴅɪ.
+
+**ᴇxᴀᴍᴘʟᴇ:**
+- `/tts Namaste Duniya`
+
+**ɴᴏᴛᴇ:**
+ᴍᴀᴋᴇ sᴜʀᴇ ᴛᴏ ᴘʀᴏᴠɪᴅᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴀғᴛᴇʀ ᴛʜᴇ `/tts` ᴄᴏᴍᴍᴀɴᴅ.
+"""
 
 __MODULE__ = "Tᴛs"
-__HELP__ = """
-/tts [ᴛᴇxᴛ] - ɢᴇɴᴇʀᴀᴛᴇ ᴀᴜᴅɪᴏ ғʀᴏᴍ ᴛᴇxᴛ"""
