@@ -30,6 +30,7 @@ async def bots(client, message):
 
 __MODULE__ = "Bᴏᴛs"
 __HELP__ = """
+**ʙᴏᴛs**
 
-/bots - ɢᴇᴛ ᴀʟʟ ʙᴏᴛ's ʟɪsᴛ ᴏɴ ɢʀᴏᴜᴘ
+• /bots - ɢᴇᴛ ᴀ ʟɪsᴛ ᴏғ ʙᴏᴛs ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
 """
