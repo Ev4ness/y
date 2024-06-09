@@ -70,3 +70,12 @@ async def unpin(_, message):
                 await message.reply_text(f"**ᴀʟʟ ᴍᴇssᴀɢᴇ ᴜɴᴘɪɴɴᴇᴅ !**")
             except Exception as e:
                 await message.reply_text(str(e))
+
+__MODULE__ = "Pɪɴ"
+__HELP__ = """
+**ᴘɪɴ:**
+
+• /pin: ᴘɪɴs ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
+• /unpin: ᴜɴᴘɪɴs ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
+• /unpinall: ᴜɴᴘɪɴs ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
+"""
