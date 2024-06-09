@@ -331,18 +331,12 @@ async def delete_all_cb(_, cb):
 
 
 __MODULE__ = "Nᴏᴛᴇs"
-__HELP__ = """/notes To Get All The Notes In The Chat.
+__HELP__ = """
+**ɴᴏᴛᴇꜱ:**
 
-/save [NOTE_NAME] To Save A Note.
-
-Supported note types are Text, Animation, Photo, Document, Video, video notes, Audio, Voice.
-
-To change caption of any files use.\n/save [NOTE_NAME] [NEW_CAPTION].
-
-#NOTE_NAME To Get A Note.
-
-/delete [NOTE_NAME] To Delete A Note.
-/deleteall To delete all the notes in a chat (permanently).
-
-Checkout /markdownhelp to know more about formattings and other syntax.
+• `/save [NOTE_NAME] [CONTENT]`: Sᴀᴠᴇs ᴀ ɴᴏᴛᴇ ᴡɪᴛʜ ᴛʜᴇ ɢɪᴠᴇɴ ɴᴀᴍᴇ ᴀɴᴅ ᴄᴏɴᴛᴇɴᴛ.
+• `/notes`: Sʜᴏᴡs ᴀʟʟ sᴀᴠᴇᴅ ɴᴏᴛᴇꜱ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
+• `/get [NOTE_NAME]`: Gᴇᴛs ᴛʜᴇ ᴄᴏɴᴛᴇɴᴛ ᴏғ ᴀ sᴀᴠᴇᴅ ɴᴏᴛᴇ.
+• `/delete [NOTE_NAME]`: Dᴇʟᴇᴛᴇs ᴀ sᴀᴠᴇᴅ ɴᴏᴛᴇ.
+• `/deleteall`: Dᴇʟᴇᴛᴇs ᴀʟʟ sᴀᴠᴇᴅ ɴᴏᴛᴇꜱ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
 """
