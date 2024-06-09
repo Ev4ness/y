@@ -51,3 +51,10 @@ async def figlet_handler(Client, query: CallbackQuery):
 
     except Exception as e:
         return await query.answer(e, show_alert=True)
+
+__MODULE__ = "Fɪɢʟᴇᴛ"
+__HELP__ = """
+**ғɪɢʟᴇᴛ**
+
+• /figlet <text> - ᴄʀᴇᴀᴛᴇs ᴀ ғɪɢʟᴇᴛ ᴏғ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ.
+"""
