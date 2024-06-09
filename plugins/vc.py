@@ -16,7 +16,7 @@ from YukkiMusic import app
 from YukkiMusic.utils.database import get_assistant
 
 
-@app.on_message(filters.command(["vcstart", "onvc", "vcon", "startvc"]))
+@app.on_message(filters.command(["vcstart", "onvc", "vcon", "startvc"]) & filters.group)
 async def startvc(client, message: Message):
 
     call_name = message.text.split(maxsplit=1)[1] if len(message.command) > 1 else " VC"
@@ -42,7 +42,7 @@ async def startvc(client, message: Message):
         await hell.edit_text(str(e))
 
 
-@app.on_message(filters.command(["vcend", "offvc", "vcoff", "endvc"]))
+@app.on_message(filters.command(["vcend", "offvc", "vcoff", "endvc"]) & filters.group)
 async def endvc(client, message: Message):
     hell = await message.reply_text("Ending Voice Chat...")
     userbot = await get_assistant(message.chat.id)
@@ -69,7 +69,7 @@ async def endvc(client, message: Message):
             await hell.edit_text(e)
 
 
-@app.on_message(filters.command(["vcuser", "vcusers", "vcmembers"]))
+@app.on_message(filters.command(["vcuser", "vcusers", "vcmembers"]) & filters.group )
 async def vcmembers(client, message: Message):
     userbot = await get_assistant(message.chat.id)
     hell = await message.reply_text("Getting Voice Chat members...")
@@ -113,9 +113,9 @@ __MODULE__ = "Vᴏɪᴄᴇᴄʜᴀᴛ"
 __HELP__ = """
 **COMMANDS:**
 
-• /VCSTART - **sᴛᴀʀᴛs ᴀ ɴᴇᴡ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
-• /VCEND - **ᴇɴᴅs ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
-• /VCUSER - **ɢᴇᴛs ᴛʜᴇ ᴜsᴇʀs ɪɴ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
+• /vcstart - **sᴛᴀʀᴛs ᴀ ɴᴇᴡ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
+• /vcend - **ᴇɴᴅs ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
+• /vcuser - **ɢᴇᴛs ᴛʜᴇ ᴜsᴇʀs ɪɴ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
 
 **INFO:**
 
