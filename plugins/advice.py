@@ -8,7 +8,7 @@ from YukkiMusic import api, app
 @app.on_message(filters.command("advice"))
 async def advice(_, message):
     A = await message.reply_text("...")
-    res = aapi.advice()
+    res = aapi.get_advice()
     await A.edit(res["results"])
 
 
