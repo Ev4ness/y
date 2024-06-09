@@ -39,3 +39,10 @@ async def get_id(client, message):
 
     except Exception:
         await message.reply("An error occured while getting the ID.")
+
+__MODULE__ = "Iᴅ"
+__HELP__ = """
+**ɪᴅ ʀᴇᴛʀɪᴇᴠᴇʀ:**
+
+• `/id`: Rᴇᴛʀɪᴇᴠᴇ ᴜsᴇʀ ᴀɴᴅ ᴄʜᴀᴛ ɪᴅs.
+"""
