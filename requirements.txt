@@ -1,7 +1,7 @@
 bing-image-urls
 gTTS
 googlesearch-python
-httpx<0.24.0; extra == 'http2'
+httpx[http2]
 pyfiglet
 MukeshAPI
 telegraph
