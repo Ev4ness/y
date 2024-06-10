@@ -5,3 +5,4 @@ gTTS
 MukeshAPI
 telegraph
 git+https://github.com/Vivekkumar-IN/TheApi@main
+uuid
