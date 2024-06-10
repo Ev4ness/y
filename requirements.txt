@@ -1,9 +1,9 @@
-pyfiglet
-googlesearch-python
 bing-image-urls
 gTTS
-MukeshAPI
+googlesearch-python
 httpx<0.24.0; extra == 'http2'
+pyfiglet
+MukeshAPI
 telegraph
-git+https://github.com/Vivekkumar-IN/TheApi@main
 uuid
+git+https://github.com/Vivekkumar-IN/TheApi@main
