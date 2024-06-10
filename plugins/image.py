@@ -85,7 +85,7 @@ async def refresh_cat(c, m: CallbackQuery):
 
 
 __MODULE__ = "Iᴍᴀɢᴇ"
-__HELP__ = """/pinterest [ǫᴜᴇʀʏ] - ᴛᴏ ɢᴇᴛ ᴛᴏᴘ 7 ɪᴍᴀɢᴇs ғʀᴏᴍ ᴘɪɴᴛᴇʀᴇsᴛ
+__HELP__ = """
 /image [ǫᴜᴇʀʏ] - ᴛᴏ ɢᴇᴛ ᴛᴏᴘ ɪᴍᴀɢᴇs ғʀᴏᴍ ʙɪɴɢ
 /wall | /wallpaper - [ǫᴜᴇʀʏ] - ᴛᴏ ɢᴇᴛ ʀᴇǫᴜᴇsᴛᴇᴅ ᴡᴀʟᴘᴀᴘᴇʀ
 /rimage | /randomimage - ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ɪᴍᴀɢᴇ
