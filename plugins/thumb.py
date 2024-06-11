@@ -53,10 +53,10 @@ __HELP__ = """
 
 ᴜsᴇ ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏ ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ ғʀᴏᴍ ᴀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ:
 
-- `/getthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>`: ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏʀ ᴀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ.
-- `/genthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>`: sᴀᴍᴇ ᴀs `/getthumb`.
-- `/thumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>`: sᴀᴍᴇ ᴀs `/getthumb`.
-- `/thumbnail <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>`: sᴀᴍᴇ ᴀs `/getthumb`.
+- /getthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏʀ ᴀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ.
+- /genthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
+- /thumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
+- /thumbnail <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
 
 **ᴇxᴀᴍᴘʟᴇ:**
 - `/getthumb https://www.youtube.com/watch?v=Tl4bQBfOtbg`
