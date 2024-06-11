@@ -1,3 +1,4 @@
+import asyncio
 from bing_image_urls import bing_image_urls
 from pyrogram import filters
 from pyrogram.types import (
@@ -6,6 +7,7 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     InputMediaPhoto,
 )
+from pyrogram.errors.exceptions.flood_420 import FloodWait
 from requests import get
 
 from config import BANNED_USERS
@@ -14,7 +16,7 @@ from YukkiMusic.utils.image import gen_image
 
 
 @app.on_message(
-    filters.command(["pinterest", "image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
+    filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
 )
 async def pinterest(_, message):
     command = message.text.split()[0][1:]
@@ -42,7 +44,8 @@ async def pinterest(_, message):
                 chat_id=chat_id, media=BING, reply_to_message_id=message.id
             )
             return await msg.delete()
-
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
         except Exception as e:
             return await msg.edit(f"ᴇʀʀᴏʀ : {e}")
 
