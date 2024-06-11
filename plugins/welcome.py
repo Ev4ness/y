@@ -1,3 +1,4 @@
+import datetime
 from re import findall
 
 from pyrogram import filters
@@ -71,14 +72,31 @@ async def send_welcome_message(chat: Chat, user_id: int, delete: bool = False):
     keyb = None
     if findall(r"\[.+\,.+\]", raw_text):
         text, keyb = extract_text_and_keyb(ikb, raw_text)
-
-    if "{chat}" in text:
-        text = text.replace("{chat}", chat.title)
-    if "{name}" in text:
-        text = text.replace("{name}", (await app.get_users(user_id)).mention)
-    if "{id}" in text:
-        text = text.replace("{id}", f"`{user_id}`")
-
+    u = await app.get_users(user_id)
+    if "{GROUPNAME}" in text:
+        text = text.replace("{GROUPNAME}", chat.title)
+    if "{NAME}" in text:
+        text = text.replace("{NAME}", u.mention)
+    if "{ID}" in text:
+        text = text.replace("{ID}", f"`{user_id}`")
+    if "{FIRSTNAME}" in text:
+        text = text.replace("{FIRSTNAME}", u.first_name)
+    if "{SURNAME}" in text:
+        sname = u.last_name if u.last_name else ""
+        text = text.replace("{SURNAME}", sname)
+    if "{USERNAME}" in text:
+        susername = u.username if u.username else "None"
+        text = text.replace("{USERNAME}", susername)
+    if "{DATE}" in text:
+        DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+        text = text.replace("{DATE}", DATE)
+    if "{WEEKDAY}" in text:
+        WEEKDAY = datetime.datetime.now().strftime("%A")
+        text = text.replace("{WEEKDAY}", WEEKDAY)
+    if "{TIME}" in text:
+        TIME = datetime.datetime.now().strftime("%H:%M:%S")
+        text = text.replace("{TIME}", f"{TIME} UTC")
+ 
     if welcome == "Text":
         m = await app.send_message(
             chat.id,
