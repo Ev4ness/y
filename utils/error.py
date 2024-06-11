@@ -47,7 +47,7 @@ def capture_err(func):
         except Exception as err:
             errors = traceback.format_exc()
             error_feedback = split_limits(
-                "**ERROR** | {} | {}\n```python\n{}```\n\n```python\n{}```\n".format(
+                "**ERROR** | {} | {}\n```command\n{}```\n\n```python\n{}```\n".format(
                     0 if not message.from_user else message.from_user.mention,
                     (
                         0
