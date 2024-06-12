@@ -13,7 +13,7 @@ from YukkiMusic.utils.database import (
     get_note_names,
     save_note,
 )
-from YukkiMusic.utils.error import capture_err
+from utils.error import capture_err
 from YukkiMusic.utils.functions import (
     check_format,
     extract_text_and_keyb,
