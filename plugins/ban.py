@@ -400,7 +400,7 @@ async def demote(_, message: Message):
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if message.command[0] == "unpinall":
-        return await message.reply_text("Aʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜɴᴘɪɴ ᴀʟʟ ᴍᴇssᴀɢᴇs?",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ʏᴇs", callback_data="unpin_yes")],[InlineKeyboardButton(text="ɴᴏ", callback_data="unpin_no")],]))
+        return await message.reply_text("Aʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜɴᴘɪɴ ᴀʟʟ ᴍᴇssᴀɢᴇs?",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ʏᴇs", callback_data="unpin_yes"),InlineKeyboardButton(text="ɴᴏ", callback_data="unpin_no")],]))
 
 
 @app.on_callback_query(filters.regex(r"unpin_(yes|no)"))
