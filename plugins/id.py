@@ -28,11 +28,7 @@ async def get_id(client, message):
                     f"User {message.reply_to_message.from_user.first_name}'s ID is <code>{message.reply_to_message.from_user.id}</code>."
                 )
         elif message.reply_to_message.sticker:
-            if message.reply_to_message.sticker:
-                await message.reply(
-                    f"Replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
-                )
-            elif message.reply_to_message.forward_from_chat:
+            if message.reply_to_message.forward_from_chat:
                 await message.reply(
                     f"The forwarded {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} has an ID of <code>{message.reply_to_message.forward_from_chat.id}</code> and the replied sticker ID is {message.reply_to_message.sticker.file_id}"
                 )
@@ -49,7 +45,7 @@ async def get_id(client, message):
 
             else:
                 await message.reply(
-                    f"User {message.reply_to_message.from_user.first_name}'s ID is <code>{message.reply_to_message.from_user.id}</code>."
+                    f"Replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
         else:
             await message.reply(
