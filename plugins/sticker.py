@@ -19,7 +19,7 @@ from pyrogram.file_id import FileId
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from YukkiMusic import app
-from YukkiMusic.utils.error import capture_err
+from utils.error import capture_err
 
 BOT_USERNAME = app.username
 
