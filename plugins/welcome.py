@@ -20,7 +20,7 @@ from YukkiMusic.utils.database import (
     is_gbanned_user,
     set_welcome,
 )
-from YukkiMusic.utils.error import capture_err
+from utils.error import capture_err
 from YukkiMusic.utils.functions import check_format, extract_text_and_keyb
 from YukkiMusic.utils.keyboard import ikb
 from YukkiMusic.utils.permissions import adminsOnly
