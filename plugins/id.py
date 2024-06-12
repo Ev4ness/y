@@ -29,12 +29,12 @@ async def get_id(client, message):
         elif message.reply_to_message.sticker:
             if message.reply_to_message.forward_from_chat:
                 await message.reply(
-                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from_chat.id}</code> ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs {message.reply_to_message.sticker.file_id}"
+                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from_chat.id}</code> \nᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>"
                 )
 
             elif message.reply_to_message.forward_from:
                 await message.reply(
-                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴜsᴇʀ, {message.reply_to_message.forward_from.first_name} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from.id}</code> ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs {message.reply_to_message.sticker.file_id}."
+                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴜsᴇʀ, {message.reply_to_message.forward_from.first_name} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from.id}</code> \nᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
 
             elif message.reply_to_message.forward_sender_name:
@@ -44,7 +44,7 @@ async def get_id(client, message):
 
             else:
                 await message.reply(
-                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>. ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
+                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>\ ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
         else:
             await message.reply(
