@@ -45,7 +45,7 @@ async def get_id(client, message):
 
             else:
                 await message.reply(
-                    f"Replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
+                    f"User {message.reply_to_message.from_user.first_name}'s ID is <code>{message.reply_to_message.from_user.id}</code>. and Replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
         else:
             await message.reply(
