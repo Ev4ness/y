@@ -44,7 +44,7 @@ async def get_id(client, message):
 
             else:
                 await message.reply(
-                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>\ ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
+                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>\n ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
         else:
             await message.reply(
