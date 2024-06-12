@@ -10,6 +10,8 @@ from pyrogram.types import (
     ChatPermissions,
     ChatPrivileges,
     Message,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
 )
 from string import ascii_lowercase
 from typing import Dict, List, Union
@@ -393,15 +395,29 @@ async def demote(_, message: Message):
 
 
 # Pin Messages
-@app.on_message(filters.command(["pin", "unpin", "unpinall"]) & ~filters.private & ~BANNED_USERS)
+ 
+@app.on_message(filters.command(["unpinall"]) & filters.group & ~BANNED_USERS)
+@adminsOnly("can_pin_messages")
+async def pin(_, message: Message):
+    if message.command[0] == "unpinall":
+        return await message.reply_text("Aʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜɴᴘɪɴ ᴀʟʟ ᴍᴇssᴀɢᴇs?",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ʏᴇs", callback_data="unpin_yes")],[InlineKeyboardButton(text="ɴᴏ", callback_data="unpin_no")],]))
+
+
+@app.on_callback_query(filters.regex(r"unpin_(yes|no)"))
+async def callback_query_handler(_, query: CallbackQuery):
+    if query.data == "unpin_yes":
+        await app.unpin_all_chat_messages(query.message.chat.id)
+        return await query.message.edit_text("Aʟʟ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇs ʜᴀᴠᴇ ʙᴇᴇɴ ᴜɴᴘɪɴɴᴇᴅ.")
+    elif query.data == "unpin_no":
+        return await query.message.edit_text("Uɴᴘɪɴ ᴏғ ᴀʟʟ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇs ʜᴀs ʙᴇᴇɴ ᴄᴀɴᴄᴇʟʟᴇᴅ.")
+
+
+@app.on_message(filters.command(["pin", "unpin"]) & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if not message.reply_to_message:
         return await message.reply_text("Reply to a message to pin/unpin it.")
     r = message.reply_to_message
-    if message.command[0] == "unpinall":
-        await app.unpin_all_chat_messages(message.chat.id)
-        return await message.reply_text("All messages unpinned in this chat")
     if message.command[0][0] == "u":
         await r.unpin()
         return await message.reply_text(
