@@ -52,7 +52,7 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-async def send_notes(message: Message, chat_id, text):
+'''async def send_notes(message: Message, chat_id, text):
 
     if not text:
         return
@@ -120,7 +120,7 @@ async def send_note(message: Message, note_name: str):
 
     else:
         await send_notes(message, chat_id, note_name)
-
+'''
 
 PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
 PRIVATE_NOTES_FALSE = ['off', 'false', 'no', 'n']
