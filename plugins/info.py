@@ -75,7 +75,6 @@ async def get_chat_info(chat):
 ➻ ɪs ғᴀᴋᴇ ‣ {chat.is_fake}
 ➻ ᴍᴇᴍʙᴇʀ's ᴄᴏᴜɴᴛ ‣ {chat.members_count}
 ➻ ʟɪɴᴋ ‣ {link}
-➻ ɪɴᴠɪᴛᴇʟɪɴᴋ ‣ {chat.invite_link}
 
 
 ❅─────✧❅✦❅✧─────❅"""
