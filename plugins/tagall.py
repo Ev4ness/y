@@ -1,5 +1,5 @@
 import asyncio
-
+import logging 
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import FloodWait
@@ -60,10 +60,10 @@ async def tag_all_users(_, message):
             pass
     else:
         try:
-            text = message.text.split(None, 1)[1]
-            SPAM_CHATS.append(message.chat.id)
             usernum = 0
             usertxt = ""
+            text = message.text.split(None, 1)[1]
+            SPAM_CHATS.append(message.chat.id)
             async for m in app.get_chat_members(message.chat.id):
                 if message.chat.id not in SPAM_CHATS:
                     break
@@ -78,12 +78,18 @@ async def tag_all_users(_, message):
                     await asyncio.sleep(2)
                     usernum = 0
                     usertxt = ""
+            if usernum != 0:
+                await app.send_message(
+                    message.chat.id,
+                    f"{text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                )
         except FloodWait as e:
             await asyncio.sleep(e.value)
         try:
             SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
+        except Exception as e:
+            logging.exception(e)
 
 
 async def tag_all_admins(_, message):
