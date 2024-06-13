@@ -1,5 +1,6 @@
 from inspect import getfullargspec
 from re import findall
+import datetime
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -155,12 +156,31 @@ async def get_one_note(_, message):
     file_id = _note.get("file_id")
     keyb = None
     if data:
-        if "{chat}" in data:
-            data = data.replace("{chat}", message.chat.title)
-        if "{name}" in data:
-            data = data.replace(
-                "{name}", (from_user.mention if message.from_user else from_user.title)
-            )
+        if "{GROUPNAME}" in data:
+            data = data.replace("{GROUPNAME}", message.chat.title)
+        if "{NAME}" in data:
+            data = data.replace("{NAME}", message.from_user.mention)
+        if "{ID}" in data:
+            data = data.replace("{ID}", f"`message.from_user.id`")
+        if "{FIRSTNAME}" in data:
+            data = data.replace("{FIRSTNAME}", message.from_user.first_name)
+        if "{SURNAME}" in data:
+            sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
+            data = data.replace("{SURNAME}", sname)
+        if "{USERNAME}" in text:
+            susername = message.from_user.username if message.from_user.username else "None"
+            data = data.replace("{USERNAME}", susername)
+        if "{DATE}" in data:
+            DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+            data = data.replace("{DATE}", DATE)
+        if "{WEEKDAY}" in data:
+            WEEKDAY = datetime.datetime.now().strftime("%A")
+            data = data.replace("{WEEKDAY}", WEEKDAY)
+        if "{TIME}" in data:
+            TIME = datetime.datetime.now().strftime("%H:%M:%S")
+            data = data.replace("{TIME}", f"{TIME} UTC")
+
+
         if findall(r"\[.+\,.+\]", data):
             keyboard = extract_text_and_keyb(ikb, data)
             if keyboard:
