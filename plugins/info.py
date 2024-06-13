@@ -90,6 +90,12 @@ async def info_func(_, message: Message):
         user = message.from_user.id
     elif not message.reply_to_message and len(message.command) != 1:
         user = message.text.split(None, 1)[1]
+        if user_input.isdigit():
+            user = int(user_input)
+        elif user_input.startswith('@'):
+            user = user_input
+        else:
+            return await message.reply_text("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴜsᴇʀ's ᴜsᴇʀ ɪᴅ ᴏʀ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ ᴛᴏ ɢᴇᴛ ɪɴғᴏ")
 
     m = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
 
