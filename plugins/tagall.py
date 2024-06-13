@@ -158,7 +158,7 @@ async def tag_all_admins(_, message):
                     await asyncio.sleep(2)
                     usernum = 0
                     usertxt = ""
-           if usernum != 0:
+            if usernum != 0:
                 await app.send_message(
                     message.chat.id,
                     f"{text}\n\n{usertxt}",
