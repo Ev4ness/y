@@ -36,7 +36,7 @@ async def tag_all_users(_, message):
                 if m.user.is_deleted or m.user.is_bot:
                     continue
                 usernum += 1
-                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
+                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})  "
                 if usernum == 14:
                     await app.send_message(
                         message.chat.id,
@@ -71,7 +71,7 @@ async def tag_all_users(_, message):
                 if m.user.is_deleted or m.user.is_bot:
                     continue
                 usernum += 1
-                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
+                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})  "
                 if usernum == 14:
                     await app.send_message(
                         message.chat.id,
@@ -119,7 +119,7 @@ async def tag_all_admins(_, message):
                 if m.user.is_deleted or m.user.is_bot:
                     continue
                 usernum += 1
-                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
+                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})  "
                 if usernum == 14:
                     await app.send_message(
                         message.chat.id,
@@ -155,7 +155,7 @@ async def tag_all_admins(_, message):
                 if m.user.is_deleted or m.user.is_bot:
                     continue
                 usernum += 1
-                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
+                usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})  "
                 if usernum == 14:
                     await app.send_message(
                         message.chat.id,
