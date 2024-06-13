@@ -199,6 +199,10 @@ async def get_one_note(_, message):
             data = data.replace(
                 "{name}", (from_user.mention if message.from_user else from_user.title)
             )
+        if "{app.mention}" in data:
+            data = data.replace(
+                "{app.mention}", app.mention
+            )
         if findall(r"\[.+\,.+\]", data):
             keyboard = extract_text_and_keyb(ikb, data)
             if keyboard:
