@@ -89,7 +89,7 @@ async def info_func(_, message: Message):
     elif not message.reply_to_message and len(message.command) == 1:
         user = message.from_user.id
     elif not message.reply_to_message and len(message.command) != 1:
-        user = message.text.split(None, 1)[1]
+        user_input = message.text.split(None, 1)[1]
         if user_input.isdigit():
             user = int(user_input)
         elif user_input.startswith('@'):
