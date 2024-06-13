@@ -3,6 +3,7 @@ gTTS
 googlesearch-python
 httpx[http2]
 pyfiglet
+lexica-api
 MukeshAPI
 telegraph
 uuid
