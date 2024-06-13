@@ -13,6 +13,8 @@ from YukkiMusic.utils.database import (
     get_note,
     get_note_names,
     save_note,
+    is_pnote_on,
+    set_private_note,
 )
 from utils.error import capture_err
 from YukkiMusic.utils.functions import (
@@ -48,6 +50,50 @@ async def eor(msg: Message, **kwargs):
     )
     spec = getfullargspec(func.__wrapped__).args
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
+
+PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
+PRIVATE_NOTES_FALSE = ['off', 'false', 'no', 'n']
+
+@app.on_message(filters.command("privatenotes") & filters.group)
+@adminsOnly("can_change_info")
+async def PrivateNote(client, message):
+    chat_id = message.chat.id
+    if len(message.command) >= 2:
+        if (
+            message.command[1] in PRIVATE_NOTES_TRUE
+        ):
+            await set_private_note(chat_id, True)
+            await message.reply(
+                "Now i will send a message to your chat with a button redirecting to PM, where the user will receive the note.",
+                quote=True
+            )
+
+        elif (
+            message.command[1] in PRIVATE_NOTES_FALSE
+        ):
+            await set_private_note(chat_id, False)
+            await message.reply(
+                "I will now send notes straight to the group.",
+                quote=True
+            )  
+        else:
+            await message.reply(
+                f"failed to get boolean value from input:\n\n expected one of y/yes/on/true or n/no/off/false; got: {message.command[1]}",
+                quote=True
+            )
+    else:
+        if await is_pnote_on(chat_id):
+            await message.reply(
+                "Your notes are currently being sent in private. DAXXMUSIC will send a small note with a button which redirects to a private chat.",
+                quote=True
+            )
+        else:
+            await message.reply(
+                "Your notes are currently being sent in the group.",
+                quote=True
+            )
+
+
 
 
 @app.on_message(filters.command("save") & filters.group & ~BANNED_USERS)
