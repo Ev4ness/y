@@ -26,12 +26,14 @@ async def upscale_reply_image(client, message):
             await a.edit("ᴀʟᴍᴏsᴛ ᴅᴏɴᴇ......❣️")
             with open('upscaled.png', 'wb') as f:
                 f.write(upscaled_image_bytes)
-                await message.reply_photo(photo='upscaled.png')
-                remove(upscaled.png)
-                await a.delete()
-        except PhotoInvalidDimensions:
-            await message.reply_document(upscaled.png)
-            remove(upscaled.png)
+                try:
+                    await message.reply_photo(photo='upscaled.png')
+                    remove('upscaled.png')
+                    await a.delete()
+                except PhotoInvalidDimensions:
+                    await message.reply_document('upscaled.png')
+                    remove('upscaled.png')
+                    await a.delete()
         except Exception as e:
-            remove(upscaled.png)
+            remove('upscaled.png')
             await a.edit(e)
