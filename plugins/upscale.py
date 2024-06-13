@@ -12,7 +12,7 @@ def upscale_image(image: bytes) -> bytes:
 @app.on_message(filters.command("upscale"))
 @capture_err
 async def upscale_reply_image(client, message):
-    if not message.reply_to_message.photo:
+    if not message.reply_to_message or not message.reply_to_message.photo:
         return await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴛᴏ ᴜᴘsᴄᴀʟᴇ ɪᴛ....😑")
     if message.reply_to_message.photo:
         a = await message.reply_text("ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ......")
