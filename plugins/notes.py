@@ -169,7 +169,7 @@ async def get_one_note(_, message):
         if "{SURNAME}" in data:
             sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
             data = data.replace("{SURNAME}", sname)
-        if "{USERNAME}" in text:
+        if "{USERNAME}" in data:
             susername = message.from_user.username if message.from_user.username else "None"
             data = data.replace("{USERNAME}", susername)
         if "{DATE}" in data:
@@ -228,7 +228,7 @@ async def get_one_note(_, message):
         if "{SURNAME}" in data:
             sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
             data = data.replace("{SURNAME}", sname)
-        if "{USERNAME}" in text:
+        if "{USERNAME}" in data:
             susername = message.from_user.username if message.from_user.username else "None"
             data = data.replace("{USERNAME}", susername)
         if "{DATE}" in data:
