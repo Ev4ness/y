@@ -33,6 +33,8 @@ async def tag_all_users(_, message):
             async for m in app.get_chat_members(message.chat.id):
                 if message.chat.id not in SPAM_CHATS:
                     break
+                if m.is_deleted or m.is_bot:
+                    continue
                 usernum += 1
                 usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
                 if usernum == 14:
@@ -66,6 +68,8 @@ async def tag_all_users(_, message):
             async for m in app.get_chat_members(message.chat.id):
                 if message.chat.id not in SPAM_CHATS:
                     break
+                if m.is_deleted or m.is_bot:
+                    continue
                 usernum += 1
                 usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
                 if usernum == 14:
@@ -112,6 +116,8 @@ async def tag_all_admins(_, message):
             ):
                 if message.chat.id not in SPAM_CHATS:
                     break
+                if m.is_deleted or m.is_bot:
+                    continue
                 usernum += 1
                 usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
                 if usernum == 14:
@@ -146,6 +152,8 @@ async def tag_all_admins(_, message):
             ):
                 if message.chat.id not in SPAM_CHATS:
                     break
+                if m.is_deleted or m.is_bot:
+                    continue
                 usernum += 1
                 usertxt += f"[{m.user.first_name}](tg://user?id={m.user.id})"
                 if usernum == 14:
