@@ -137,10 +137,10 @@ async def tag_all_admins(_, message):
         except Exception:
             pass
     else:
+        usernum = 0
+        usertxt = ""
         try:
             text = message.text.split(None, 1)[1]
-            usernum = 0
-            usertxt = ""
             SPAM_CHATS.append(message.chat.id)
             async for m in app.get_chat_members(
                 message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
