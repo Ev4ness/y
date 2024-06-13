@@ -33,6 +33,7 @@ async def get_user_info(user, already=False):
     if not user.first_name:
         return ["Deleted account", None]
     user_id = user.id
+    online = await userstatus(user_id)
     username = user.username
     first_name = user.first_name
     mention = user.mention("Link")
@@ -42,12 +43,13 @@ async def get_user_info(user, already=False):
     is_sudo = user_id in SUDOERS
     is_premium = user.is_premium
     body = {
-        "ɪᴅ": user_id,
-        "ᴅᴄ ɪᴅ": dc_id,
         "ɴᴀᴍᴇ": [first_name],
         "ᴜsᴇʀɴᴀᴍᴇ": [("@" + username) if username else "Null"],
+        "ɪᴅ": user_id,
+        "ᴅᴄ ɪᴅ": dc_id,
         "ᴍᴇɴᴛɪᴏɴ": [mention],
         "ᴘʀᴇɪᴍɪᴜᴍ": is_premium,
+        "ʟᴀsᴛ sᴇᴇɴ" : online,
     }
     caption = section("ᴜsᴇʀ ɪɴғᴏ", body)
     return [caption, photo_id]
