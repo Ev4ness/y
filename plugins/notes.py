@@ -51,6 +51,18 @@ async def eor(msg: Message, **kwargs):
     spec = getfullargspec(func.__wrapped__).args
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
+
+async def send_note(message: Message, note_name: str):
+    chat_id = message.chat.id  
+    _note = await get_note(chat_id, note_name)
+    if not _note:
+        return
+    if await is_pnote_on(chat_id):
+        #await PrivateNoteButton(message, chat_id, note_name)
+    else:
+        await exceNoteMessageSender(message, note_name)
+
+
 PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
 PRIVATE_NOTES_FALSE = ['off', 'false', 'no', 'n']
 
