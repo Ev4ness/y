@@ -1,4 +1,4 @@
-from os import remove
+'''from os import remove
 from pyrogram import filters
 from lexica import Client as LexicaClient
 from pyrogram.errors.exceptions.bad_request_400 import PhotoInvalidDimensions
@@ -36,4 +36,4 @@ async def upscale_reply_image(client, message):
                     await a.delete()
         except Exception as e:
             remove('upscaled.png')
-            await a.edit(e)
+            await a.edit(e)'''
