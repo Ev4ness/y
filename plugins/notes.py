@@ -215,7 +215,7 @@ async def get_one_note(_, message):
     file_id = _note.get("file_id")
     keyb = None
     if data:
-                if "{app.mention}" in data:
+        if "{app.mention}" in data:
             data = data.replace("{app.mention}", app.mention)
         if "{GROUPNAME}" in data:
             data = data.replace("{GROUPNAME}", message.chat.title)
