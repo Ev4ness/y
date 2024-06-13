@@ -52,6 +52,60 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
+async def send_notes(message: Message, chat_id, text):
+
+    if not text:
+        return
+    _note = await get_note(chat_id, text)
+    if not _note:
+        return
+    type = _note["type"]
+    data = _note["data"]
+    file_id = _note.get("file_id")
+    keyb = None
+    if data:
+        if "{app.mention}" in data:
+            data = data.replace("{app.mention}", app.mention)
+        if "{GROUPNAME}" in data:
+            data = data.replace("{GROUPNAME}", message.chat.title)
+        if "{NAME}" in data:
+            data = data.replace("{NAME}", message.from_user.mention)
+        if "{ID}" in data:
+            data = data.replace("{ID}", f"`message.from_user.id`")
+        if "{FIRSTNAME}" in data:
+            data = data.replace("{FIRSTNAME}", message.from_user.first_name)
+        if "{SURNAME}" in data:
+            sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
+            data = data.replace("{SURNAME}", sname)
+        if "{USERNAME}" in data:
+            susername = message.from_user.username if message.from_user.username else "None"
+            data = data.replace("{USERNAME}", susername)
+        if "{DATE}" in data:
+            DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+            data = data.replace("{DATE}", DATE)
+        if "{WEEKDAY}" in data:
+            WEEKDAY = datetime.datetime.now().strftime("%A")
+            data = data.replace("{WEEKDAY}", WEEKDAY)
+        if "{TIME}" in data:
+            TIME = datetime.datetime.now().strftime("%H:%M:%S")
+            data = data.replace("{TIME}", f"{TIME} UTC")
+
+
+        if findall(r"\[.+\,.+\]", data):
+            keyboard = extract_text_and_keyb(ikb, data)
+            if keyboard:
+                data, keyb = keyboard
+    replied_message = message.reply_to_message
+    if replied_message:
+        replied_user = (
+            replied_message.from_user
+            if replied_message.from_user
+            else replied_message.sender_chat
+        )
+        if replied_user.id != from_user.id:
+            message = replied_message
+    await get_reply(message, type, file_id, data, keyb)
+
 async def send_note(message: Message, note_name: str):
     chat_id = message.chat.id  
     _note = await get_note(chat_id, note_name)
@@ -65,7 +119,7 @@ async def send_note(message: Message, note_name: str):
     )
 
     else:
-        #await exceNoteMessageSender(message, note_name)
+        await send_notes(message, chat_id, note_name)
 
 
 PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
