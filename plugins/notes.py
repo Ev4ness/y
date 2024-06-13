@@ -58,9 +58,14 @@ async def send_note(message: Message, note_name: str):
     if not _note:
         return
     if await is_pnote_on(chat_id):
-        #await PrivateNoteButton(message, chat_id, note_name)
+        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=f'http://t.me/{app.username}?start=note_{chat_id}_{_note}')]])
+        await message.reply(
+        text=f"Tap here to view '{NoteName}' in your private chat.",
+        reply_markup=button
+    )
+
     else:
-        await exceNoteMessageSender(message, note_name)
+        #await exceNoteMessageSender(message, note_name)
 
 
 PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
