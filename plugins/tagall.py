@@ -46,6 +46,12 @@ async def tag_all_users(_, message):
                     usernum = 0
                     usertxt = ""
 
+            if usernum > 0:
+                await app.send_message(
+                    message.chat.id,
+                    f"{text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                )
         except FloodWait as e:
             await asyncio.sleep(e.value)
         try:
