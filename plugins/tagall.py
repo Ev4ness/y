@@ -104,10 +104,10 @@ async def tag_all_admins(_, message):
         )
         return
     if replied:
+        usernum = 0
+        usertxt = ""
         try:
             SPAM_CHATS.append(message.chat.id)
-            usernum = 0
-            usertxt = ""
             async for m in app.get_chat_members(
                 message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
             ):
@@ -124,7 +124,12 @@ async def tag_all_admins(_, message):
                     await asyncio.sleep(1)
                     usernum = 0
                     usertxt = ""
-
+            if usernum != 0:
+                await app.send_message(
+                    message.chat.id,
+                    f"{replied.text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                )
         except FloodWait as e:
             await asyncio.sleep(e.value)
         try:
@@ -134,9 +139,9 @@ async def tag_all_admins(_, message):
     else:
         try:
             text = message.text.split(None, 1)[1]
-            SPAM_CHATS.append(message.chat.id)
             usernum = 0
             usertxt = ""
+            SPAM_CHATS.append(message.chat.id)
             async for m in app.get_chat_members(
                 message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
             ):
@@ -153,6 +158,12 @@ async def tag_all_admins(_, message):
                     await asyncio.sleep(2)
                     usernum = 0
                     usertxt = ""
+           if usernum != 0:
+                await app.send_message(
+                    message.chat.id,
+                    f"{text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                )
         except FloodWait as e:
             await asyncio.sleep(e.value)
         try:
