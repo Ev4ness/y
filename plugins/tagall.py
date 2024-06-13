@@ -1,5 +1,4 @@
 import asyncio
-import logging 
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import FloodWait
@@ -88,8 +87,8 @@ async def tag_all_users(_, message):
             await asyncio.sleep(e.value)
         try:
             SPAM_CHATS.remove(message.chat.id)
-        except Exception as e:
-            logging.exception(e)
+        except Exception:
+            pass
 
 
 async def tag_all_admins(_, message):
