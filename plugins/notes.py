@@ -1,7 +1,6 @@
 from inspect import getfullargspec
 from re import findall
 import datetime
-import urllib.parse
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
@@ -60,9 +59,7 @@ async def send_notes(message: Message,  text):
     if not _note:
         return
     if await is_pnote_on(chat_id):
-        note_encoded = urllib.parse.quote(_note)
-        chat_id_encoded = urllib.parse.quote(str(chat_id))
-        url = f"http://t.me/{app.username}?start=note_{chat_id_encoded}_{note_encoded}"
+        url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=url)]])
         return await message.reply(
             text=f"Tap here to view '{_note}' in your private chat.",
