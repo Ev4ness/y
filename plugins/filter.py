@@ -58,6 +58,8 @@ async def save_filters(_, message):
         if not replied_message:
             replied_message = message
         data, name = await get_data_and_name(replied_message, message)
+        if len(name) < 2
+            return await message.reply_text(f"ᴛᴏ ғɪʟᴛᴇʀ ᴛʜᴇ {name} ᴍᴜsᴛ ʙᴇ ɢʀᴇᴀᴛᴇʀ ᴛʜᴇɴ 𝟸 ᴡᴏʀᴅs")
         if data == "error":
             return await message.reply_text(
                 "**ᴜsᴀsɢᴇ:**\n__/filter [FILTER_NAME] [CONTENT]__\n`-----------OR-----------`\nʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ. \n/filter [FILTER_NAME]."
