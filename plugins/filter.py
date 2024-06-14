@@ -241,7 +241,7 @@ async def filters_re(_, message):
                     sname = message.from_user.last_name or "None"
                     data = data.replace("{SURNAME}", sname)
                 if "{USERNAME}" in data:
-                    susername = message.from_user.username if message.from_user.username else "None"
+                    susername = message.from_user.username or "None"
                     data = data.replace("{USERNAME}", susername)
                 if "{DATE}" in data:
                     DATE = datetime.datetime.now().strftime("%Y-%m-%d")        
