@@ -46,7 +46,7 @@ You can use markdown or html to save text too.
 
 Checkout /markdownhelp to know more about formattings and other syntax.
 """
- @app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
+@app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_change_info")
 async def save_filters(_, message):
     try:
