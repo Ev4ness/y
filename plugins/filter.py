@@ -58,7 +58,7 @@ async def save_filters(_, message):
         if not replied_message:
             replied_message = message
         data, name = await get_data_and_name(replied_message, message)
-        if len(name) < 2
+        if len(name) < 2:
             return await message.reply_text(f"ᴛᴏ ғɪʟᴛᴇʀ ᴛʜᴇ {name} ᴍᴜsᴛ ʙᴇ ɢʀᴇᴀᴛᴇʀ ᴛʜᴇɴ 𝟸 ᴡᴏʀᴅs")
         if data == "error":
             return await message.reply_text(
@@ -131,23 +131,6 @@ async def get_filterss(_, message):
     for _filter in _filters:
         msg += f"**-** `{_filter}`\n"
     await message.reply_text(msg)
-
-
-@app.on_message(filters.command("stop") & ~filters.private & ~BANNED_USERS)
-@adminsOnly("can_change_info")
-async def del_filter(_, message):
-    if len(message.command) < 2:
-        return await message.reply_text("**ᴜsᴀsɢᴇ:**\n__/stop [FILTER_NAME]__")
-    name = message.text.split(None, 1)[1].strip()
-    if not name:
-        return await message.reply_text("**ᴜsᴀsɢᴇ:**\n__/stop [FILTER_NAME]__")
-    chat_id = message.chat.id
-    deleted = await delete_filter(chat_id, name)
-    if deleted:
-        await message.reply_text(f"**ᴅᴇʟᴇᴛᴇᴅ ғɪʟᴛᴇʀ {name}.**")
-    else:
-        await message.reply_text("**ɴᴏ sᴜᴄʜ ғɪʟᴛᴇʀ.**")
-
 
 @app.on_message(
     filters.text & ~filters.private & ~filters.channel & ~filters.via_bot & ~filters.forwarded & ~BANNED_USERS, group=1)
