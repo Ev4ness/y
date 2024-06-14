@@ -195,7 +195,7 @@ async def get_one_note(_, message):
             text=f"Tap here to view '{name}' in your private chat.",
             reply_markup=button
         )
-    await send_notes(message, message.chat.id, name)
+    await send_notes(message, chat_id, name)
 
 
 @app.on_message(filters.regex(r"^#.+") & filters.text & filters.group & ~BANNED_USERS)
