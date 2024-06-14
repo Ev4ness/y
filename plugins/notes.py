@@ -21,6 +21,7 @@ from YukkiMusic.utils.functions import (
     extract_text_and_keyb,
     get_data_and_name,
 )
+from YukkiMusic.utils.note_funcs import send_notes
 from YukkiMusic.utils.keyboard import ikb
 from YukkiMusic.utils.permissions import adminsOnly, member_permissions
 
@@ -49,66 +50,7 @@ async def eor(msg: Message, **kwargs):
     )
     spec = getfullargspec(func.__wrapped__).args
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
-
-
-async def send_notes(message: Message, chat_id, text):
-    if not text:
-        return
-    _note = await get_note(chat_id, text)
-    if not _note:
-        return
-
-    type = _note["type"]
-    data = _note["data"]
-    file_id = _note.get("file_id")
-    keyb = None
-
-    if data:
-        if "{app.mention}" in data:
-            data = data.replace("{app.mention}", app.mention)
-        if "{GROUPNAME}" in data:
-            data = data.replace("{GROUPNAME}", (await app.get_chat(chat_id)).title)
-        if "{NAME}" in data:
-            data = data.replace("{NAME}", message.from_user.mention)
-        if "{ID}" in data:
-            data = data.replace("{ID}", f"`message.from_user.id`")
-        if "{FIRSTNAME}" in data:
-            data = data.replace("{FIRSTNAME}", message.from_user.first_name)
-        if "{SURNAME}" in data:
-            sname = message.from_user.last_name if message.from_user.last_name else "None"
-            data = data.replace("{SURNAME}", sname)
-        if "{USERNAME}" in data:
-            susername = message.from_user.username if message.from_user.username else "None"
-            data = data.replace("{USERNAME}", susername)
-        if "{DATE}" in data:
-            DATE = datetime.datetime.now().strftime("%Y-%m-%d")
-            data = data.replace("{DATE}", DATE)
-        if "{WEEKDAY}" in data:
-            WEEKDAY = datetime.datetime.now().strftime("%A")
-            data = data.replace("{WEEKDAY}", WEEKDAY)
-        if "{TIME}" in data:
-            TIME = datetime.datetime.now().strftime("%H:%M:%S")
-            data = data.replace("{TIME}", f"{TIME} UTC")
-
-        if findall(r"\[.+\,.+\]", data):
-            keyboard = extract_text_and_keyb(ikb, data)
-            if keyboard:
-                data, keyb = keyboard
-
-    replied_message = message.reply_to_message
-    if replied_message:
-        replied_user = (
-            replied_message.from_user
-            if replied_message.from_user
-            else replied_message.sender_chat
-        )
-        if replied_user.id != from_user.id:
-            message = replied_message
-
-    await get_reply(message, type, file_id, data, keyb)
-
-
-@app.on_message(filters.command("privatenotes") & filters.group)
+ @app.on_message(filters.command("privatenotes") & filters.group)
 @adminsOnly("can_change_info")
 async def PrivateNote(client, message):
     chat_id = message.chat.id
@@ -146,9 +88,6 @@ async def PrivateNote(client, message):
                 "Your notes are currently being sent in the group.",
                 quote=True
             )
-
-
-
 
 @app.on_message(filters.command("save") & filters.group & ~BANNED_USERS)
 @adminsOnly("can_change_info")
