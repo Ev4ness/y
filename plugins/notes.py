@@ -1,6 +1,3 @@
-import gzip
-import base64
-import json
 from inspect import getfullargspec
 from re import findall
 import datetime
@@ -191,21 +188,14 @@ async def get_one_note(_, message):
     name = message.text.split(None, 1)[1]
     if not name:
         return
-    note = await get_note(chat_id, name)
-    if not note:
-        return await message.reply_text("no notes found")
-    note_json = json.dumps(note)
-    compressed_note = gzip.compress(note_json.encode('utf-8'))
-    
-    encoded_note = base64.urlsafe_b64encode(compressed_note).decode('utf-8')
     if await is_pnote_on(chat_id):
-        url = f"http://t.me/{app.username}?start=note_{chat_id}_{encoded_note}"
+        url = f"http://t.me/{app.username}?start=note_{chat_id}_{name}"
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
         return await message.reply(
             text=f"Tap here to view '{name}' in your private chat.",
             reply_markup=button
         )
-    await send_notes(message, message.chat.id, encoded_note)
+    await send_notes(message, message.chat.id, name)
 
 
 @app.on_message(filters.regex(r"^#.+") & filters.text & filters.group & ~BANNED_USERS)
