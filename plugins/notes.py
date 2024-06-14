@@ -51,8 +51,7 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-async def send_notes(message: Message, text, pm=False):
-    chat_id = message.chat.id  
+async def send_notes(message: Message, chat_id, text, pm=False):
     if not text:
         return
 
@@ -77,7 +76,7 @@ async def send_notes(message: Message, text, pm=False):
         if "{app.mention}" in data:
             data = data.replace("{app.mention}", app.mention)
         if "{GROUPNAME}" in data:
-            data = data.replace("{GROUPNAME}", message.chat.title)
+            data = data.replace("{GROUPNAME}", (await app.get_chat(chat_id)).title)
         if "{NAME}" in data:
             data = data.replace("{NAME}", message.from_user.mention)
         if "{ID}" in data:
@@ -307,7 +306,7 @@ async def get_one_note(_, message):
         if replied_user.id != from_user.id:
             message = replied_message
     await get_reply(message, type, file_id, data, keyb)'''
-    await send_notes(message, name)
+    await send_notes(message, message.chat.id, name)
 
 
 @app.on_message(filters.regex(r"^#.+") & filters.text & filters.group & ~BANNED_USERS)
