@@ -62,7 +62,7 @@ async def send_notes(message: Message,  text):
     if await is_pnote_on(chat_id):
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=f'http://t.me/{app.username}?start=note_{chat_id}_{_note}')]])
         return await message.reply(
-            text=f"Tap here to view '{NoteName}' in your private chat.",
+            text=f"Tap here to view '{_note}' in your private chat.",
             reply_markup=button
         )
         
