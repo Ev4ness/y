@@ -52,13 +52,20 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-'''async def send_notes(message: Message, chat_id, text):
-
+async def send_notes(message: Message,  text):
+    chat_id = message.chat.id  
     if not text:
         return
     _note = await get_note(chat_id, text)
     if not _note:
         return
+    if await is_pnote_on(chat_id):
+        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=f'http://t.me/{app.username}?start=note_{chat_id}_{_note}')]])
+        return await message.reply(
+            text=f"Tap here to view '{NoteName}' in your private chat.",
+            reply_markup=button
+        )
+        
     type = _note["type"]
     data = _note["data"]
     file_id = _note.get("file_id")
@@ -106,32 +113,13 @@ async def eor(msg: Message, **kwargs):
             message = replied_message
     await get_reply(message, type, file_id, data, keyb)
 
-async def send_note(message: Message, note_name: str):
-    chat_id = message.chat.id  
-    _note = await get_note(chat_id, note_name)
-    if not _note:
-        return
-    if await is_pnote_on(chat_id):
-        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=f'http://t.me/{app.username}?start=note_{chat_id}_{_note}')]])
-        await message.reply(
-        text=f"Tap here to view '{NoteName}' in your private chat.",
-        reply_markup=button
-    )
-
-    else:
-        await send_notes(message, chat_id, note_name)
-'''
-
-PRIVATE_NOTES_TRUE = ['on', 'true', 'yes', 'y']
-PRIVATE_NOTES_FALSE = ['off', 'false', 'no', 'n']
-
 @app.on_message(filters.command("privatenotes") & filters.group)
 @adminsOnly("can_change_info")
 async def PrivateNote(client, message):
     chat_id = message.chat.id
     if len(message.command) >= 2:
         if (
-            message.command[1] in PRIVATE_NOTES_TRUE
+            message.command[1] in ['on', 'true', 'yes', 'y']
         ):
             await set_private_note(chat_id, True)
             await message.reply(
@@ -140,7 +128,7 @@ async def PrivateNote(client, message):
             )
 
         elif (
-            message.command[1] in PRIVATE_NOTES_FALSE
+            message.command[1] in ['off', 'false', 'no', 'n']
         ):
             await set_private_note(chat_id, False)
             await message.reply(
@@ -260,12 +248,12 @@ async def get_notes(_, message):
 async def get_one_note(_, message):
     if len(message.text.split()) < 2:
         return await eor(message, text="Invalid arguments")
-    from_user = message.from_user if message.from_user else message.sender_chat
-    chat_id = message.chat.id
+    #from_user = message.from_user if message.from_user else message.sender_chat
+    #chat_id = message.chat.id
     name = message.text.split(None, 1)[1]
     if not name:
         return
-    _note = await get_note(chat_id, name)
+    '''_note = await get_note(chat_id, name)
     if not _note:
         return
     type = _note["type"]
@@ -313,7 +301,8 @@ async def get_one_note(_, message):
         )
         if replied_user.id != from_user.id:
             message = replied_message
-    await get_reply(message, type, file_id, data, keyb)
+    await get_reply(message, type, file_id, data, keyb)'''
+    await send_notes(message, name)
 
 
 @app.on_message(filters.regex(r"^#.+") & filters.text & filters.group & ~BANNED_USERS)
