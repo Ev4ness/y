@@ -193,15 +193,15 @@ async def get_one_note(_, message):
     if not note:
         return await message.reply_text("no notes found")
     name_bytes = note.encode('utf-8')
-    encoded_name = base64.urlsafe_b64encode(name_bytes).decode('utf-8')
+    encoded_note = base64.urlsafe_b64encode(name_bytes).decode('utf-8')
     if await is_pnote_on(chat_id):
-        url = f"http://t.me/{app.username}?start=note_{encoded_name}"
+        url = f"http://t.me/{app.username}?start=note_{chat_id}_{encoded_note}"
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
         return await message.reply(
             text=f"Tap here to view '{name}' in your private chat.",
             reply_markup=button
         )
-    await send_notes(message, message.chat.id, encoded_name)
+    await send_notes(message, message.chat.id, encoded_note)
 
 
 @app.on_message(filters.regex(r"^#.+") & filters.text & filters.group & ~BANNED_USERS)
