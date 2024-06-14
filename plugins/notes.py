@@ -184,7 +184,7 @@ async def get_one_note(_, message):
     if len(message.text.split()) < 2:
         return await eor(message, text="Invalid arguments")
     #from_user = message.from_user if message.from_user else message.sender_chat
-    #chat_id = message.chat.id
+    chat_id = message.chat.id
     name = message.text.split(None, 1)[1]
     if not name:
         return
