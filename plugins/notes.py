@@ -192,7 +192,8 @@ async def get_one_note(_, message):
     note = await get_note(chat_id, name)
     if not note:
         return await message.reply_text("no notes found")
-    name_bytes = note.encode('utf-8')
+    name_json = json.dumps(note)
+    name_bytes = name_json.encode('utf-8')
     encoded_note = base64.urlsafe_b64encode(name_bytes).decode('utf-8')
     if await is_pnote_on(chat_id):
         url = f"http://t.me/{app.username}?start=note_{chat_id}_{encoded_note}"
