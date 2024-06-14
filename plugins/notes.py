@@ -225,10 +225,10 @@ async def get_one_note(_, message):
         if "{FIRSTNAME}" in data:
             data = data.replace("{FIRSTNAME}", message.from_user.first_name)
         if "{SURNAME}" in data:
-            sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
+            sname = message.from_user.last_name or "None"
             data = data.replace("{SURNAME}", sname)
         if "{USERNAME}" in data:
-            susername = message.from_user.username if message.from_user.username else "None"
+            susername = message.from_user.username or "None"
             data = data.replace("{USERNAME}", susername)
         if "{DATE}" in data:
             DATE = datetime.datetime.now().strftime("%Y-%m-%d")
