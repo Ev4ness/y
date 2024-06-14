@@ -51,13 +51,14 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-async def send_notes(message: Message,  text):
+async def send_notes(message: Message, text, pm=False):
     chat_id = message.chat.id  
     if not text:
         return
-    if await is_pnote_on(chat_id):
+
+    if not pm and await is_pnote_on(chat_id):
         url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
-        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=url)]])
+        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
         return await message.reply(
             text=f"Tap here to view '{text}' in your private chat.",
             reply_markup=button
@@ -66,10 +67,12 @@ async def send_notes(message: Message,  text):
     _note = await get_note(chat_id, text)
     if not _note:
         return
+
     type = _note["type"]
     data = _note["data"]
     file_id = _note.get("file_id")
     keyb = None
+
     if data:
         if "{app.mention}" in data:
             data = data.replace("{app.mention}", app.mention)
@@ -82,7 +85,7 @@ async def send_notes(message: Message,  text):
         if "{FIRSTNAME}" in data:
             data = data.replace("{FIRSTNAME}", message.from_user.first_name)
         if "{SURNAME}" in data:
-            sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
+            sname = message.from_user.last_name if message.from_user.last_name else "None"
             data = data.replace("{SURNAME}", sname)
         if "{USERNAME}" in data:
             susername = message.from_user.username if message.from_user.username else "None"
@@ -97,11 +100,11 @@ async def send_notes(message: Message,  text):
             TIME = datetime.datetime.now().strftime("%H:%M:%S")
             data = data.replace("{TIME}", f"{TIME} UTC")
 
-
         if findall(r"\[.+\,.+\]", data):
             keyboard = extract_text_and_keyb(ikb, data)
             if keyboard:
                 data, keyb = keyboard
+
     replied_message = message.reply_to_message
     if replied_message:
         replied_user = (
@@ -111,7 +114,9 @@ async def send_notes(message: Message,  text):
         )
         if replied_user.id != from_user.id:
             message = replied_message
+
     await get_reply(message, type, file_id, data, keyb)
+
 
 @app.on_message(filters.command("privatenotes") & filters.group)
 @adminsOnly("can_change_info")
