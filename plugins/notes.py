@@ -55,17 +55,17 @@ async def send_notes(message: Message,  text):
     chat_id = message.chat.id  
     if not text:
         return
-    _note = await get_note(chat_id, text)
-    if not _note:
-        return
     if await is_pnote_on(chat_id):
         url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!',url=url)]])
         return await message.reply(
-            text=f"Tap here to view '{_note}' in your private chat.",
+            text=f"Tap here to view '{text}' in your private chat.",
             reply_markup=button
         )
-        
+
+    _note = await get_note(chat_id, text)
+    if not _note:
+        return
     type = _note["type"]
     data = _note["data"]
     file_id = _note.get("file_id")
