@@ -82,10 +82,10 @@ async def send_welcome_message(chat: Chat, user_id: int, delete: bool = False):
     if "{FIRSTNAME}" in text:
         text = text.replace("{FIRSTNAME}", u.first_name)
     if "{SURNAME}" in text:
-        sname = u.last_name if u.last_name else ""
+        sname = u.last_name or "None"
         text = text.replace("{SURNAME}", sname)
     if "{USERNAME}" in text:
-        susername = u.username if u.username else "None"
+        susername = u.username or "None"
         text = text.replace("{USERNAME}", susername)
     if "{DATE}" in text:
         DATE = datetime.datetime.now().strftime("%Y-%m-%d")
