@@ -50,7 +50,8 @@ async def eor(msg: Message, **kwargs):
     )
     spec = getfullargspec(func.__wrapped__).args
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
- @app.on_message(filters.command("privatenotes") & filters.group)
+
+@app.on_message(filters.command("privatenotes") & filters.group)
 @adminsOnly("can_change_info")
 async def PrivateNote(client, message):
     chat_id = message.chat.id
