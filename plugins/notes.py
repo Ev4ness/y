@@ -81,7 +81,7 @@ async def PrivateNote(client, message):
     else:
         if await is_pnote_on(chat_id):
             await message.reply(
-                "Your notes are currently being sent in private. DAXXMUSIC will send a small note with a button which redirects to a private chat.",
+                "Your notes are currently being sent in private. Now i will send a small note with a button which redirects to a private chat.",
                 quote=True
             )
         else:
@@ -238,7 +238,7 @@ async def get_one_note(_, message):
             message = replied_message
     await get_reply(message, type, file_id, data, keyb)'''
     if await is_pnote_on(chat_id):
-        url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
+        url = f"http://t.me/{app.username}?start=note_{chat_id}_{name}"
         button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
         return await message.reply(
             text=f"Tap here to view '{text}' in your private chat.",
