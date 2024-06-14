@@ -238,7 +238,7 @@ async def filters_re(_, message):
                 if "{FIRSTNAME}" in data:
                     data = data.replace("{FIRSTNAME}", message.from_user.first_name)
                 if "{SURNAME}" in data:
-                    sname = message.from_user.last_name if message.from_user.last_name.last_name else "None"
+                    sname = message.from_user.last_name or "None"
                     data = data.replace("{SURNAME}", sname)
                 if "{USERNAME}" in data:
                     susername = message.from_user.username if message.from_user.username else "None"
