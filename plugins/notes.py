@@ -51,18 +51,9 @@ async def eor(msg: Message, **kwargs):
     return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-async def send_notes(message: Message, chat_id, text, pm=False):
+async def send_notes(message: Message, chat_id, text):
     if not text:
         return
-
-    if not pm and await is_pnote_on(chat_id):
-        url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
-        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
-        return await message.reply(
-            text=f"Tap here to view '{text}' in your private chat.",
-            reply_markup=button
-        )
-
     _note = await get_note(chat_id, text)
     if not _note:
         return
@@ -306,6 +297,13 @@ async def get_one_note(_, message):
         if replied_user.id != from_user.id:
             message = replied_message
     await get_reply(message, type, file_id, data, keyb)'''
+    if await is_pnote_on(chat_id):
+        url = f"http://t.me/{app.username}?start=note_{chat_id}_{text}"
+        button = InlineKeyboardMarkup([[InlineKeyboardButton(text='Click me!', url=url)]])
+        return await message.reply(
+            text=f"Tap here to view '{text}' in your private chat.",
+            reply_markup=button
+        )
     await send_notes(message, message.chat.id, name)
 
 
