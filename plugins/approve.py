@@ -29,7 +29,7 @@ async def approval_command(client, message):
     if chat:
         mode = chat.get("mode", "")
         if not mode:
-            mode = "automatic"
+            mode = "manual"
             await approvaldb.update_one(
                 {"chat_id": chat_id},
                 {"$set": {"mode": mode}},
@@ -37,21 +37,23 @@ async def approval_command(client, message):
             )
         if mode == "automatic":
             switch = "manual"
+            mdbutton = "ᴀᴜᴛᴏᴍᴀᴛɪᴄ"
         else:
             switch = "automatic"
+            mdbutton = "ᴍᴀɴɴᴜᴀʟ"
         buttons = {
-            "Turn OFF": "approval_off",
-            f"{(mode.upper())}": f"approval_{switch}",
+            "Tᴜʀɴ ᴏғғ": "approval_off",
+            f"{mdbutton}": f"approval_{switch}",
         }
         keyboard = ikb(buttons, 1)
         await message.reply(
-            "**Autoapproval for this chat: Enabled.**", reply_markup=keyboard
+            "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Eɴᴀʙʟᴇᴅ.**", reply_markup=keyboard
         )
     else:
-        buttons = {"Turn ON": "approval_on"}
+        buttons = {"Tᴜʀɴ ᴏɴ ": "approval_on"}
         keyboard = ikb(buttons, 1)
         await message.reply(
-            "**Autoapproval for this chat: Disabled.**", reply_markup=keyboard
+            "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Dɪsᴀʙʟᴇᴅ.**", reply_markup=keyboard
         )
 
 
