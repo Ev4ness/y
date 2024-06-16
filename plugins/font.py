@@ -315,73 +315,11 @@ class Fonts:
         return text
 
     def smallcap(text):
-        style = {
-            "a": "ᴀ",
-            "b": "ʙ",
-            "c": "ᴄ",
-            "d": "ᴅ",
-            "e": "ᴇ",
-            "f": "ғ",
-            "g": "ɢ",
-            "h": "ʜ",
-            "i": "ɪ",
-            "j": "ɪ",
-            "k": "ᴋ",
-            "l": "ʟ",
-            "m": "ᴍ",
-            "n": "ɴ",
-            "o": "ᴏ",
-            "p": "ᴘ",
-            "q": "ǫ",
-            "r": "ʀ",
-            "s": "s",
-            "t": "ᴛ",
-            "u": "ᴜ",
-            "v": "ᴠ",
-            "w": "ᴡ",
-            "x": "x",
-            "y": "ʏ",
-            "z": "ᴢ",
-            "A": "A",
-            "B": "B",
-            "C": "C",
-            "D": "D",
-            "E": "E",
-            "F": "F",
-            "G": "G",
-            "H": "H",
-            "I": "I",
-            "J": "J",
-            "K": "K",
-            "L": "L",
-            "M": "M",
-            "N": "N",
-            "O": "O",
-            "P": "P",
-            "Q": "Q",
-            "R": "R",
-            "S": "S",
-            "T": "T",
-            "U": "U",
-            "V": "V",
-            "W": "W",
-            "X": "X",
-            "Y": "Y",
-            "Z": "Z",
-            "0": "𝟶",
-            "1": "𝟷",
-            "2": "𝟸",
-            "3": "𝟹",
-            "4": "𝟺",
-            "5": "𝟻",
-            "6": "𝟼",
-            "7": "𝟽",
-            "8": "𝟾",
-            "9": "𝟿",
-        }
-        for i, j in style.items():
-            text = text.replace(i, j)
-        return text
+        trans_table = str.maketrans(
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 
+            "ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢABCDEFGHIJKLMNOPQRSTUVWXYZ0𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"
+        )
+        return text.translate(trans_table)
 
     def script(text):
         style = {
