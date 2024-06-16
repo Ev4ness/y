@@ -38,8 +38,8 @@ async def send_photos(message, photo_urls):
                 await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
             except FloodWait as e:
                 pass
-        except Exception as e:
-            print(f"Failed to download image {idx + 1}: {e}")
+        except Exception:
+            pass
     
     await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs\nɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ...**")
     
@@ -47,8 +47,8 @@ async def send_photos(message, photo_urls):
     try:
         await app.send_media_group(message.chat.id, media)
         await messagesend.delete()
-    except Exception as e:
-        await messagesend.edit(f"Error: {e}")
+    except Exception:
+        pass
     
     for photo_path in photo_paths:
         try:
