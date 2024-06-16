@@ -24,8 +24,8 @@ async def send_photos(send_photos, photo_urls):
                     async with aio_open(photo_path, 'wb') as f:
                         await f.write(await response.read())
                     photo_paths.append(photo_path)
-                        await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
-                        photo_cnt+=1
+                    await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
+                    photo_cnt+=1
 
     media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
     await app.send_media_group(message.chat.id, media)
