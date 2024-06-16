@@ -33,6 +33,7 @@ async def send_photos(send_photos, photo_urls):
     media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
     try:
         await app.send_media_group(message.chat.id, media)
+        await messagesend.delete()
     except Exception as e:
         await messagesend.edit(e)
         pass
