@@ -1,24 +1,46 @@
 import asyncio
+import aiohttp
+import os
+from aiofiles import open as aio_open
+from pyrogram import Client
+from pyrogram.types import InputMediaPhoto
 from bing_image_urls import bing_image_urls
-from pyrogram import filters
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    InputMediaPhoto,
-)
-from pyrogram.errors.exceptions.flood_420 import FloodWait
-import requests
-from io import BytesIO
-
 from config import BANNED_USERS
 from YukkiMusic import app
+from pyrogram import filters
+from pyrogram.types import InputMediaPhoto
+
+
+async def send_photos(send_photos, photo_urls):
+    download_folder="downloads"
+    photo_paths = []
+    photo_cnt = 0
+    messagesend = await message.reply_text("**🔍**")
+    async with aiohttp.ClientSession() as session:
+        for idx, url in enumerate(photo_urls):
+            async with session.get(url) as response:
+                if response.status == 200:
+                    photo_path = os.path.join(download_folder, f"photo{idx + 1}.jpg")
+                    async with aio_open(photo_path, 'wb') as f:
+                        await f.write(await response.read())
+                    photo_paths.append(photo_path)
+                        await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
+                        photo_cnt+=1
+
+    media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
+    await app.send_media_group(message.chat.id, media)
+    for photo_path in photo_paths:
+        try:
+            os.remove(photo_path)
+        except OSError as e:
+            print(f"Error: {photo_path} : {e.strerror}")
+        except Exception:
+            pass
 
 @app.on_message(
     filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
 )
-async def pinterest(_, message):
-    command = message.text.split()[0][1:]
+async def image_from_bing(_, message):
     chat_id = message.chat.id
     if len(message.command) < 2 and not message.reply_to_message:
         return await message.reply_text("**ɢɪᴠᴇ ɪᴍᴀɢᴇ ɴᴀᴍᴇ ғᴏʀ sᴇᴀʀᴄʜ 🔍**")
@@ -28,36 +50,8 @@ async def pinterest(_, message):
     else:
         query = " ".join(message.command[1:])
 
-    if command == "image":
-        images = bing_image_urls(query, limit=7)
-        BING = []
 
-        msg = await message.reply("sᴇᴀʀᴄʜɪɴɢ ɪᴍᴀɢᴇs ғʀᴏᴍ ʙɪɴɢ...")
-
-        for url in images:
-            try:
-                response = requests.get(url)
-                response.raise_for_status()
-                image_data = BytesIO(response.content)
-                BING.append(InputMediaPhoto(media=image_data))
-            except Exception as e:
-                return await msg.edit(f"ᴇʀʀᴏʀ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ɪᴍᴀɢᴇ: {e}")
-
-        try:
-            await msg.edit("Uᴘʟᴏᴀᴅɪɴɢ....")
-            await app.send_media_group(
-                chat_id=chat_id, media=BING, reply_to_message_id=message.id
-            )
-            return await msg.delete()
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-        except Exception as e:
-            return await msg.edit(f"ᴇʀʀᴏʀ : {e}")
-        finally:
-            # Clean up to free memory
-            for image_data in BING:
-                image_data.media.close()
-
+    await send_photos(bing_image_urls(message, query, limit=9))
 
 
 __MODULE__ = "Iᴍᴀɢᴇ"
