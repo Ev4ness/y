@@ -114,8 +114,6 @@ async def remove_warns(chat_id: int, name: str) -> bool:
         return True
     return False
 
-adminlist = [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS)]
-
 @app.on_message(filters.command(["kick", "skick"]) & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_restrict_members")
 async def kickFunc(_, message: Message):
@@ -128,7 +126,8 @@ async def kickFunc(_, message: Message):
         )
     if user_id in SUDOERS:
         return await message.reply_text("ʏᴏᴜ ᴡᴀɴɴᴀ ᴋɪᴄᴋ ᴛʜᴇ ᴇʟᴇᴠᴀᴛᴇᴅ ᴏɴᴇ ?")
-    if user_id in adminlist:
+    if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+)]:
         return await message.reply_text(
             "ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴀɴ ᴀᴅᴍɪɴ, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, sᴏ ᴅᴏ ɪ "
         )
@@ -167,7 +166,8 @@ async def banFunc(_, message: Message):
         return await message.reply_text(
             "You Wanna Ban The Elevated One?, RECONSIDER!"
         )
-    if user_id in adminlist:
+    if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+)]:
         return await message.reply_text(
             "I can't ban an admin, You know the rules, so do i."
         )
@@ -448,7 +448,8 @@ async def mute(_, message: Message):
         return await message.reply_text(
             "You wanna mute the elevated one?, RECONSIDER!"
         )
-    if user_id in adminlist:
+    if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+)]:
         return await message.reply_text(
             "I can't mute an admin, You know the rules, so do i."
         )
@@ -518,7 +519,8 @@ async def warn_user(_, message: Message):
         return await message.reply_text(
             "ɪ ᴄᴀɴ'ᴛ ᴡᴀʀɴ ᴍʏ ᴍᴀɴᴀɢᴇʀ's, ʙᴇᴄᴀᴜsᴇ ʜᴇ ᴍᴀɴᴀɢᴇ ᴍᴇ!"
         )
-    if user_id in adminlist:
+    if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+)]:
         return await message.reply_text(
             "ɪ ᴄᴀɴ'ᴛ ᴡᴀʀɴ ᴀɴ ᴀᴅᴍɪɴ, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs sᴏ ᴅᴏ ɪ."
         )
