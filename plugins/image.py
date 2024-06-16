@@ -70,4 +70,4 @@ async def image_from_bing(_, message):
     else:
         query = " ".join(message.command[1:])
     
-    await send_photos(message, bing_image_urls(query, limit=9))
+    await send_photos(message, bing_image_urls(query, limit=11))
