@@ -25,23 +25,17 @@ def download_photo(url, photo_path, retries=3):
 async def send_photos(message, photo_urls):
     download_folder = "downloads" 
     photo_paths = []
-    photo_cnt = 0
     messagesend = await message.reply_text("**🔍 sᴇᴀʀᴄʜɪɴɢ ғᴏʀ ɪᴍᴀɢᴇs...**")
-    
+    await messagesend.edit(f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ....**")
     for idx, url in enumerate(photo_urls):
         photo_path = os.path.join(download_folder, f"photo{idx + 1}.jpg")
         try:
             download_photo(url, photo_path)
             photo_paths.append(photo_path)
-            photo_cnt += 1
-            try:
-                await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
-            except FloodWait as e:
-                pass
         except Exception:
             pass
     
-    await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs\nɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ...**")
+    await messagesend.edit(f"**ᴜᴘʟᴏᴀᴅɪɴɢ...**")
     
     media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
     try:
@@ -70,4 +64,4 @@ async def image_from_bing(_, message):
     else:
         query = " ".join(message.command[1:])
     
-    await send_photos(message, bing_image_urls(query, limit=11))
+    await send_photos(message, bing_image_urls(query, limit=9))
