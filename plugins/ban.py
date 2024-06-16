@@ -226,20 +226,15 @@ async def unban_func(_, message: Message):
     # normal users won't get text_mention if the user
     # they want to unban is not in the group.
     reply = message.reply_to_message
+    user_id = await extract_user(message)
+    if not user_id:
+        return await message.reply_text("I can't find that user.")
 
     if reply and reply.sender_chat and reply.sender_chat != message.chat.id:
         return await message.reply_text("You cannot unban a channel")
 
-    if len(message.command) == 2:
-        user = message.text.split(None, 1)[1]
-    elif len(message.command) == 1 and reply:
-        user = message.reply_to_message.from_user.id
-    else:
-        return await message.reply_text(
-            "Provide a username or reply to a user's message to unban."
-        )
-    await message.chat.unban_member(user)
-    umention = (await app.get_users(user)).mention
+    await message.chat.unban_member(user_id)
+    umention = (await app.get_users(user_id)).mention
     replied_message = message.reply_to_message
     if replied_message:
         message = replied_message
@@ -435,7 +430,6 @@ async def pin(_, message: Message):
     await save_filter(message.chat.id, "~pinned", filter_)
 # Mute members
 
-
 @app.on_message(filters.command(["mute", "tmute"]) & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_restrict_members")
 async def mute(_, message: Message):
@@ -589,8 +583,10 @@ async def remove_warnings(_, message: Message):
         return await message.reply_text(
             "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴀ ᴜsᴇʀ's ᴡᴀʀɴɪɴɢs."
         )
-    user_id = message.reply_to_message.from_user.id
-    mention = message.reply_to_message.from_user.mention
+    user_id = await extract_user(message)
+    if not user_id:
+        return await message.reply_text("I can't find that user.")
+    mention =  (await app.get_users(user_id)).mention
     chat_id = message.chat.id
     warns = await get_warn(chat_id, await int_to_alpha(user_id))
     if warns:
