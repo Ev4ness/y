@@ -11,7 +11,7 @@ from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 
-async def send_photos(send_photos, photo_urls):
+async def send_photos(message, photo_urls):
     download_folder="downloads"
     photo_paths = []
     photo_cnt = 0
