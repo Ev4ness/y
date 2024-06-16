@@ -579,10 +579,6 @@ async def remove_warning(_, cq: CallbackQuery):
 @app.on_message(filters.command("rmwarns") & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_restrict_members")
 async def remove_warnings(_, message: Message):
-    if not message.reply_to_message:
-        return await message.reply_text(
-            "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴀ ᴜsᴇʀ's ᴡᴀʀɴɪɴɢs."
-        )
     user_id = await extract_user(message)
     if not user_id:
         return await message.reply_text("I can't find that user.")
