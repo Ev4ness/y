@@ -51,7 +51,7 @@ async def image_from_bing(_, message):
         query = " ".join(message.command[1:])
 
 
-    await send_photos(bing_image_urls(message, query, limit=9))
+    await send_photos(message, bing_image_urls(query, limit=9))
 
 
 __MODULE__ = "Iᴍᴀɢᴇ"
