@@ -8,12 +8,10 @@ from pyrogram.types import (
     InputMediaPhoto,
 )
 from pyrogram.errors.exceptions.flood_420 import FloodWait
-from requests import get
+import requests
 
 from config import BANNED_USERS
 from YukkiMusic import app
-from YukkiMusic.utils.image import gen_image
-
 
 @app.on_message(
     filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
@@ -28,15 +26,20 @@ async def pinterest(_, message):
         query = message.reply_to_message.text
     else:
         query = " ".join(message.command[1:])
-    
+
     if command == "image":
         images = bing_image_urls(query, limit=7)
         BING = []
 
-        msg = await message.reply(f"sᴇᴀʀᴄʜɪɴɢ ɪᴍᴀɢᴇs ғʀᴏᴍ ʙɪɴɢ...")
-        for url in images:
+        msg = await message.reply("sᴇᴀʀᴄʜɪɴɢ ɪᴍᴀɢᴇs ғʀᴏᴍ ʙɪɴɢ...")
 
-            BING.append(InputMediaPhoto(media=url))
+        for url in images:
+            try:
+                response = requests.get(url)
+                response.raise_for_status()
+                BING.append(InputMediaPhoto(media=response.content))
+            except Exception as e:
+                return await msg.edit(f"ᴇʀʀᴏʀ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ɪᴍᴀɢᴇ: {e}")
 
         try:
             await msg.edit("Uᴘʟᴏᴀᴅɪɴɢ....")
@@ -48,6 +51,7 @@ async def pinterest(_, message):
             await asyncio.sleep(e.value)
         except Exception as e:
             return await msg.edit(f"ᴇʀʀᴏʀ : {e}")
+
 
 
 re_keyboard = InlineKeyboardMarkup(
