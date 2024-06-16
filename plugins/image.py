@@ -9,10 +9,10 @@ from pyrogram.types import (
 )
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 import requests
+from io import BytesIO
 
 from config import BANNED_USERS
 from YukkiMusic import app
-from YukkiMusic.utils.image import gen_image
 
 @app.on_message(
     filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
@@ -38,7 +38,8 @@ async def pinterest(_, message):
             try:
                 response = requests.get(url)
                 response.raise_for_status()
-                BING.append(InputMediaPhoto(media=response.content))
+                image_data = BytesIO(response.content)
+                BING.append(InputMediaPhoto(media=image_data))
             except Exception as e:
                 return await msg.edit(f"ᴇʀʀᴏʀ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ɪᴍᴀɢᴇ: {e}")
 
@@ -52,30 +53,11 @@ async def pinterest(_, message):
             await asyncio.sleep(e.value)
         except Exception as e:
             return await msg.edit(f"ᴇʀʀᴏʀ : {e}")
+        finally:
+            # Clean up to free memory
+            for image_data in BING:
+                image_data.media.close()
 
-
-
-re_keyboard = InlineKeyboardMarkup(
-    [
-        [InlineKeyboardButton(text="Rᴇғʀᴇsʜ", callback_data="randomimagerefresh")],
-        [InlineKeyboardButton(text="〆 ᴄʟᴏsᴇ 〆", callback_data="close")],
-    ]
-)
-
-
-@app.on_message(filters.command(["rimage", "randomimage"]) & ~BANNED_USERS)
-async def wall(client, message):
-    img = gen_image()
-    await message.reply_photo(img, reply_markup=re_keyboard)
-
-
-@app.on_callback_query(filters.regex("randomimagerefresh") & ~BANNED_USERS)
-async def refresh_cat(c, m: CallbackQuery):
-    img = gen_image()
-    await m.edit_message_media(
-        InputMediaPhoto(media=img),
-        reply_markup=re_keyboard,
-    )
 
 
 __MODULE__ = "Iᴍᴀɢᴇ"
