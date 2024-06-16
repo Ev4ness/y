@@ -9,7 +9,7 @@ from config import BANNED_USERS
 from YukkiMusic import app
 from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
-
+from pyrogram.errors.exceptions.flood_420 import FloodWait
 
 async def send_photos(send_photos, photo_urls):
     download_folder="downloads"
@@ -24,11 +24,18 @@ async def send_photos(send_photos, photo_urls):
                     async with aio_open(photo_path, 'wb') as f:
                         await f.write(await response.read())
                     photo_paths.append(photo_path)
-                    await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
+                    try:
+                        await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs**")
+                    except FloodWait as e:
+                        asyncio.sleep(e.value)
                     photo_cnt+=1
-
+    await messagesend.edit(f"**ғᴏᴜɴᴅ {photo_cnt} ɪᴍᴀɢᴇs\nɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ...**")
     media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
-    await app.send_media_group(message.chat.id, media)
+    try:
+        await app.send_media_group(message.chat.id, media)
+    except Exception as e:
+        await messagesend.edit(e)
+        pass
     for photo_path in photo_paths:
         try:
             os.remove(photo_path)
