@@ -7,9 +7,6 @@ from YukkiMusic import app
 from pyrogram import filters
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 
-def to_tiny_caps(text):
-    return text.translate(str.maketrans("abcdefghijklmnopqrstuvwxyz", "ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ"))
-
 def download_photo(url, photo_path, retries=3):
     for attempt in range(retries):
         try:
@@ -32,7 +29,7 @@ async def send_photos(message, photo_urls):
     messagesend = await message.reply_text("**🔍 sᴇᴀʀᴄʜɪɴɢ ғᴏʀ ɪᴍᴀɢᴇs...**")
     
     for idx, url in enumerate(photo_urls):
-        photo_path = os.path.join(download_folder, f"ᴘʜᴏᴛᴏ{idx + 1}.jpg")
+        photo_path = os.path.join(download_folder, f"photo{idx + 1}.jpg")
         try:
             download_photo(url, photo_path)
             photo_paths.append(photo_path)
@@ -61,9 +58,8 @@ async def send_photos(message, photo_urls):
         except Exception:
             pass
 
-# Command handler to search for images
 @app.on_message(
-    filters.command(["ɪᴍᴀɢᴇ"], prefixes=["/", "!", "."]) & ~BANNED_USERS
+    filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
 )
 async def image_from_bing(_, message):
     if len(message.command) < 2 and not message.reply_to_message:
