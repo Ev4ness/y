@@ -12,6 +12,7 @@ import requests
 
 from config import BANNED_USERS
 from YukkiMusic import app
+from YukkiMusic.utils.image import gen_image
 
 @app.on_message(
     filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
