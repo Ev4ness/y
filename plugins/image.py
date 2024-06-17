@@ -6,54 +6,9 @@ from config import BANNED_USERS
 from YukkiMusic import app
 from pyrogram import filters
 from pyrogram.errors.exceptions.flood_420 import FloodWait
-
-def download_photo(url, photo_path, retries=3):
-    for attempt in range(retries):
-        try:
-            response = requests.get(url, timeout=5)
-            if response.status_code == 200:
-                with open(photo_path, 'wb') as f:
-                    f.write(response.content)
-                return photo_path
-        except requests.exceptions.RequestException as e:
-            print(f"Failed to connect to {url}: {e}")
-            if attempt < retries - 1:
-                time.sleep(2 ** attempt)
-            else:
-                raise
-
-async def send_photos(message, photo_urls):
-    download_folder = "downloads" 
-    photo_paths = []
-    messagesend = await message.reply_text("**🔍 sᴇᴀʀᴄʜɪɴɢ ғᴏʀ ɪᴍᴀɢᴇs...**")
-    await messagesend.edit(f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ....**")
-    for idx, url in enumerate(photo_urls):
-        photo_path = os.path.join(download_folder, f"photo{idx + 1}.jpg")
-        try:
-            download_photo(url, photo_path)
-            photo_paths.append(photo_path)
-        except Exception:
-            pass
-    
-    await messagesend.edit(f"**ᴜᴘʟᴏᴀᴅɪɴɢ...**")
-    
-    media = [InputMediaPhoto(photo_path) for photo_path in photo_paths]
-    try:
-        await app.send_media_group(message.chat.id, media)
-        await messagesend.delete()
-    except Exception:
-        pass
-    
-    for photo_path in photo_paths:
-        try:
-            os.remove(photo_path)
-        except OSError as e:
-            print(f"Error removing file {photo_path}: {e.strerror}")
-        except Exception:
-            pass
-
+ 
 @app.on_message(
-    filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
+    filters.command(["g"], prefixes=["/", "!", "."]) & ~BANNED_USERS
 )
 async def image_from_bing(_, message):
     if len(message.command) < 2 and not message.reply_to_message:
@@ -63,5 +18,18 @@ async def image_from_bing(_, message):
         query = message.reply_to_message.text
     else:
         query = " ".join(message.command[1:])
-    
-    await send_photos(message, bing_image_urls(query, limit=9))
+
+    messagesend = await message.reply_text("**🔍 sᴇᴀʀᴄʜɪɴɢ ғᴏʀ ɪᴍᴀɢᴇs...**")
+
+    media_group = []
+    for url in bing_image_urls(query, limit=6):
+        media_group.append(InputMediaPhoto(media=url))
+    await messagesend.edit(f"**ᴜᴘʟᴏᴀᴅɪɴɢ...**")
+    try:
+        await app.send_media_group(message.chat.id, media_group)
+        await messagesend.delete()
+    except Exception as e:
+        await messagesend.edit(e)
+
+
+in this remove unused imports
