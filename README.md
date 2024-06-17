@@ -13,7 +13,7 @@
 Check Out [Necessary Variables Here](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
 fill these vars
 
-<a href="https://railway.app/new/template?template=https://github.com/TheTeamVivek/YukkiMusic-Deploy&envs=STRING_SESSION,BOT_TOKEN,OWNER_ID,MONGO_DB_URI,API_ID,API_HASH"><img src="https://railway.app/button.svg"alt = "ᴅᴇᴘʟᴏʏ ᴛᴏ ʀᴀɪʟᴡᴀʏ" /></a>
+<a href="https://railway.app/new/template?template=https://github.com/TheTeamVivek/YukkiMusic-Deploy&envs=STRING_SESSION,BOT_TOKEN,OWNER_ID,MONGO_DB_URI,API_ID,API_HASH"><img src="https://railway.app/button.svg" alt="ᴅᴇᴘʟᴏʏ ᴛᴏ ʀᴀɪʟᴡᴀʏ" /></a>
 
 
 
