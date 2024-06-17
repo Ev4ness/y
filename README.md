@@ -7,14 +7,7 @@
 
 <h4>Click the button below to deploy Yukki Music Bot on Heroku!</h4>    
 <h4>If You show any error like failed to app Creation Then fork and deploy </h4>
-<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/ᴅᴇᴘʟᴏʏ%20ᴛᴏ%20ʜᴇʀᴏᴋᴜ-red?style=for-the-badge&logo=heroku" width="200""/></a>
- 
-## Deploy on railway  🚈 :
-Check Out [Necessary Variables Here](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
-fill these vars
-
-<a href="https://railway.app/new/template?template=https://github.com/TheTeamVivek/YukkiMusic-Deploy&envs=STRING_SESSION,BOT_TOKEN,OWNER_ID,MONGO_DB_URI,API_ID,API_HASH"><img src="https://railway.app/button.svg" alt="ᴅᴇᴘʟᴏʏ ᴛᴏ ʀᴀɪʟᴡᴀʏ" /></a>
-
+<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku" width="200""/></a>
 
 
 ### 🖇 VPS Deployment
