@@ -7,9 +7,12 @@
 
 <h4>Click the button below to deploy Yukki Music Bot on Heroku!</h4>    
 <h4>If You show any error like failed to app Creation Then fork and deploy </h4>
-<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-hotpink?style=for-the-badge&logo=heroku" width="200""/></a>
+<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-forestgreen?style=for-the-badge&logo=heroku" width="200""/></a>
 
- <-- forestgreen steelblue indigo-->
+<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-steelblue?style=for-the-badge&logo=heroku" width="200""/></a>
+
+<a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-indigo?style=for-the-badge&logo=heroku" width="200""/></a>
+
 
 ### 🖇 VPS Deployment
 - Get your [Necessary Variables](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
