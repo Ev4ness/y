@@ -2,7 +2,7 @@ from YukkiMusic import app
 from pyrogram import client, filters
 import nekos
 
-@app.on_message(filters.command("hu"))
+@app.on_message(filters.command("hug"))
 async def huggg(client, message):
     try:
         if message.reply_to_message:
