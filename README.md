@@ -1,5 +1,7 @@
 # Extra Plugins For [YukkiMusic](https://github.com/TheTeamVivek/YukkiMusic)
 
+<a href="https://github.com/TheTeamVivek/YukkiMusic/contributors"><img src="https://img.shields.io/github/contributors/TheTeamVivek/YukkiMusic" width="200""/></a>
+
 
 ## Deployment for [YukkiMusic](https://github.com/TheTeamVivek/YukkiMusic)
 
