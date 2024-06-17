@@ -9,7 +9,7 @@
 <h4>If You show any error like failed to app Creation Then fork and deploy </h4>
 <a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/ᴅᴇᴘʟᴏʏ%20ᴛᴏ%20ʜᴇʀᴏᴋᴜ-red?style=for-the-badge&logo=heroku" width="200""/></a>
  
-## deploy on railway  🚈 :
+## Deploy on railway  🚈 :
 Check Out [Necessary Variables Here](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
 fill these vars
 
