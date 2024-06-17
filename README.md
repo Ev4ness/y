@@ -10,10 +10,10 @@
 <a href="https://dashboard.heroku.com/new?template=https://github.com/TheTeamVivek/YukkiMusic"><img src="https://img.shields.io/badge/ᴅᴇᴘʟᴏʏ%20ᴛᴏ%20ʜᴇʀᴏᴋᴜ-red?style=for-the-badge&logo=heroku" width="200""/></a>
  
 ## ᴅᴇᴘʟᴏʏ ᴏɴ ʀᴀɪʟᴡᴀʏ 🚈 :
-Check Out [Necessary Variables Here](https://github.com/BikashHalderNew/Bgtplayer/blob/bikash/Internal)
+Check Out [Necessary Variables Here](https://github.com/TheTeamVivek/YukkiMusic/blob/master/sample.env)
 fill these vars
 
-<a href="https://railway.app/new/template?template=https://github.com/BikashHalderNew/Bgtplayer-Deploy&envs=STRING_SESSION,BOT_TOKEN,OWNER_ID,MONGO_DB_URI,API_ID,API_HASH"><img src="https://railway.app/button.svg" alt="Deploy on Railway" /></a>
+<a href="https://railway.app/new/template?template=https://github.com/TheTeamVivek/YukkiMusic-Deploy&envs=STRING_SESSION,BOT_TOKEN,OWNER_ID,MONGO_DB_URI,API_ID,API_HASH"><img src="https://img.shields.io/badge/ᴅᴇᴘʟᴏʏ%20ᴛᴏ%20ʀᴀɪʟᴡᴀʏ-steelblue?style=for-the-badge&logo=railway" /></a>
 
 
 
