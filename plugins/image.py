@@ -8,7 +8,7 @@ from pyrogram import filters
 from pyrogram.errors.exceptions.flood_420 import FloodWait
  
 @app.on_message(
-    filters.command(["g"], prefixes=["/", "!", "."]) & ~BANNED_USERS
+    filters.command(["image"], prefixes=["/", "!", "."]) & ~BANNED_USERS
 )
 async def image_from_bing(_, message):
     if len(message.command) < 2 and not message.reply_to_message:
@@ -30,6 +30,3 @@ async def image_from_bing(_, message):
         await messagesend.delete()
     except Exception as e:
         await messagesend.edit(e)
-
-
-in this remove unused imports
