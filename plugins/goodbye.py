@@ -20,6 +20,9 @@ from utils import (
     del_goodbye,
     get_goodbye,
     set_goodbye,
+    is_greetings_on,
+    set_greetings_on,
+    set_greetings_off,
 )
 from utils.error import capture_err
 from YukkiMusic.utils.functions import check_format, extract_text_and_keyb
@@ -58,6 +61,15 @@ async def goodbye(_, m:Message):
 
 
 async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
+    ison = await is_greetings_on(chat.id, "goodbye")
+    if ison in None or not ison:
+        return
+
+        goodbye= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
+        raw_text= ""
+
+        file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
+
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
 
     if not raw_text:
@@ -185,8 +197,27 @@ async def del_goodbye_func(_, message):
     await message.reply_text("goodbye message has been deleted.")
 
 
-@app.on_message(filters.command("getgoodbye") & ~filters.private)
+@app.on_message(filters.command("goodbye") & ~filters.private)
 @adminsOnly("can_change_info")
+async def welcome_command(client, message):
+    command = message.text.split()
+    if len(command) == 1:
+        return await get_goodbye_func(client, message)
+
+    elif len(command) == 2 and command[1].lower() in ["on", "enable", "y", "yes", "true", "t"]:
+        success = await is_greetings_on(message.chat.id, "goodbye")
+        if success:
+            await message.reply_text("I'll be welcoming all new members from now on!")
+
+
+    elif len(command) == 2 and command[1].lower() in ["off", "disable", "n", "no"]:
+        success = await set_greetings_off(message.chat.id, "goodbye")
+        if success:
+            await message.reply_text("I'll stay quiet when new members join.")
+    else:
+        await message.reply_text("\n/welcome - To get You welcome message\n/welcome [on , y, true, enable, t] - to turn on welcome\n\n/welcome [off , n, false, disable, f, no] - to turn on welcome)
+
+
 async def get_goodbye_func(_, message):
     chat = message.chat
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
