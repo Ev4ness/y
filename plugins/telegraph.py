@@ -14,7 +14,7 @@ async def get_link_group(client, message):
         )
     if message.reply_to_message.sticker:
         sticker = message.reply_to_message.sticker
-        if sticker.is_video or not sticker.is_animated:
+        if sticker.is_video and not sticker.is_animated:
             try:
                 text = await message.reply("downloading sticker.")
                 file_path = await app.download_media(sticker.file_id, file_name=f"{sticker.file_id}_sticker.png")
