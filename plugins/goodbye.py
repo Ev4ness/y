@@ -69,6 +69,9 @@ async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
         file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
         return await set_goodbye(chat.id, goodbye, raw_text, file_id)
 
+    if not ison:
+        return
+
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
 
     if not raw_text:
