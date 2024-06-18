@@ -234,5 +234,5 @@ async def get_goodbye_func(_, message):
     if isgrt:
         text = "True"
     await message.reply_text(
-        f'currently greeting - {isgrt}\ngoodbye: {goodbye}\n\nFile_id: `{file_id}`\n\n`{raw_text.replace("`", "")}`'
+        f'I am currently saying goodbye to users :- {text}\ngoodbye: {goodbye}\n\nFile_id: `{file_id}`\n\n`{raw_text.replace("`", "")}`'
     )
