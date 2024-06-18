@@ -201,7 +201,7 @@ async def del_goodbye_func(_, message):
 
 @app.on_message(filters.command("goodbye") & ~filters.private)
 @adminsOnly("can_change_info")
-async def welcome_command(client, message):
+async def goodbye(client, message):
     command = message.text.split()
     if len(command) == 1:
         return await get_goodbye_func(client, message)
