@@ -212,7 +212,7 @@ async def welcome_command(client, message):
             await message.reply_text("I'll be welcoming all new members from now on!")
 
 
-    elif len(command) == 2 and command[1].lower() in ["off", "disable", "n", "no"]:
+    elif len(command) == 2 and command[1].lower() in ["off", "disable", "n", "no", "f","false"]:
         success = await set_greetings_off(message.chat.id, "goodbye")
         if success:
             await message.reply_text("I'll stay quiet when new members join.")
