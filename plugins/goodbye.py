@@ -59,16 +59,16 @@ async def goodbye(_, m:Message):
     return await handle_left_member(member, chat)
 
 
-async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
+async def send_left_message(chat: Chat, user_id: int, delete: bool = False, nothing=False):
     ison = await is_greetings_on(chat.id, "goodbye")
-    if ison is None:
+    if ison is None and not nothing:
         await set_greetings_on(chat.id, "goodbye")
         goodbye = "Animation"
         raw_text= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
         file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
         return await set_goodbye(chat.id, goodbye, raw_text, file_id)
 
-    if not ison:
+    if not ison and not nothing:
         return
 
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
@@ -227,7 +227,7 @@ async def get_goodbye_func(_, message):
     if not message.from_user:
         return await message.reply_text("You're anon, can't send goodbye message.")
 
-    await send_left_message(chat, message.from_user.id)
+    await send_left_message(chat, message.from_user.id, nothing=False)
     isgrt = await is_greetings_on(chat.id, "goodbye")
     if isgrt is None:
         text = "False"
