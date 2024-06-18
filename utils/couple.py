@@ -1,14 +1,13 @@
 
-
 coupledb = {}
-# in memory
+# in memory storage
 
 async def _get_lovers(cid: int):
     chat_data = coupledb.get(cid, {})
     lovers = chat_data.get("couple", {})
     return lovers
 
-async def _get_image(cid: int):
+async def get_image(cid: int):
     chat_data = coupledb.get(cid, {})
     image = chat_data.get("img", "")
     return image
