@@ -10,7 +10,7 @@ import requests
 
 from YukkiMusic import app
 from config import OWNER_ID
-from utils import get_image as _get_image, get_couple, save_couple
+from utils import get_image, get_couple, save_couple
 
 
 def dt():
@@ -58,7 +58,7 @@ async def ctest(_, message):
     try:
         is_selected = await get_couple(cid, today)
         if not is_selected:
-            msg = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴏᴜᴘʟᴇs ɪᴍᴀɢᴇ...")
+            msg = await message.reply_text("❣️")
             list_of_users = []
 
             async for i in app.get_chat_members(message.chat.id, limit=50):
@@ -130,8 +130,8 @@ async def ctest(_, message):
                 await save_couple(cid, today, couple, img_url)
 
         else:
-            msg = await message.reply_text("ɢᴇᴛᴛɪɴɢ ᴛᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ...")
-            b = await _get_image(cid)
+            msg = await message.reply_text("❣️")
+            b = await get_image(cid)
             c1_id = int(is_selected["c1_id"])
             c2_id = int(is_selected["c2_id"])
             c1_name = (await app.get_users(c1_id)).first_name
