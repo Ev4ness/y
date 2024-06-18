@@ -30,7 +30,7 @@ async def get_link_group(client, message):
                 except Exception:
                    pass
             except Exception as e:
-            await text.edit_text(f"❌ |ғɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ \n\n<i>ʀᴇᴀsᴏɴ: {e}</i>")
+                await text.edit_text(f"❌ |ғɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ \n\n<i>ʀᴇᴀsᴏɴ: {e}</i>")
                 try:
                     os.remove(local_path)
                     os.remove(file_path)
