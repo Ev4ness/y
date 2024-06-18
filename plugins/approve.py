@@ -96,14 +96,14 @@ async def approval_cb(client, cb):
     )
     chat = await approvaldb.find_one({"chat_id": chat_id})
     mode = chat["mode"].upper()
-    buttons = {"Turn OFF": "approval_off", f"{mode}": f"approval_{switch}"}
+    buttons = {"ᴛᴜʀɴ ᴏғғ": "approval_off", f"{mode}": f"approval_{switch}"}
     keyboard = ikb(buttons, 1)
     await cb.edit_message_text(
         "**Autoapproval for this chat: Enabled.**", reply_markup=keyboard
     )
 
 
-@app.on_message(filters.command("clear_pending") & filters.group)
+@app.on_message(filters.command("clearpending") & filters.group)
 @adminsOnly("can_restrict_members")
 async def clear_pending_command(client, message):
     chat_id = message.chat.id
@@ -142,7 +142,7 @@ async def accept(client, message: ChatJoinRequest):
                     "Decline": f"manual_decline_{user.id}",
                 }
                 keyboard = ikb(buttons, int(2))
-                text = f"**User: {user.mention} has send a request to join our  group. Any admins can accept or decline it.**"
+                text = f"**ᴜsᴇʀ: {user.mention} ʜᴀs sᴇɴᴅ ᴀ ʀᴇǫᴜᴇsᴛ ᴛᴏ ᴊᴏɪɴ ᴏᴜʀ  ɢʀᴏᴜᴘ. Aɴʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ᴏʀ ᴅᴇᴄʟɪɴᴇ ɪᴛ.**"
                 admin_data = [
                     i
                     async for i in app.get_chat_members(
