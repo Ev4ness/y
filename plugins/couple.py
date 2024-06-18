@@ -9,7 +9,6 @@ from pyrogram.enums import ChatType
 import requests
 
 from YukkiMusic import app
-from config import OWNER_ID
 from utils import get_image, get_couple, save_couple
 
 
@@ -44,12 +43,6 @@ async def ctest(_, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
         return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.")
-    try:
-        await app.resolve_peer(OWNER_ID[0])
-        OWNER = OWNER_ID[0]
-    except:
-        OWNER = f"tg://openmessage?user_id={OWNER_ID[0]}"
-
     p1_path = "downloads/pfp.png"
     p2_path = "downloads/pfp1.png"
     test_image_path = f'downloads/test_{cid}.png'
@@ -120,7 +113,7 @@ async def ctest(_, message):
 ɴᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
 """
 
-            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]]),)
+            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
 
             await msg.delete()
             a = upload_file(test_image_path)
@@ -144,7 +137,7 @@ async def ctest(_, message):
 ➖➖➖➖➖➖➖➖➖➖➖➖
 ɴᴇxᴛ ᴄᴏᴜᴘʟᴇ ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
 """
-            await message.reply_photo(b, caption=TXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]]))
+            await message.reply_photo(b, caption=TXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
             await msg.delete()
 
     except Exception as e:
