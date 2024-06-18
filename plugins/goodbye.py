@@ -62,13 +62,12 @@ async def goodbye(_, m:Message):
 
 async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
     ison = await is_greetings_on(chat.id, "goodbye")
-    if ison in None or not ison:
-        return
-
-        goodbye= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
-        raw_text= ""
-
+    if ison in None:
+        await set_greetings_on(chat.id, "goodbye")
+        goodbye = "Animation"
+        raw_text= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
         file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
+        return await set_goodbye(chat.id, goodbye, raw_text, file_id)
 
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
 
