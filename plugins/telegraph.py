@@ -27,7 +27,6 @@ async def get_link_group(client, message):
                 try:
                     os.remove(local_path)
                     os.remove(file_path)
-                    return 
                 except Exception:
                    pass
             except Exception as e:
@@ -35,18 +34,18 @@ async def get_link_group(client, message):
                 try:
                     os.remove(local_path)
                     os.remove(file_path)
-                    return 
                 except Exception:
                    pass
-    try:
-        text = await message.reply("ᴘʀᴏᴄᴇssɪɴɢ...")
-
+    else:
         try:
-            local_path = await message.reply_to_message.download( progress=progress
-            )
-            await text.edit_text("📤 ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ...")
-            upload_path = upload_file(local_path)
-            await text.edit_text(
+            text = await message.reply("ᴘʀᴏᴄᴇssɪɴɢ...")
+
+            try:
+                local_path = await message.reply_to_message.download( progress=progress
+                )
+                await text.edit_text("📤 ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ...")
+                upload_path = upload_file(local_path)
+                await text.edit_text(
                 f"🌐 | [ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ](https://telegra.ph{upload_path[0]})",
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -59,19 +58,18 @@ async def get_link_group(client, message):
                     ]
                 ),
             )
-            try:
-                os.remove(local_path)
-            except Exception:
-               pass
-        except Exception as e:
-            await text.edit_text(f"❌ |ғɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ \n\n<i>ʀᴇᴀsᴏɴ: {e}</i>")
-            try:
-                os.remove(local_path)
-            except Exception:
-               pass
-            return
-    except Exception:
-        pass
+                try:
+                    os.remove(local_path)
+                except Exception:
+                   pass
+            except Exception as e:
+                await text.edit_text(f"❌ |ғɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ \n\n<i>ʀᴇᴀsᴏɴ: {e}</i>")
+                try:
+                    os.remove(local_path)
+                except Exception:
+                   pass
+        except Exception:
+            pass
 
 __HELP__ = """
 **ᴛᴇʟᴇɢʀᴀᴘʜ ᴜᴘʟᴏᴀᴅ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs**
