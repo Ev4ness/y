@@ -227,7 +227,7 @@ async def get_goodbye_func(_, message):
     if not message.from_user:
         return await message.reply_text("You're anon, can't send goodbye message.")
 
-    await send_left_message(chat, message.from_user.id, nothing=False)
+    await send_left_message(chat, message.from_user.id, nothing=True)
     isgrt = await is_greetings_on(chat.id, "goodbye")
     if isgrt is None:
         text = "False"
