@@ -61,7 +61,7 @@ async def goodbye(_, m:Message):
 
 async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
     ison = await is_greetings_on(chat.id, "goodbye")
-    if ison in None:
+    if ison is None:
         await set_greetings_on(chat.id, "goodbye")
         goodbye = "Animation"
         raw_text= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
@@ -229,6 +229,10 @@ async def get_goodbye_func(_, message):
 
     await send_left_message(chat, message.from_user.id)
     isgrt = await is_greetings_on(chat.id, "goodbye")
+    if isgrt is None:
+        text = "False"
+    if isgrt:
+        text = "True"
     await message.reply_text(
         f'currently greeting - {isgrt}\ngoodbye: {goodbye}\n\nFile_id: `{file_id}`\n\n`{raw_text.replace("`", "")}`'
     )
