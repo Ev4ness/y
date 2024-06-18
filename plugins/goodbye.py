@@ -229,7 +229,7 @@ async def get_goodbye_func(_, message):
         return await message.reply_text("You're anon, can't send goodbye message.")
 
     await send_left_message(chat, message.from_user.id)
-
+    isgrt = await is_greetings_on(chat.id, "goodbye")
     await message.reply_text(
-        f'goodbye: {goodbye}\n\nFile_id: `{file_id}`\n\n`{raw_text.replace("`", "")}`'
+        f'currently greeting - {isgrt}\ngoodbye: {goodbye}\n\nFile_id: `{file_id}`\n\n`{raw_text.replace("`", "")}`'
     )
