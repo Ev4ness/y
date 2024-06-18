@@ -59,12 +59,13 @@ async def goodbye(_, m:Message):
     return await handle_left_member(member, chat)
 
 
-async def send_left_message(chat: Chat, user_id: int, delete: bool = False, nothing=False):
+async def send_left_message(chat: Chat, user_id: int, delete: bool = False, nothing: bool = False):
     ison = await is_greetings_on(chat.id, "goodbye")
+    
     if ison is None and not nothing:
         await set_greetings_on(chat.id, "goodbye")
         goodbye = "Animation"
-        raw_text= "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
+        raw_text = "ʜɪɪ {NAME}  ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ {GROUPNAME}\nɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴏʀ ǫᴜᴇsᴛɪᴏɴs ʏᴏᴜ ᴄᴀɴ ᴀsᴋ ʜᴇʀᴇ"
         file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
         return await set_goodbye(chat.id, goodbye, raw_text, file_id)
 
@@ -75,35 +76,31 @@ async def send_left_message(chat: Chat, user_id: int, delete: bool = False, noth
 
     if not raw_text:
         return
+    
     text = raw_text
     keyb = None
+    
     if findall(r"\[.+\,.+\]", raw_text):
         text, keyb = extract_text_and_keyb(ikb, raw_text)
+    
     u = await app.get_users(user_id)
-    if "{GROUPNAME}" in text:
-        text = text.replace("{GROUPNAME}", chat.title)
-    if "{NAME}" in text:
-        text = text.replace("{NAME}", u.mention)
-    if "{ID}" in text:
-        text = text.replace("{ID}", f"`{user_id}`")
-    if "{FIRSTNAME}" in text:
-        text = text.replace("{FIRSTNAME}", u.first_name)
-    if "{SURNAME}" in text:
-        sname = u.last_name or "None"
-        text = text.replace("{SURNAME}", sname)
-    if "{USERNAME}" in text:
-        susername = u.username or "None"
-        text = text.replace("{USERNAME}", susername)
-    if "{DATE}" in text:
-        DATE = datetime.datetime.now().strftime("%Y-%m-%d")
-        text = text.replace("{DATE}", DATE)
-    if "{WEEKDAY}" in text:
-        WEEKDAY = datetime.datetime.now().strftime("%A")
-        text = text.replace("{WEEKDAY}", WEEKDAY)
-    if "{TIME}" in text:
-        TIME = datetime.datetime.now().strftime("%H:%M:%S")
-        text = text.replace("{TIME}", f"{TIME} UTC")
-
+    
+    replacements = {
+        "{GROUPNAME}": chat.title,
+        "{NAME}": u.mention,
+        "{ID}": f"`{user_id}`",
+        "{FIRSTNAME}": u.first_name,
+        "{SURNAME}": u.last_name or "None",
+        "{USERNAME}": u.username or "None",
+        "{DATE}": datetime.datetime.now().strftime("%Y-%m-%d"),
+        "{WEEKDAY}": datetime.datetime.now().strftime("%A"),
+        "{TIME}": datetime.datetime.now().strftime("%H:%M:%S") + " UTC"
+    }
+    
+    for placeholder, value in replacements.items():
+        if placeholder in text:
+            text = text.replace(placeholder, value)
+    
     if goodbye == "Text":
         m = await app.send_message(
             chat.id,
@@ -125,7 +122,6 @@ async def send_left_message(chat: Chat, user_id: int, delete: bool = False, noth
             caption=text,
             reply_markup=keyb,
         )
-
 
 @app.on_message(filters.command("setgoodbye") & ~filters.private)
 @adminsOnly("can_change_info")
