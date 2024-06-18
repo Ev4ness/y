@@ -50,20 +50,19 @@ async def ctest(_, message):
     except:
         OWNER = f"tg://openmessage?user_id={OWNER_ID[0]}"
 
-    p1_path = "pfp.png"
-    p2_path = "pfp1.png"
-    test_image_path = f'test_{cid}.png'
-    cppic_path = "cppic.png"
+    p1_path = "downloads/pfp.png"
+    p2_path = "downloads/pfp1.png"
+    test_image_path = f'downloads/test_{cid}.png'
+    cppic_path = "downloads/cppic.png"
 
     try:
         is_selected = await get_couple(cid, today)
         if not is_selected:
             msg = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴏᴜᴘʟᴇs ɪᴍᴀɢᴇ...")
-            # GET LIST OF USERS
             list_of_users = []
 
             async for i in app.get_chat_members(message.chat.id, limit=50):
-                if not i.user.is_bot:
+                if not i.user.is_bot or i.user.is_deleted:
                     list_of_users.append(i.user.id)
 
             c1_id = random.choice(list_of_users)
@@ -131,7 +130,7 @@ async def ctest(_, message):
                 await save_couple(cid, today, couple, img_url)
 
         else:
-            msg = await message.reply_text("𝐆ᴇᴛᴛɪɴɢ 𝐓ᴏᴅᴀʏ's 𝐂ᴏᴜᴘʟᴇs 𝐈ᴍᴀɢᴇ...")
+            msg = await message.reply_text("ɢᴇᴛᴛɪɴɢ ᴛᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ...")
             b = await _get_image(cid)
             c1_id = int(is_selected["c1_id"])
             c2_id = int(is_selected["c2_id"])
@@ -139,11 +138,11 @@ async def ctest(_, message):
             c2_name = (await app.get_users(c2_id)).first_name
 
             TXT = f"""
-**𝐓ᴏᴅᴀʏ's 𝐒ᴇʟᴇᴄᴛᴇᴅ 𝐂ᴏᴜᴘʟᴇs 🎉 :
+**ᴛᴏᴅᴀʏ's sᴇʟᴇᴄᴛᴇᴅ ᴄᴏᴜᴘʟᴇ 🎉 :
 ➖➖➖➖➖➖➖➖➖➖➖➖
 [{c1_name}](tg://openmessage?user_id={c1_id}) + [{c2_name}](tg://openmessage?user_id={c2_id}) = ❣️
 ➖➖➖➖➖➖➖➖➖➖➖➖
-𝐍ᴇxᴛ 𝐂ᴏᴜᴘʟᴇs 𝐖ɪʟʟ 𝐁ᴇ 𝐒ᴇʟᴇᴄᴛᴇᴅ 𝐎ɴ {tomorrow} !!**
+ɴᴇxᴛ ᴄᴏᴜᴘʟᴇ ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
 """
             await message.reply_photo(b, caption=TXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 🌋", user_id=OWNER)]]))
             await msg.delete()
