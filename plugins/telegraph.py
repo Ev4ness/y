@@ -49,15 +49,15 @@ async def get_link_group(client, message):
                 f"🌐 | [ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ](https://telegra.ph{upload_path[0]})",
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        [
-                            InlineKeyboardButton(
-                                "ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ",
-                                url=f"https://telegra.ph{upload_path[0]}",
-                            )
+                            [
+                                InlineKeyboardButton(
+                                    "ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ",
+                                    url=f"https://telegra.ph{upload_path[0]}",
+                                )
+                            ]
                         ]
-                    ]
-                ),
-            )
+                    ),
+                )
                 try:
                     os.remove(local_path)
                 except Exception:
