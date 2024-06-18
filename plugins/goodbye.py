@@ -15,10 +15,10 @@ from pyrogram.types import (
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
 from .notes import extract_urls
-from YukkiMusic.utils.database import (
+from YukkiMusic.utils.database import is_gbanned_user
+from utils import (
     del_goodbye,
     get_goodbye,
-    is_gbanned_user,
     set_goodbye,
 )
 from utils.error import capture_err
