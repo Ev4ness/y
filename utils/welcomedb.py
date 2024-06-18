@@ -32,9 +32,8 @@ async def set_goodbye(chat_id: int, message: str, raw_text: str, file_id: str):
         {"chat_id": chat_id, "type": "goodbye"}, {"$set": update_data}, upsert=True
     )
 
-
 async def get_welcome(chat_id: int) -> (str, str, str):
-    data = await greetingsdb.find_one({"chat_id": chat_id, "type": "welcome")
+    data = await greetingsdb.find_one({"chat_id": chat_id, "type": "welcome"})
     if not data:
         return "", "", ""
 
@@ -48,7 +47,7 @@ async def del_welcome(chat_id: int):
     return await greetingsdb.delete_one({"chat_id": chat_id, "type": "welcome"})
 
 async def get_goodbye(chat_id: int) -> (str, str, str):
-    data = await greetingsdb.find_one({"chat_id": chat_id, "type":  "goodbye"})
+    data = await greetingsdb.find_one({"chat_id": chat_id, "type": "goodbye"})
     if not data:
         return "", "", ""
 
@@ -65,11 +64,11 @@ async def is_greetings_clean_on(chat_id: int, greeting_type: str) -> bool:
     data = await greetingsdb.find_one({"chat_id": chat_id, "type": greeting_type})
     if not data:
         return None
-    
+
     clean = data.get("clean", None)
     if clean is None:
         return None
-    
+
     return clean.lower() in ["yes", "on"]
 
 async def set_greetings_clean(chat_id: int, greeting_type: str, clean: bool) -> bool:
@@ -78,7 +77,6 @@ async def set_greetings_clean(chat_id: int, greeting_type: str, clean: bool) -> 
         {"chat_id": chat_id, "type": greeting_type}, {"$set": {"clean": clean_value}}, upsert=True
     )
     return result.modified_count > 0 or result.upserted_id is not None
-
 
 async def get_old_greetings_message(chat_id: int, greeting_type: str) -> int:
     return greeting_message[greeting_type].get(chat_id, None)
@@ -91,19 +89,19 @@ async def is_greetings_on(chat_id: int, type: str) -> bool:
     data = await greetingsdb.find_one({"chat_id": chat_id})
     if not data:
         return None
-    
+
     greetings_on = data.get(type)
     if greetings_on is None:
         return None
-    
+
     return greetings_on
 
-
 async def set_greetings_off(chat_id: int, type: str) -> bool:
-    if type == welcome:
-        type = welcome_off
-    if type == goodbye:
-        type = goodbye_off
+    if type == "welcome":
+        type = "welcome_off"
+    elif type == "goodbye":
+        type = "goodbye_off"
+
     result = await greetingsdb.update_one(
         {"chat_id": chat_id},
         {"$set": {type: False}},
@@ -111,12 +109,12 @@ async def set_greetings_off(chat_id: int, type: str) -> bool:
     )
     return result.modified_count > 0 or result.upserted_id is not None
 
-
 async def set_greetings_on(chat_id: int, type: str) -> bool:
-    if type == welcome:
-        type = welcome_on
-    if type == goodbye:
-        type = goodbye_on
+    if type == "welcome":
+        type = "welcome_on"
+    elif type == "goodbye":
+        type = "goodbye_on"
+
     result = await greetingsdb.update_one(
         {"chat_id": chat_id},
         {"$set": {type: True}},
