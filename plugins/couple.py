@@ -8,18 +8,9 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import ChatType
 import requests
 
-# BOT FILE NAME
-from DAXXMUSIC import app as app
-from DAXXMUSIC.mongo.couples_db import _get_image, get_couple, save_couple
+from YukkiMusic import app
+from utils import _get_image, get_couple, save_couple
 
-POLICE = [
-    [
-        InlineKeyboardButton(
-            text="𓊈𒆜彡[𝐃𝚊𝚡𝚡 𝐂𝙲 𝐂𝙻𝚄𝘽 ]彡𒆜𓊉",
-            url="https://t.me/ALLTYPECC",
-        ),
-    ],
-]
 
 def dt():
     now = datetime.now()
