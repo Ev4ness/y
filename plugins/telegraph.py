@@ -6,10 +6,6 @@ from telegraph import upload_file
 
 from YukkiMusic import app
 
-async def progress(current, total):
-    await text.edit_text(f"📥 ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ... {current * 100 / total:.1f}%")
-
-
 @app.on_message(filters.command(["tgm", "tgt", "telegraph", "tl"]))
 async def get_link_group(client, message):
     if not message.reply_to_message:
@@ -39,7 +35,8 @@ async def get_link_group(client, message):
     else:
         try:
             text = await message.reply("ᴘʀᴏᴄᴇssɪɴɢ...")
-
+            async def progress(current, total):
+                await text.edit_text(f"📥 ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ... {current * 100 / total:.1f}%")
             try:
                 local_path = await message.reply_to_message.download( progress=progress
                 )
