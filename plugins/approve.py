@@ -74,10 +74,10 @@ async def approval_cb(client, cb):
     if option == "off":
         if await approvaldb.count_documents({"chat_id": chat_id}) > 0:
             approvaldb.delete_one({"chat_id": chat_id})
-            buttons = {"Turn ON": "approval_on"}
+            buttons = {"ᴛᴜʀɴ ᴏɴ": "approval_on"}
             keyboard = ikb(buttons, 1)
             return await cb.edit_message_text(
-                "**Autoapproval for this chat: Disabled.**",
+                "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Dɪsᴀʙʟᴇᴅ.**",
                 reply_markup=keyboard,
             )
     if option == "on":
@@ -95,11 +95,11 @@ async def approval_cb(client, cb):
         upsert=True,
     )
     chat = await approvaldb.find_one({"chat_id": chat_id})
-    mode = chat["mode"].upper()
+    mode = chat["mode"]
     buttons = {"ᴛᴜʀɴ ᴏғғ": "approval_off", f"{mode}": f"approval_{switch}"}
     keyboard = ikb(buttons, 1)
     await cb.edit_message_text(
-        "**Autoapproval for this chat: Enabled.**", reply_markup=keyboard
+        "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Eɴᴀʙʟᴇᴅ.**", reply_markup=keyboard
     )
 
 
