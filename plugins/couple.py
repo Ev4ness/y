@@ -9,6 +9,7 @@ from pyrogram.enums import ChatType
 import requests
 
 from YukkiMusic import app
+from config import OWNER_ID
 from utils import get_image as _get_image, get_couple, save_couple
 
 
