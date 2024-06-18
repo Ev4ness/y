@@ -192,28 +192,46 @@ async def del_goodbye_func(_, message):
     chat_id = message.chat.id
     await del_goodbye(chat_id)
     await message.reply_text("goodbye message has been deleted.")
-
-
+ 
 @app.on_message(filters.command("goodbye") & ~filters.private)
 @adminsOnly("can_change_info")
-async def goodbye(client, message):
+async def goodbye(client: Client, message: Message):
     command = message.text.split()
+    
     if len(command) == 1:
         return await get_goodbye_func(client, message)
-
-    elif len(command) == 2 and command[1].lower() in ["on", "enable", "y", "yes", "true", "t"]:
-        success = await set_greetings_on(message.chat.id, "goodbye")
-        if success:
-            await message.reply_text("I'll be saying goodbye to any leavers from now on!")
-
-
-    elif len(command) == 2 and command[1].lower() in ["off", "disable", "n", "no", "f","false"]:
-        success = await set_greetings_off(message.chat.id, "goodbye")
-        if success:
-            await message.reply_text("I'll stay quiet when people leave..")
+    
+    if len(command) == 2:
+        action = command[1].lower()
+        if action in ["on", "enable", "y", "yes", "true", "t"]:
+            success = await set_greetings_on(message.chat.id, "goodbye")
+            if success:
+                await message.reply_text("I'll be saying goodbye to any leavers from now on!")
+            else:
+                await message.reply_text("Failed to enable goodbye messages.")
+        
+        elif action in ["off", "disable", "n", "no", "false", "f"]:
+            success = await set_greetings_off(message.chat.id, "goodbye")
+            if success:
+                await message.reply_text("I'll stay quiet when people leave.")
+            else:
+                await message.reply_text("Failed to disable goodbye messages.")
+        
+        else:
+            await message.reply_text(
+                "Invalid command. Please use:\n"
+                "/goodbye - To get your goodbye message\n"
+                "/goodbye [on, y, true, enable, t] - to turn on goodbye messages\n"
+                "/goodbye [off, n, false, disable, f, no] - to turn off goodbye messages"
+            )
     else:
-        await message.reply_text("\n/welcome - To get You welcome message\n/welcome [on , y, true, enable, t] - to turn on welcome\n\n/welcome [off , n, false, disable, f, no] - to turn on welcome")
-
+        await message.reply_text(
+            "Invalid command. Please use:\n"
+            "/goodbye - To get your goodbye message\n"
+            "/goodbye [on, y, true, enable, t] - to turn on goodbye messages\n"
+            "/goodbye [off, n, false, disable, f, no] - to turn off goodbye messages"
+        )
+ 
 
 async def get_goodbye_func(_, message):
     chat = message.chat
