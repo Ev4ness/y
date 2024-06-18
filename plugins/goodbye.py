@@ -47,15 +47,24 @@ async def handle_left_member(member, chat):
     except ChatAdminRequired:
         return
 
-
 @app.on_chat_member_updated(filters.group, group=6)
 @capture_err
-async def welcome(_, user: ChatMemberUpdated):
-    if user.new_chat_member.status == CMS.LEFT:
+async def goodbye(_, user: ChatMemberUpdated):
+    if not user.new_chat_member or not user.old_chat_member:
         return
-    member = user.old_chat_member.user
-    chat = user.chat
-    return await handle_left_member(member, chat)
+
+    old_status = user.old_chat_member.status
+    new_status = user.new_chat_member.status
+
+    if user.old_chat_member.user.is_bot:
+        return
+
+    if new_status in [CMS.BANNED, CMS.RESTRICTED]:
+        return
+    if new_status == CMS.LEFT:
+        member = user.old_chat_member.user
+        chat = user.chat
+        return await handle_left_member(member, chat)
 
 
 async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
@@ -180,7 +189,7 @@ async def set_goodbye_func(_, message):
 
 @app.on_message(filters.command(["delgoodbye", "deletegoodbye"]) & ~filters.private)
 @adminsOnly("can_change_info")
-async def del_welcome_func(_, message):
+async def del_goodbye_func(_, message):
     chat_id = message.chat.id
     await del_goodbye(chat_id)
     await message.reply_text("goodbye message has been deleted.")
@@ -188,7 +197,7 @@ async def del_welcome_func(_, message):
 
 @app.on_message(filters.command("getgoodbye") & ~filters.private)
 @adminsOnly("can_change_info")
-async def get_welcome_func(_, message):
+async def get_goodbye_func(_, message):
     chat = message.chat
     goodbye, raw_text, file_id = await get_goodbye(chat.id)
     if not raw_text:
