@@ -17,7 +17,7 @@ async def get_link_group(client, message):
         if sticker.is_video and not sticker.is_animated:
             try:
                 text = await message.reply("downloading sticker.")
-                file_path = await app.download_media(sticker.file_id, file_name=f"{sticker.file_id}_sticker.png")
+                file_path = await app.download_media(sticker.file_id, file_name=f"{sticker.file_id}_sticker.jpg")
                 upload_path = upload_file(file_path)
                 await text.edit_text(f"🌐 | [ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ](https://telegra.ph{upload_path[0]})",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ",url=f"https://telegra.ph{upload_path[0]}")]]))
                 try:
