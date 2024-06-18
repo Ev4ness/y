@@ -85,31 +85,39 @@ async def set_old_greetings_message(chat_id: int, greeting_type: str, message_id
     greeting_message[greeting_type][chat_id] = message_id
     return True
 
-async def is_greetings_on(chat_id: int, type: str) -> bool:
-    data = await greetingsdb.find_one({"chat_id": chat_id})
-    if not data:
-        return None
-
-    greetings_on = data.get(type)
-    if greetings_on is None:
-        return None
-
-    return greetings_on
-
-async def set_greetings_off(chat_id: int, type: str) -> bool:
+async def set_greetings_on(chat_id: int, type: str) -> bool:
     if type == "welcome":
-        type = "welcome_off"
+        type = "welcome_on"
     elif type == "goodbye":
-        type = "goodbye_off"
-
+        type = "goodbye_on"
+    
+    existing = await greetingsdb.find_one({"chat_id": chat_id})
+    
+    if existing and existing.get(type) is True:
+        return True
+    
     result = await greetingsdb.update_one(
         {"chat_id": chat_id},
-        {"$set": {type: False}},
+        {"$set": {type: True}},
         upsert=True
     )
+    
     return result.modified_count > 0 or result.upserted_id is not None
 
-async def set_greetings_on(chat_id: int, type: str) -> bool:
+async def is_greetings_on(chat_id: int, type: str) -> bool:
+    if type == "welcome":
+        type = "welcome_on"
+    elif type == "goodbye":
+        type = "goodbye_on"
+    
+    data = await greetingsdb.find_one({"chat_id": chat_id})
+    if not data:
+        return False
+
+    greetings_on = data.get(type)
+    return greetings_on if greetings_on is not None else False
+
+async def set_greetings_off(chat_id: int, type: str) -> bool:
     if type == "welcome":
         type = "welcome_on"
     elif type == "goodbye":
@@ -117,7 +125,7 @@ async def set_greetings_on(chat_id: int, type: str) -> bool:
 
     result = await greetingsdb.update_one(
         {"chat_id": chat_id},
-        {"$set": {type: True}},
+        {"$set": {type: False}},
         upsert=True
     )
     return result.modified_count > 0 or result.upserted_id is not None
