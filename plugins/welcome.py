@@ -14,12 +14,14 @@ from pyrogram.types import (
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
 from .notes import extract_urls
-from YukkiMusic.utils.database import (
+from YukkiMusic.utils.database import is_gbanned_user
+
+from utils import (
     del_welcome,
     get_welcome,
-    is_gbanned_user,
     set_welcome,
 )
+
 from utils.error import capture_err
 from YukkiMusic.utils.functions import check_format, extract_text_and_keyb
 from YukkiMusic.utils.keyboard import ikb
