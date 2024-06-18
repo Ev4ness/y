@@ -20,6 +20,12 @@ from YukkiMusic.utils.permissions import adminsOnly, member_permissions
 
 approvaldb = mongodb.autoapprove
 
+def smallcap(text):
+    trans_table = str.maketrans(
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 
+        "ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢABCDEFGHIJKLMNOPQRSTUVWXYZ0𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"
+    )
+    return text.translate(trans_table)
 
 @app.on_message(filters.command("autoapprove") & filters.group)
 @adminsOnly("can_change_info")
@@ -95,7 +101,7 @@ async def approval_cb(client, cb):
         upsert=True,
     )
     chat = await approvaldb.find_one({"chat_id": chat_id})
-    mode = chat["mode"]
+    mode = smallcap(chat["mode"])
     buttons = {"ᴛᴜʀɴ ᴏғғ": "approval_off", f"{mode}": f"approval_{switch}"}
     keyboard = ikb(buttons, 1)
     await cb.edit_message_text(
