@@ -217,7 +217,7 @@ async def goodbye(client, message):
         if success:
             await message.reply_text("I'll stay quiet when new members join.")
     else:
-        await message.reply_text("\n/welcome - To get You welcome message\n/welcome [on , y, true, enable, t] - to turn on welcome\n\n/welcome [off , n, false, disable, f, no] - to turn on welcome)
+        await message.reply_text("\n/welcome - To get You welcome message\n/welcome [on , y, true, enable, t] - to turn on welcome\n\n/welcome [off , n, false, disable, f, no] - to turn on welcome")
 
 
 async def get_goodbye_func(_, message):
