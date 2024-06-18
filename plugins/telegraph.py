@@ -27,6 +27,7 @@ async def get_link_group(client, message):
                 try:
                     os.remove(local_path)
                     os.remove(file_path)
+                    return 
                 except Exception:
                    pass
             except Exception as e:
@@ -34,6 +35,7 @@ async def get_link_group(client, message):
                 try:
                     os.remove(local_path)
                     os.remove(file_path)
+                    return 
                 except Exception:
                    pass
     try:
