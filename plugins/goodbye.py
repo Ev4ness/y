@@ -9,6 +9,7 @@ from pyrogram.types import (
     ChatMemberUpdated,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
+    Message,
 )
 
 from YukkiMusic import app
@@ -47,24 +48,13 @@ async def handle_left_member(member, chat):
     except ChatAdminRequired:
         return
 
-@app.on_chat_member_updated(filters.group, group=6)
+@app.on_message(filters.left_chat_member & filters.group, group=6)
 @capture_err
-async def goodbye(_, user: ChatMemberUpdated):
-    if not user.new_chat_member or not user.old_chat_member:
-        return
+async def goodbye(_, m:Message):
 
-    old_status = user.old_chat_member.status
-    new_status = user.new_chat_member.status
-
-    if user.old_chat_member.user.is_bot:
-        return
-
-    if new_status in [CMS.BANNED, CMS.RESTRICTED]:
-        return
-    if new_status == CMS.LEFT:
-        member = user.old_chat_member.user
-        chat = user.chat
-        return await handle_left_member(member, chat)
+    member = await app.get_users(m.from_user.id)
+    chat = m.chat
+    return await handle_left_member(member, chat)
 
 
 async def send_left_message(chat: Chat, user_id: int, delete: bool = False):
