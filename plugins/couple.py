@@ -1,33 +1,31 @@
-import os 
+from datetime import datetime, timedelta
+import pytz
+import os
 import random
-from datetime import datetime 
-from telegraph import upload_file
-from PIL import Image, ImageDraw
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import ChatType
+from telegraph import upload_file
+from PIL import Image, ImageDraw
 import requests
 
-from YukkiMusic import app
 from utils import get_image, get_couple, save_couple
+from YukkiMusic import app
 
 
-def dt():
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M")
-    dt_list = dt_string.split(" ")
-    return dt_list
+# get current date in GMT+5:30 timezone
+def get_today_date():
+    timezone = pytz.timezone('Asia/Kolkata')
+    now = datetime.now(timezone)
+    return now.strftime("%d/%m/%Y")
 
-def dt_tom():
-    a = (
-        str(int(dt()[0].split("/")[0]) + 1)
-        + "/"
-        + dt()[0].split("/")[1]
-        + "/"
-        + dt()[0].split("/")[2]
-    )
-    return a
+# get tomorrow's date in GMT+5:30 timezone
+def get_todmorrow_date():
+    timezone = pytz.timezone('Asia/Kolkata')
+    tomorrow = datetime.now(timezone) + timedelta(days=1)
+    return tomorrow.strftime("%d/%m/%Y")
 
+# Download image from URL
 def download_image(url, path):
     response = requests.get(url)
     if response.status_code == 200:
@@ -35,14 +33,16 @@ def download_image(url, path):
             f.write(response.content)
     return path
 
-tomorrow = str(dt_tom())
-today = str(dt()[0])
+# Dates
+tomorrow = get_todmorrow_date()
+today = get_today_date()
 
-@app.on_message(filters.command(["couple","couples"]))
+@app.on_message(filters.command(["couple", "couples"]))
 async def ctest(_, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
-        return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.")
+        return await message.reply_text("This command only works in groups.")
+    
     p1_path = "downloads/pfp.png"
     p2_path = "downloads/pfp1.png"
     test_image_path = f'downloads/test_{cid}.png'
@@ -55,7 +55,7 @@ async def ctest(_, message):
             list_of_users = []
 
             async for i in app.get_chat_members(message.chat.id, limit=50):
-                if not i.user.is_bot or i.user.is_deleted:
+                if not i.user.is_bot and not i.user.is_deleted:
                     list_of_users.append(i.user.id)
 
             c1_id = random.choice(list_of_users)
@@ -106,14 +106,14 @@ async def ctest(_, message):
             img.save(test_image_path)
 
             TXT = f"""
-**ᴛᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ:
+**Today's couple of the day:
 
 {N1} + {N2} = 💚
 
-ɴᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
-"""
+Next couples will be selected on {tomorrow}!!**
+            """
 
-            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
+            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
 
             await msg.delete()
             a = upload_file(test_image_path)
@@ -131,13 +131,13 @@ async def ctest(_, message):
             c2_name = (await app.get_users(c2_id)).first_name
 
             TXT = f"""
-**ᴛᴏᴅᴀʏ's sᴇʟᴇᴄᴛᴇᴅ ᴄᴏᴜᴘʟᴇ 🎉 :
+**Today's selected couple 🎉:
 ➖➖➖➖➖➖➖➖➖➖➖➖
 [{c1_name}](tg://openmessage?user_id={c1_id}) + [{c2_name}](tg://openmessage?user_id={c2_id}) = ❣️
 ➖➖➖➖➖➖➖➖➖➖➖➖
-ɴᴇxᴛ ᴄᴏᴜᴘʟᴇ ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
-"""
-            await message.reply_photo(b, caption=TXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
+Next couples will be selected on {tomorrow}!!**
+            """
+            await message.reply_photo(b, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
             await msg.delete()
 
     except Exception as e:
