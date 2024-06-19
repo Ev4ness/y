@@ -194,7 +194,7 @@ async def admintag_with_reporting(client, message):
     ]
     if message.command[0] == "report":
         if from_user_id in admins:
-            return await message.reply_text("ᴏᴘᴘs! ʏᴏᴜ ᴀʀᴇ ʟᴏᴏᴋs ʟɪᴋᴇ ᴀɴ ᴀᴅᴍɪɴ ᴄᴀɴ ʀᴇᴘᴏʀᴛ ᴀɴʏ ᴜsᴇʀs ᴛᴏ ᴀᴅᴍɪɴ")
+            return await message.reply_text("ᴏᴘᴘs! ʏᴏᴜ ᴀʀᴇ ʟᴏᴏᴋs ʟɪᴋᴇ ᴀɴ ᴀᴅᴍɪɴ!\nʏᴏᴜ ᴄᴀɴ'ᴛ ʀᴇᴘᴏʀᴛ ᴀɴʏ ᴜsᴇʀs ᴛᴏ ᴀᴅᴍɪɴ")
 
     if from_user_id in admins:
         return await tag_all_admins(client, message)
