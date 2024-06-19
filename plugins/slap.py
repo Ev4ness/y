@@ -1,5 +1,5 @@
 from YukkiMusic import app 
-from pyrogram import client, filters
+from pyrogram import filters
 import nekos
 
 @app.on_message(filters.command("slap"))
