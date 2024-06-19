@@ -41,7 +41,7 @@ today = get_today_date()
 async def ctest(_, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
-        return await message.reply_text("This command only works in groups.")
+        return await message.reply_text("Tʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.")
     
     p1_path = "downloads/pfp.png"
     p2_path = "downloads/pfp1.png"
@@ -106,14 +106,14 @@ async def ctest(_, message):
             img.save(test_image_path)
 
             TXT = f"""
-**Today's couple of the day:
+**Tᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ:
 
 {N1} + {N2} = 💚
 
-Next couples will be selected on {tomorrow}!!**
+Nᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow}!!**
             """
 
-            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
+            await message.reply_photo(test_image_path, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Aᴅᴅ ᴍᴇ 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
 
             await msg.delete()
             a = upload_file(test_image_path)
@@ -131,13 +131,13 @@ Next couples will be selected on {tomorrow}!!**
             c2_name = (await app.get_users(c2_id)).first_name
 
             TXT = f"""
-**Today's selected couple 🎉:
-➖➖➖➖➖➖➖➖➖➖➖➖
+**Tᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ 🎉:
+
 [{c1_name}](tg://openmessage?user_id={c1_id}) + [{c2_name}](tg://openmessage?user_id={c2_id}) = ❣️
-➖➖➖➖➖➖➖➖➖➖➖➖
-Next couples will be selected on {tomorrow}!!**
+
+Nᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow}!!**
             """
-            await message.reply_photo(b, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Add me 🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
+            await message.reply_photo(b, caption=TXT, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Aᴅᴅ ᴍᴇ🌋", url=f"https://t.me/{app.username}?startgroup=true")]]))
             await msg.delete()
 
     except Exception as e:
