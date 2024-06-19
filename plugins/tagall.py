@@ -179,12 +179,11 @@ async def tag_all_admins(_, message):
             pass
 
 @app.on_message(
-    filters.command(["admin", "admins"], prefixes=["/", "@"]) & filters.group
+    filters.command(["admin", "admins","report"], prefixes=["/", "@"]) & filters.group
 )
 async def admintag_with_reporting(client, message):
     if not message.from_user:
         return
-
     chat_id = message.chat.id
     from_user_id = message.from_user.id
     admins = [
@@ -196,6 +195,9 @@ async def admintag_with_reporting(client, message):
 
     if from_user_id in admins:
         return await tag_all_admins(client, message)
+    if message.command[0] == "report"
+        if from_user_id in admins:
+            return await message.reply_text("ᴏᴘᴘs! ʏᴏᴜ ᴀʀᴇ ʟᴏᴏᴋs ʟɪᴋᴇ ᴀɴ ᴀᴅᴍɪɴ ᴄᴀɴ ʀᴇᴘᴏʀᴛ ᴀɴʏ ᴜsᴇʀs ᴛᴏ ᴀᴅᴍɪɴ")
 
     if len(message.text.split()) <= 1 and not message.reply_to_message:
         return await message.reply_text("Reply to a message to report that user.")
@@ -256,7 +258,7 @@ __HELP__ = """
 
 @all ᴏʀ /all | /tagall ᴏʀ  @tagall | /mentionall ᴏʀ  @mentionall [ᴛᴇxᴛ] ᴏʀ [ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴀɢᴇ] ᴛᴏ ᴛᴀɢ ᴀʟʟ ᴜsᴇʀ's ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ʙᴛ ʙᴏᴛ
 
-/admins Oʀ @admins [ᴛᴇxᴛ] ᴏʀ [ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴀɢᴇ] ᴛᴏ ᴛᴀɢ ᴀʟʟ ᴀᴅᴍɪɴ's ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ
+/admins | @admins | /report [ᴛᴇxᴛ] ᴏʀ [ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴀɢᴇ] ᴛᴏ ᴛᴀɢ ᴀʟʟ ᴀᴅᴍɪɴ's ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ
 
 
 /cancel Oʀ @cancel |  /offmention Oʀ @offmention | /mentionoff Oʀ @mentionoff | /cancelall Oʀ @cancelall - ᴛᴏ sᴛᴏᴘ ʀᴜɴɴɪɴɢ ᴀɴʏ ᴛᴀɢ ᴘʀᴏᴄᴇss
