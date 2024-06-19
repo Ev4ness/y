@@ -6,7 +6,7 @@ import nekos
 async def slap(client, message):
     try:
         if message.reply_to_message:
-            await message.reply_video(nekos.img("slap"), caption=f"{message.from_user.mention} hugged {message.reply_to_message.from_user.mention}")
+            await message.reply_video(nekos.img("slap"), caption=f"{message.from_user.mention} sʟᴀᴘᴘᴇᴅ {message.reply_to_message.from_user.mention}")
         else:
             await message.reply_video(nekos.img("slap"))
     except Exception as e:
