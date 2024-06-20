@@ -59,10 +59,10 @@ __HELP__ = """
 - /thumbnail <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
 
 **ᴇxᴀᴍᴘʟᴇ:**
-- `/getthumb https://www.youtube.com/watch?v=Tl4bQBfOtbg`
+- `/getthumb `
 
 **ɴᴏᴛᴇ:**
 ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ʏᴏᴜᴛᴜʙᴇ ᴜʀʟ ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ.
 """
 
-__MODULE__ = "Yᴛᴛʜᴜᴍʙ"
+__MODULE__ = "Yt"
