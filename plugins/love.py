@@ -47,7 +47,7 @@ def love_command(client, message):
         response = "Please enter two names after /love command."
     app.send_message(message.chat.id, response)
 
-__MODULE__ = "Lᴏᴠᴇ"
+__MODULE__ = "Love"
 __HELP__ = """
 **ʟᴏᴠᴇ ᴄᴀʟᴄᴜʟᴀᴛᴏʀ:**
 
