@@ -28,7 +28,7 @@ async def bots(client, message):
     except FloodWait as e:
         await asyncio.sleep(e.value)
 
-__MODULE__ = "Bᴏᴛs"
+__MODULE__ = "Bot"
 __HELP__ = """
 **ʙᴏᴛs**
 
