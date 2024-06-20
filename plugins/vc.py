@@ -109,7 +109,7 @@ async def vcmembers(client, message: Message):
             await hell.edit_text(e)
 
 
-__MODULE__ = "Vc"
+__MODULE__ = "VcTool"
 __HELP__ = """
 **COMMANDS:**
 
