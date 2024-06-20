@@ -1,6 +1,6 @@
 
 coupledb = {}
-# in memory storage
+# in memory storag
 
 async def _get_lovers(cid: int):
     chat_data = coupledb.get(cid, {})
