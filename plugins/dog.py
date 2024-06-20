@@ -13,8 +13,8 @@ from YukkiMusic import app
 
 close_keyboard = InlineKeyboardMarkup(
     [
-        [InlineKeyboardButton(text="Rᴇғʀᴇsʜ", callback_data="refresh_dog")],
-        [InlineKeyboardButton(text="〆 ᴄʟᴏsᴇ 〆", callback_data="close")],
+        [InlineKeyboardButton(text="cari", callback_data="refresh_dog")],
+        [InlineKeyboardButton(text="close", callback_data="close")],
     ]
 )
 
