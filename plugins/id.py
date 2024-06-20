@@ -53,7 +53,7 @@ async def get_id(client, message):
     except Exception as r:
         await message.reply(f"Aɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ɢᴇᴛᴛɪɴɢ ᴛʜᴇ ID. {r}")
 
-__MODULE__ = "Usᴇʀɪᴅ"
+__MODULE__ = "UserID"
 __HELP__ = """
 **ɪᴅ ʀᴇᴛʀɪᴇᴠᴇʀ:**
 
