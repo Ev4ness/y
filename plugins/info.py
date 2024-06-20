@@ -61,8 +61,8 @@ async def get_chat_info(chat):
     link = f"[Link](t.me/{username})" if username else "Null"
     photo_id = chat.photo.big_file_id if chat.photo else None
     info = f"""
-❅─────✧❅✦❅✧─────❅
-             ✦ ᴄʜᴀᴛ ɪɴғᴏ ✦
+    
+    ᴄʜᴀᴛ ɪɴғᴏ 
 
 ➻ ᴄʜᴀᴛ ɪᴅ ‣ {chat.id}
 ➻ ɴᴀᴍᴇ ‣ {chat.title}
@@ -78,8 +78,7 @@ async def get_chat_info(chat):
 ➻ ᴍᴇᴍʙᴇʀ's ᴄᴏᴜɴᴛ ‣ {chat.members_count}
 ➻ ʟɪɴᴋ ‣ {link}
 
-
-❅─────✧❅✦❅✧─────❅"""
+"""
 
     return info, photo_id
 
@@ -140,7 +139,7 @@ async def chat_info_func(_, message: Message):
         await m.edit(e)
 
 
-__MODULE__ = "Iɴғᴏ"
+__MODULE__ = "Info"
 __HELP__ = """
 **ᴜsᴇʀ & ᴄʜᴀᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ:**
 
