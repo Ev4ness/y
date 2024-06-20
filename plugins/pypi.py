@@ -48,7 +48,7 @@ async def pypi_info_command(client, message):
             "Please provide a package name after the /pypi command."
         )
 
-__MODULE__ = "Pʏᴘɪ"
+__MODULE__ = "Pypi"
 __HELP__ = """
 **ᴄᴏᴍᴍᴀɴᴅs:**
 • /pypi <package_name>`: Get details about a specified Python package from PyPI.
