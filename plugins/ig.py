@@ -27,7 +27,7 @@ async def download_instagram_video(client, message):
     else:
         await a.edit("Fᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ʀᴇᴇʟ")
 
-__MODULE__ = "Rᴇᴇʟ"
+__MODULE__ = "Reel"
 __HELP__ = """
 **ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ:**
 
