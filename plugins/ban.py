@@ -31,7 +31,7 @@ from YukkiMusic.utils.permissions import adminsOnly, member_permissions
 from config import adminlist, BANNED_USERS
 warnsdb = mongodb.warns
 
-__MODULE__ = "Bᴀɴ"
+__MODULE__ = "Ban"
 __HELP__ = """
 /ban - Ban A User
 /sban - Delete all messages of user that sended in group and ban the user
