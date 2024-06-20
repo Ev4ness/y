@@ -37,7 +37,7 @@ async def wall(_, message: Message):
             f"`ᴡᴀʟʟᴘᴀᴘᴇʀ ɴᴏᴛ ғᴏᴜɴᴅ ғᴏʀ : `{text}`",
         )
 
-__MODULE__ = "Wᴀʟʟ"
+__MODULE__ = "Wall"
 __HELP__ = """
 **COMMANDS:**
 
