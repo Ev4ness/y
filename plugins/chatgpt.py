@@ -8,7 +8,7 @@ from YukkiMusic import app
 
 @app.on_message(
     filters.command(
-        ["chatgpt", "ai", "ask"], prefixes=["+", ".", "/", "-", "?", "$", "#", "&"]
+        ["chatgpt", "ai", "ask"], prefixes=["/"]
     )
 )
 async def chatgpt_chat(bot, message):
@@ -32,7 +32,7 @@ async def chatgpt_chat(bot, message):
         pass
 
 
-__MODULE__ = "CʜᴀᴛGᴘᴛ"
+__MODULE__ = "ChatGPT"
 __HELP__ = """
 /advice - ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ ʙʏ ʙᴏᴛ
 /ai [ǫᴜᴇʀʏ] - ᴀsᴋ ʏᴏᴜʀ ǫᴜᴇsᴛɪᴏɴ ᴡɪᴛʜ ᴄʜᴀᴛɢᴘᴛ's ᴀɪ
