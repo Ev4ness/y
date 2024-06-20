@@ -19,11 +19,11 @@ def ReplyCheck(message: Message):
 
 infotext = (
     "[{full_name}](tg://user?id={user_id})\n\n"
-    " ➻ ᴜsᴇʀ ɪᴅ: `{user_id}`\n"
-    " ➻ ғɪʀsᴛ ɴᴀᴍᴇ: `{first_name}`\n"
-    " ➻ ʟᴀsᴛ ɴᴀᴍᴇ: `{last_name}`\n"
-    " ➻ ᴜsᴇʀɴᴀᴍᴇ: `@{username}`\n"
-    " ➻ ʟᴀsᴛ sᴇᴇɴ: `{last_online}`"
+    "ᴜsᴇʀ ɪᴅ: `{user_id}`\n"
+    "ғɪʀsᴛ ɴᴀᴍᴇ: `{first_name}`\n"
+    "ʟᴀsᴛ ɴᴀᴍᴇ: `{last_name}`\n"
+    "ᴜsᴇʀɴᴀᴍᴇ: `@{username}`\n"
+    "ʟᴀsᴛ sᴇᴇɴ: `{last_online}`"
 )
 
 
@@ -99,4 +99,4 @@ __HELP__ = """
 - ᴛʜᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ɪɴᴄʟᴜᴅᴇs ᴜsᴇʀ ɪᴅ, ғɪʀsᴛ ɴᴀᴍᴇ, ʟᴀsᴛ ɴᴀᴍᴇ, ᴜsᴇʀɴᴀᴍᴇ, ᴀɴᴅ ʟᴀsᴛ sᴇᴇɴ sᴛᴀᴛᴜs.
 """
 
-__MODULE__ = "Wʜᴏɪs"
+__MODULE__ = "WhoIs"
