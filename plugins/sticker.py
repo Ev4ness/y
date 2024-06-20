@@ -309,7 +309,7 @@ async def kang(client, message: Message):
         await message.reply_text("The sticker png dimensions are invalid.")
 
 
-__MODULE__ = "Sᴛɪᴄᴋᴇʀ"
+__MODULE__ = "Sticker"
 __HELP__ = """
 **COMMANDS:**
 
