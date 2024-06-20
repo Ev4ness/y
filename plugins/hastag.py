@@ -21,7 +21,7 @@ async def hastag(bot, message):
     )
 
 
-__MODULE__ = "Hᴀsʜᴛᴀɢ"
+__MODULE__ = "Hastag"
 __HELP__ = """
 **ʜᴀsʜᴛᴀɢ ɢᴇɴᴇʀᴀᴛᴏʀ:**
 
