@@ -260,7 +260,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         if check_arg[0]:
             if check_arg[1] < 2 or check_arg[1] > 10:
                 await ww.delete()
-                return await ctx.reply_msg("Invalid range", del_in=6)
+                return await ctx.reply_message("Invalid range", del_in=6)
             try:
                 messages = [
                     i
@@ -284,7 +284,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
                 return await ctx.reply_sticker(bio_sticker)
             except Exception:
                 await ww.delete()
-                return await ctx.reply_msg("🤷🏻‍♂️")
+                return await ctx.reply_message("🤷🏻‍♂️")
     try:
         messages_one = await self.get_messages(
             chat_id=ctx.chat.id, message_ids=ctx.reply_to_message.id, replies=-1
@@ -292,7 +292,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         messages = [messages_one]
     except Exception:
         await ww.delete()
-        return await ctx.reply_msg("🤷🏻‍♂️")
+        return await ctx.reply_message("🤷🏻‍♂️")
     try:
         make_quotly = await pyrogram_to_quotly(messages, is_reply=is_reply)
         bio_sticker = BytesIO(make_quotly)
@@ -301,7 +301,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         return await ctx.reply_sticker(bio_sticker)
     except Exception as e:
         await ww.delete()
-        return await ctx.reply_msg(f"ERROR: {e}")
+        return await ctx.reply_message(f"ERROR: {e}")
 
 
 __HELP__ = """
