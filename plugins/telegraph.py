@@ -11,26 +11,26 @@ from YukkiMusic import app
 async def get_link_group(client, message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "ᴘʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ ᴛᴏ ᴜᴘʟᴏᴀᴅ ᴏɴ ᴛᴇʟᴇɢʀᴀᴘʜ"
+            "please reply to a media to upload on telegraph"
         )
     try:
-        text = await message.reply("ᴘʀᴏᴄᴇssɪɴɢ...")
+        text = await message.reply("processing...")
 
         async def progress(current, total):
-            await text.edit_text(f"📥 ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ... {current * 100 / total:.1f}%")
+            await text.edit_text(f"📥 downloading... {current * 100 / total:.1f}%")
 
         try:
             local_path = await message.reply_to_message.download( progress=progress
             )
-            await text.edit_text("📤 ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ...")
+            await text.edit_text("📤 uploading to telegraph...")
             upload_path = upload_file(local_path)
             await text.edit_text(
-                f"🌐 | [ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ](https://telegra.ph{upload_path[0]})",
+                f"🌐 | [telegraph link](https://telegra.ph{upload_path[0]})",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                "ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ",
+                                "telegraph link",
                                 url=f"https://telegra.ph{upload_path[0]}",
                             )
                         ]
@@ -42,7 +42,7 @@ async def get_link_group(client, message):
             except Exception:
                pass
         except Exception as e:
-            await text.edit_text(f"❌ |ғɪʟᴇ ᴜᴘʟᴏᴀᴅ ғᴀɪʟᴇᴅ \n\n<i>ʀᴇᴀsᴏɴ: {e}</i>")
+            await text.edit_text(f"❌ |file upload failed \n\n<i>reason: {e}</i>")
             try:
                 os.remove(local_path)
             except Exception:
@@ -52,20 +52,20 @@ async def get_link_group(client, message):
         pass
 
 __HELP__ = """
-**ᴛᴇʟᴇɢʀᴀᴘʜ ᴜᴘʟᴏᴀᴅ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs**
+**telegraph upload bot commands**
 
-ᴜsᴇ ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏ ᴜᴘʟᴏᴀᴅ ᴍᴇᴅɪᴀ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ:
+use these commands to upload media to telegraph:
 
-- `/tgm`: ᴜᴘʟᴏᴀᴅ ʀᴇᴘʟɪᴇᴅ ᴍᴇᴅɪᴀ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ.
-- `/tgt`: sᴀᴍᴇ ᴀs `/tgm`.
-- `/telegraph`: sᴀᴍᴇ ᴀs `/tgm`.
-- `/tl`: sᴀᴍᴇ ᴀs `/tgm`.
+- `/tgm`: upload replied media to telegraph.
+- `/tgt`: same as `/tgm`.
+- `/telegraph`: same as `/tgm`.
+- `/tl`: same as `/tgm`.
 
-**ᴇxᴀᴍᴘʟᴇ:**
-- ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴠɪᴅᴇᴏ ᴡɪᴛʜ `/tgm` ᴛᴏ ᴜᴘʟᴏᴀᴅ ɪᴛ.
+**example:**
+- reply to a photo or video with `/tgm` to upload it.
 
-**ɴᴏᴛᴇ:**
-ʏᴏᴜ ᴍᴜsᴛ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ ғɪʟᴇ ғᴏʀ ᴛʜᴇ ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴡᴏʀᴋ.
+**note:**
+you must reply to a media file for the upload to work.
 """
 
 __MODULE__ = "Link"

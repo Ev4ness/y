@@ -24,17 +24,17 @@ async def text_to_speech(client, message):
     await message.reply_audio(audio_file)
 
 __HELP__ = """
-**ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅ**
+**text to speech bot command**
 
-ᴜsᴇ ᴛʜᴇ `/tts` ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ɪɴᴛᴏ sᴘᴇᴇᴄʜ.
+use the `/tts` command to convert text into speech.
 
-- `/tts <ᴛᴇxᴛ>`: ᴄᴏɴᴠᴇʀᴛs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴛᴏ sᴘᴇᴇᴄʜ ɪɴ ʜɪɴᴅɪ.
+- `/tts <text>`: converts the given text to speech in hindi.
 
-**ᴇxᴀᴍᴘʟᴇ:**
+**example:**
 - `/tts `
 
-**ɴᴏᴛᴇ:**
-ᴍᴀᴋᴇ sᴜʀᴇ ᴛᴏ ᴘʀᴏᴠɪᴅᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴀғᴛᴇʀ ᴛʜᴇ `/tts` ᴄᴏᴍᴍᴀɴᴅ.
+**note:**
+make sure to provide some text after the `/tts` command.
 """
 
 __MODULE__ = "Tts"

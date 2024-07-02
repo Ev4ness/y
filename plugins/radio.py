@@ -55,18 +55,18 @@ valid_stations = "\n".join([f"`{name}`" for name in sorted(RADIO_STATION.keys())
     & ~BANNED_USERS
 )
 async def radio(client, message: Message):
-    msg = await message.reply_text("ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ....")
+    msg = await message.reply_text("please wait a moment....")
     try:
         try:
             userbot = await get_assistant(message.chat.id)
             get = await app.get_chat_member(message.chat.id, userbot.id)
         except ChatAdminRequired:
             return await msg.edit_text(
-                f"» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ɪɴᴠɪᴛᴇ ᴜsᴇʀs ᴠɪᴀ ʟɪɴᴋ ғᴏʀ ɪɴᴠɪᴛɪɴɢ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                f"» i don't have permissions to invite users via link for inviting {userbot.mention} assistant to {message.chat.title}."
             )
         if get.status == ChatMemberStatus.BANNED:
             return await msg.edit_text(
-                text=f"» {userbot.mention} ᴀssɪsᴛᴀɴᴛ ɪs ʙᴀɴɴᴇᴅ ɪɴ {message.chat.title}\n\n𖢵 ɪᴅ : `{userbot.id}`\n𖢵 ɴᴀᴍᴇ : {userbot.mention}\n𖢵 ᴜsᴇʀɴᴀᴍᴇ : @{userbot.username}\n\nᴘʟᴇᴀsᴇ ᴜɴʙᴀɴ ᴛʜᴇ ᴀssɪsᴛᴀɴᴛ ᴀɴᴅ ᴘʟᴀʏ ᴀɢᴀɪɴ...",
+                text=f"» {userbot.mention} assistant is banned in {message.chat.title}\n\n𖢵 id : `{userbot.id}`\n𖢵 name : {userbot.mention}\n𖢵 username : @{userbot.username}\n\nplease unban the assistant and play again...",
             )
     except UserNotParticipant:
         if message.chat.username:
@@ -80,34 +80,34 @@ async def radio(client, message: Message):
                 invitelink = await client.export_chat_invite_link(message.chat.id)
             except ChatAdminRequired:
                 return await msg.edit_text(
-                    f"» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ɪɴᴠɪᴛᴇ ᴜsᴇʀs ᴠɪᴀ ʟɪɴᴋ ғᴏʀ ɪɴᴠɪᴛɪɴɢ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                    f"» i don't have permissions to invite users via link for inviting {userbot.mention} assistant to {message.chat.title}."
                 )
             except InviteRequestSent:
                 try:
                     await app.approve_chat_join_request(message.chat.id, userbot.id)
                 except Exception as e:
                     return await msg.edit(
-                        f"ғᴀɪʟᴇᴅ ᴛᴏ ɪɴᴠɪᴛᴇ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}.\n\n**ʀᴇᴀsᴏɴ :** `{ex}`"
+                        f"failed to invite {userbot.mention} assistant to {message.chat.title}.\n\n**reason :** `{ex}`"
                     )
             except Exception as ex:
                 if "channels.JoinChannel" in str(ex) or "Username not found" in str(ex):
                     return await msg.edit_text(
-                        f"» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ɪɴᴠɪᴛᴇ ᴜsᴇʀs ᴠɪᴀ ʟɪɴᴋ ғᴏʀ ɪɴᴠɪᴛɪɴɢ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                        f"» i don't have permissions to invite users via link for inviting {userbot.mention} assistant to {message.chat.title}."
                     )
                 else:
                     return await msg.edit_text(
-                        f"ғᴀɪʟᴇᴅ ᴛᴏ ɪɴᴠɪᴛᴇ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}.\n\n**ʀᴇᴀsᴏɴ :** `{ex}`"
+                        f"failed to invite {userbot.mention} assistant to {message.chat.title}.\n\n**reason :** `{ex}`"
                     )
         if invitelink.startswith("https://t.me/+"):
             invitelink = invitelink.replace("https://t.me/+", "https://t.me/joinchat/")
         anon = await msg.edit_text(
-            f"ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...\n\nɪɴᴠɪᴛɪɴɢ {userbot.mention} ᴛᴏ {message.chat.title}."
+            f"please wait...\n\ninviting {userbot.mention} to {message.chat.title}."
         )
         try:
             await userbot.join_chat(invitelink)
             await asyncio.sleep(2)
             await msg.edit_text(
-                f"{userbot.mention} ᴊᴏɪɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ,\n\nsᴛᴀʀᴛɪɴɢ sᴛʀᴇᴀᴍ..."
+                f"{userbot.mention} joined successfully,\n\nstarting stream..."
             )
         except UserAlreadyParticipant:
             pass
@@ -116,16 +116,16 @@ async def radio(client, message: Message):
                 await app.approve_chat_join_request(message.chat.id, userbot.id)
             except Exception as e:
                 return await msg.edit(
-                    f"ғᴀɪʟᴇᴅ ᴛᴏ ɪɴᴠɪᴛᴇ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}.\n\n**ʀᴇᴀsᴏɴ :** `{ex}`"
+                    f"failed to invite {userbot.mention} assistant to {message.chat.title}.\n\n**reason :** `{ex}`"
                 )
         except Exception as ex:
             if "channels.JoinChannel" in str(ex) or "Username not found" in str(ex):
                 return await msg.edit_text(
-                    f"» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ɪɴᴠɪᴛᴇ ᴜsᴇʀs ᴠɪᴀ ʟɪɴᴋ ғᴏʀ ɪɴᴠɪᴛɪɴɢ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}."
+                    f"» i don't have permissions to invite users via link for inviting {userbot.mention} assistant to {message.chat.title}."
                 )
             else:
                 return await msg.edit_text(
-                    f"ғᴀɪʟᴇᴅ ᴛᴏ ɪɴᴠɪᴛᴇ {userbot.mention} ᴀssɪsᴛᴀɴᴛ ᴛᴏ {message.chat.title}.\n\n**ʀᴇᴀsᴏɴ :** `{ex}`"
+                    f"failed to invite {userbot.mention} assistant to {message.chat.title}.\n\n**reason :** `{ex}`"
                 )
 
         try:
@@ -184,9 +184,9 @@ async def radio(client, message: Message):
         return await play_logs(message, streamtype="M3u8 or Index Link")
     else:
         await message.reply(
-            f"ɢɪᴠᴇ ᴍᴇ ᴀ sᴛᴀᴛɪᴏɴ ɴᴀᴍᴇ ᴛᴏ ᴘʟᴀʏ ʀᴀᴅɪᴏ\nʙᴇʟᴏᴡ ᴀʀᴇ sᴏᴍᴇ sᴛᴀᴛɪᴏɴ ɴᴀᴍᴇ:\n{valid_stations}"
+            f"give me a station name to play radio\nbelow are some station name:\n{valid_stations}"
         )
 
 
 __MODULE__ = "Radio"
-__HELP__ = f"\n/radio [sᴛᴀᴛɪᴏɴ ɴᴀᴍᴇ] - ᴛᴏ ᴘʟᴀʏ **ʀᴀᴅɪᴏ ɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ**\n\nʙᴇʟᴏᴡ ᴀʀᴇ sᴏᴍᴇ sᴛᴀᴛɪᴏɴ ɴᴀᴍᴇ:\n{valid_stations}"
+__HELP__ = f"\n/radio [station name] - to play **radio in voice chat**\n\nbelow are some station name:\n{valid_stations}"

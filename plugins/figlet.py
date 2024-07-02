@@ -16,8 +16,8 @@ def figle(text):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(text="ᴄʜᴀɴɢᴇ", callback_data="figlet"),
-                InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close_reply"),
+                InlineKeyboardButton(text="change", callback_data="figlet"),
+                InlineKeyboardButton(text="close", callback_data="close_reply"),
             ]
         ]
     )
@@ -33,7 +33,7 @@ async def echo(bot, message):
         return await message.reply_text("Example:\n\n`/figlet Yukki `")
     kul_text, keyboard = figle(text)
     await message.reply_text(
-        f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ғɪɢʟᴇᴛ :\n<pre>{kul_text}</pre>",
+        f"here is your figlet :\n<pre>{kul_text}</pre>",
         quote=True,
         reply_markup=keyboard,
     )
@@ -44,7 +44,7 @@ async def figlet_handler(Client, query: CallbackQuery):
     try:
         kul_text, keyboard = figle(text)
         await query.message.edit_text(
-            f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ғɪɢʟᴇᴛ :\n<pre>{kul_text}</pre>", reply_markup=keyboard
+            f"here is your figlet :\n<pre>{kul_text}</pre>", reply_markup=keyboard
         )
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -54,7 +54,7 @@ async def figlet_handler(Client, query: CallbackQuery):
 
 __MODULE__ = "Figlet"
 __HELP__ = """
-**ғɪɢʟᴇᴛ**
+**figlet**
 
-• /figlet <text> - ᴄʀᴇᴀᴛᴇs ᴀ ғɪɢʟᴇᴛ ᴏғ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ.
+• /figlet <text> - creates a figlet of the given text.
 """

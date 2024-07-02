@@ -23,7 +23,7 @@ approvaldb = mongodb.autoapprove
 def smallcap(text):
     trans_table = str.maketrans(
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 
-        "ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢABCDEFGHIJKLMNOPQRSTUVWXYZ0𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"
     )
     return text.translate(trans_table)
 
@@ -43,23 +43,23 @@ async def approval_command(client, message):
             )
         if mode == "automatic":
             switch = "manual"
-            mdbutton = "ᴀᴜᴛᴏᴍᴀᴛɪᴄ"
+            mdbutton = "automatic"
         else:
             switch = "automatic"
-            mdbutton = "ᴍᴀɴɴᴜᴀʟ"
+            mdbutton = "mannual"
         buttons = {
-            "Tᴜʀɴ ᴏғғ": "approval_off",
+            "Turn off": "approval_off",
             f"{mdbutton}": f"approval_{switch}",
         }
         keyboard = ikb(buttons, 1)
         await message.reply(
-            "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Eɴᴀʙʟᴇᴅ.**", reply_markup=keyboard
+            "**Autoapproval for this chat: Enabled.**", reply_markup=keyboard
         )
     else:
-        buttons = {"Tᴜʀɴ ᴏɴ ": "approval_on"}
+        buttons = {"Turn on ": "approval_on"}
         keyboard = ikb(buttons, 1)
         await message.reply(
-            "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Dɪsᴀʙʟᴇᴅ.**", reply_markup=keyboard
+            "**Autoapproval for this chat: Disabled.**", reply_markup=keyboard
         )
 
 
@@ -80,10 +80,10 @@ async def approval_cb(client, cb):
     if option == "off":
         if await approvaldb.count_documents({"chat_id": chat_id}) > 0:
             approvaldb.delete_one({"chat_id": chat_id})
-            buttons = {"ᴛᴜʀɴ ᴏɴ": "approval_on"}
+            buttons = {"turn on": "approval_on"}
             keyboard = ikb(buttons, 1)
             return await cb.edit_message_text(
-                "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Dɪsᴀʙʟᴇᴅ.**",
+                "**Autoapproval for this chat: Disabled.**",
                 reply_markup=keyboard,
             )
     if option == "on":
@@ -102,10 +102,10 @@ async def approval_cb(client, cb):
     )
     chat = await approvaldb.find_one({"chat_id": chat_id})
     mode = smallcap(chat["mode"])
-    buttons = {"ᴛᴜʀɴ ᴏғғ": "approval_off", f"{mode}": f"approval_{switch}"}
+    buttons = {"turn off": "approval_off", f"{mode}": f"approval_{switch}"}
     keyboard = ikb(buttons, 1)
     await cb.edit_message_text(
-        "**Aᴜᴛᴏᴀᴘᴘʀᴏᴠᴀʟ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ: Eɴᴀʙʟᴇᴅ.**", reply_markup=keyboard
+        "**Autoapproval for this chat: Enabled.**", reply_markup=keyboard
     )
 
 
@@ -148,7 +148,7 @@ async def accept(client, message: ChatJoinRequest):
                     "Decline": f"manual_decline_{user.id}",
                 }
                 keyboard = ikb(buttons, int(2))
-                text = f"**ᴜsᴇʀ: {user.mention} ʜᴀs sᴇɴᴅ ᴀ ʀᴇǫᴜᴇsᴛ ᴛᴏ ᴊᴏɪɴ ᴏᴜʀ  ɢʀᴏᴜᴘ. Aɴʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ᴏʀ ᴅᴇᴄʟɪɴᴇ ɪᴛ.**"
+                text = f"**user: {user.mention} has send a request to join our  group. Any admins can accept or decline it.**"
                 admin_data = [
                     i
                     async for i in app.get_chat_members(
@@ -183,7 +183,7 @@ async def manual(app, cb):
             await app.approve_chat_join_request(chat_id=chat.id, user_id=id)
         except UserAlreadyParticipant:
             await cb.answer(
-                "Usᴇʀ Is Aᴘᴘʀᴏᴠᴇᴅ ɪɴ Yᴏᴜʀ Gʀᴏᴜᴘ Bʏ AɴʏOɴᴇ",
+                "User Is Approved in Your Group By AnyOne",
                 show_alert=True,
             )
             return await cb.message.delete()
@@ -194,7 +194,7 @@ async def manual(app, cb):
         except Exception as e:
             if "messages.HideChatJoinRequest" in str(e):
                 await cb.answer(
-                    "Usᴇʀ Is Aᴘᴘʀᴏᴠᴇᴅ ɪɴ Yᴏᴜʀ Gʀᴏᴜᴘ Bʏ AɴʏOɴᴇ",
+                    "User Is Approved in Your Group By AnyOne",
                     show_alert=True,
                 )
 
@@ -209,15 +209,15 @@ __MODULE__ = "Approve"
 __HELP__ = """
 command: /autoapprove
 
-Tʜɪs ᴍᴏᴅᴜʟᴇ ʜᴇʟᴘs ᴛᴏ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴀᴄᴄᴇᴘᴛ ᴄʜᴀᴛ ɪᴏɪɴ ʀᴇǫᴜᴇsᴛ sᴇɴᴅ ʙʏ ᴀ ᴜsᴇʀ ᴛʜʀᴏᴜɢʜ ɪɴᴠɪᴛᴀᴛɪᴏɴ ʟɪɴᴋ ᴏғ ʏᴏᴜʀ ɢʀᴏᴜᴘ
+This module helps to automatically accept chat ioin request send by a user through invitation link of your group
 
-**Mᴏᴅᴇs:**
-ᴡʜᴇɴ ʏᴏᴜ sᴇɴᴅ /autoapprove ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ʏᴏᴜ sᴇᴇ ᴛᴜʀɴ ᴏɴ ʙᴜᴛᴛᴏɴ ɪғ ᴀᴜᴛᴛᴏᴘʀᴏᴠᴇ ɴᴏᴛ ᴇɴᴀʙʟᴇᴅ ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ ɪғ ᴀʟʀᴇᴅʏ ᴛᴜʀɴᴇᴅ ᴏɴ ʏᴏᴜ ᴡɪʟʟ sᴇ ᴛᴡᴏ ᴍᴏᴅᴇs ᴛʜᴀᴛ's ᴀʀᴇ ʙᴇʟᴏᴡ ᴀɴᴅ ʜɪs ᴜsᴀsɢᴇ
+**Modes:**
+when you send /autoapprove in your group you see turn on button if auttoprove not enabled for your chat if alredy turned on you will se two modes that's are below and his usasge
 
 
-¤ Automatic - ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴀᴄᴄᴇᴘᴛs ᴄʜᴀᴛ ᴊᴏɪɴ ʀᴇǫᴜᴇsᴛ.
+¤ Automatic - automatically accepts chat join request.
 
-¤ Manual - ᴀ ᴍᴇssᴀɢᴇ ᴡɪʟʟ ʙᴇ sᴇɴᴅ ᴛᴏ ᴛʜᴇ ᴄʜᴀᴛ ʙʏ ᴛᴀɢɢɪɴɢ ᴛʜᴇ ᴀᴅᴍɪɴs. ᴛʜᴇ ᴀᴅᴍɪɴs ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ᴏʀ ᴅᴇᴄʟɪɴᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛs.
+¤ Manual - a message will be send to the chat by tagging the admins. the admins can accept or decline the requests.
 
-Usᴇ: /clearpending ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴀʟʟ ᴘᴇɴᴅɪɴɢ ᴜsᴇʀ ɪᴅ ғʀᴏᴍ ᴅʙ. ᴛʜɪs ᴡɪʟʟ ᴀʟʟᴏᴡ ᴛʜᴇ ᴜsᴇʀ ᴛᴏ sᴇɴᴅ ʀᴇǫᴜᴇsᴛ ᴀɢᴀɪɴ.
+Use: /clearpending command to remove all pending user id from db. this will allow the user to send request again.
 """

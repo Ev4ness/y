@@ -28,14 +28,14 @@ def extract_video_id(url):
 async def get_thumbnail_command(client, message):
     if len(message.command) < 2:
         return await message.reply_text(
-            "ᴘʀᴏᴠɪᴅᴇ ᴍᴇ ᴀ ʏᴛ ᴠɪᴅᴇᴏᴜʀʟ ᴀғᴛᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ɢᴇᴛ ᴛʜᴜᴍʙɴᴀɪʟ"
+            "provide me a yt videourl after command to get thumbnail"
         )
     try:
-        a = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+        a = await message.reply_text("processing...")
         url = message.text.split(" ")[1]
         video_id = extract_video_id(url)
         if not video_id:
-            await message.reply("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ʏᴏᴜᴛᴜʙᴇ ʟɪɴᴋ.")
+            await message.reply("please provide a valid youtube link.")
             return
         video_title = get_video_title(video_id)
         query = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
@@ -45,24 +45,24 @@ async def get_thumbnail_command(client, message):
         await message.reply_photo(query, caption=caption)
         await a.delete()
     except Exception as e:
-        await a.edit(f"ᴀɴ ᴇʀʀᴏʀʀ ᴏᴄᴜʀʀᴇᴅ: {e}")
+        await a.edit(f"an errorr ocurred: {e}")
 
 
 __HELP__ = """
-**ʏᴏᴜᴛᴜʙᴇ ᴛʜᴜᴍʙɴᴀɪʟ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs**
+**youtube thumbnail bot commands**
 
-ᴜsᴇ ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏ ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ ғʀᴏᴍ ᴀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ:
+use these commands to get the thumbnail from a youtube video:
 
-- /getthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏʀ ᴀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ.
-- /genthumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
-- /thumb <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
-- /thumbnail <ʏᴏᴜᴛᴜʙᴇ_ᴜʀʟ>: sᴀᴍᴇ ᴀs /getthumb.
+- /getthumb <youtube_url>: get the thumbnail for a youtube video.
+- /genthumb <youtube_url>: same as /getthumb.
+- /thumb <youtube_url>: same as /getthumb.
+- /thumbnail <youtube_url>: same as /getthumb.
 
-**ᴇxᴀᴍᴘʟᴇ:**
+**example:**
 - `/getthumb `
 
-**ɴᴏᴛᴇ:**
-ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ʏᴏᴜᴛᴜʙᴇ ᴜʀʟ ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ.
+**note:**
+provide a valid youtube url after the command to get the thumbnail.
 """
 
 __MODULE__ = "Yt"

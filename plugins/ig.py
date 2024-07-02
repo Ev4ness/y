@@ -8,10 +8,10 @@ from YukkiMusic import app
 async def download_instagram_video(client, message):
     if len(message.command) < 2:
         await message.reply_text(
-            "Pʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴛʜᴇ Iɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ URL ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ"
+            "Please provide the Instagram reel URL after the command"
         )
         return
-    a = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+    a = await message.reply_text("processing...")
     url = message.text.split()[1]
     api_url = (
         f"https://nodejs-1xn1lcfy3-jobians.vercel.app/v2/downloader/instagram?url={url}"
@@ -25,13 +25,13 @@ async def download_instagram_video(client, message):
         await a.delete()
         await client.send_video(message.chat.id, video_url)
     else:
-        await a.edit("Fᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ʀᴇᴇʟ")
+        await a.edit("Failed to download reel")
 
 __MODULE__ = "Reel"
 __HELP__ = """
-**ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ:**
+**instagram reel downloader:**
 
-• `/ig [URL]`: ᴅᴏᴡɴʟᴏᴀᴅ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟs. Pʀᴏᴠɪᴅᴇ ᴛʜᴇ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ URL ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ.
-• `/instagram [URL]`: ᴅᴏᴡɴʟᴏᴀᴅ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟs. Pʀᴏᴠɪᴅᴇ ᴛʜᴇ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ URL ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ.
-• `/reel [URL]`: ᴅᴏᴡɴʟᴏᴀᴅ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟs. Pʀᴏᴠɪᴅᴇ ᴛʜᴇ ɪɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟ URL ᴀғᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ.
+• `/ig [URL]`: download instagram reels. Provide the instagram reel URL after the command.
+• `/instagram [URL]`: download instagram reels. Provide the instagram reel URL after the command.
+• `/reel [URL]`: download instagram reels. Provide the instagram reel URL after the command.
 """

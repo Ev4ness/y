@@ -316,32 +316,32 @@ class Fonts:
 
     def smallcap(text):
         style = {
-            "a": "ᴀ",
-            "b": "ʙ",
-            "c": "ᴄ",
-            "d": "ᴅ",
-            "e": "ᴇ",
-            "f": "ғ",
-            "g": "ɢ",
-            "h": "ʜ",
-            "i": "ɪ",
-            "j": "ɪ",
-            "k": "ᴋ",
-            "l": "ʟ",
-            "m": "ᴍ",
-            "n": "ɴ",
-            "o": "ᴏ",
-            "p": "ᴘ",
-            "q": "ǫ",
-            "r": "ʀ",
+            "a": "a",
+            "b": "b",
+            "c": "c",
+            "d": "d",
+            "e": "e",
+            "f": "f",
+            "g": "g",
+            "h": "h",
+            "i": "i",
+            "j": "i",
+            "k": "k",
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "o": "o",
+            "p": "p",
+            "q": "q",
+            "r": "r",
             "s": "s",
-            "t": "ᴛ",
-            "u": "ᴜ",
-            "v": "ᴠ",
-            "w": "ᴡ",
+            "t": "t",
+            "u": "u",
+            "v": "v",
+            "w": "w",
             "x": "x",
-            "y": "ʏ",
-            "z": "ᴢ",
+            "y": "y",
+            "z": "z",
             "A": "A",
             "B": "B",
             "C": "C",
@@ -2377,7 +2377,7 @@ async def style_buttons(c, m, cb=False):
         [
             InlineKeyboardButton("𝑺𝒆𝒓𝒊𝒇", callback_data="style+bold_cool"),
             InlineKeyboardButton("𝑆𝑒𝑟𝑖𝑓", callback_data="style+cool"),
-            InlineKeyboardButton("Sᴍᴀʟʟ Cᴀᴘs", callback_data="style+small_cap"),
+            InlineKeyboardButton("Small Caps", callback_data="style+small_cap"),
         ],
         [
             InlineKeyboardButton("𝓈𝒸𝓇𝒾𝓅𝓉", callback_data="style+script"),
@@ -2404,7 +2404,7 @@ async def style_buttons(c, m, cb=False):
             InlineKeyboardButton("H̆̈ă̈p̆̈p̆̈y̆̈", callback_data="style+happy"),
             InlineKeyboardButton("S̑̈ȃ̈d̑̈", callback_data="style+sad"),
         ],
-        [InlineKeyboardButton("ɴᴇxᴛ ➻", callback_data="nxt")],
+        [InlineKeyboardButton("next ➻", callback_data="nxt")],
     ]
     if not cb:
         await m.reply_text(
@@ -2451,7 +2451,7 @@ async def nxt(c, m):
                 InlineKeyboardButton("S̶t̶r̶i̶k̶e̶", callback_data="style+strike"),
                 InlineKeyboardButton("F༙r༙o༙z༙e༙n༙", callback_data="style+frozen"),
             ],
-            [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="nxt+0")],
+            [InlineKeyboardButton("back", callback_data="nxt+0")],
         ]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
@@ -2550,7 +2550,7 @@ async def style(c, m):
 
 
 __HELP__ = """
-• /font [text] - ᴄᴏɴᴠᴇʀᴛs sɪᴍᴩʟᴇ ᴛᴇxᴛ ᴛᴏ ʙᴇᴀᴜᴛɪғᴜʟ ᴛᴇxᴛ ʙʏ ᴄʜᴀɴɢɪɴɢ ɪᴛ's ғᴏɴᴛ.
+• /font [text] - converts simᴩle text to beautiful text by changing it's font.
  """
 
 __MODULE__ = "Font"

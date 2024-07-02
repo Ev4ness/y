@@ -7,55 +7,55 @@ async def get_id(client, message):
     try:
         if not message.reply_to_message and message.chat:
             await message.reply(
-                f"ᴜsᴇʀ <b>{message.from_user.first_name}'s</b> ɪᴅ ɪs <code>{message.from_user.id}</code>.\nᴛʜɪs ᴄʜᴀᴛ's ɪᴅ ɪs: <code>{message.chat.id}</code>."
+                f"user <b>{message.from_user.first_name}'s</b> id is <code>{message.from_user.id}</code>.\nthis chat's id is: <code>{message.chat.id}</code>."
             )
         elif not message.reply_to_message.sticker or message.reply_to_message is None:
             if message.reply_to_message.forward_from_chat:
-                await message.reply(f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from_chat.id}</code>")
+                await message.reply(f"The forwarded {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} has an ID of <code>{message.reply_to_message.forward_from_chat.id}</code>")
 
             elif message.reply_to_message.forward_from:
                 await message.reply(
-                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴜsᴇʀ, {message.reply_to_message.forward_from.first_name} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from.id}</code>."
+                    f"The forwarded user, {message.reply_to_message.forward_from.first_name} has an ID of <code>{message.reply_to_message.forward_from.id}</code>."
                 )
 
             elif message.reply_to_message.forward_sender_name:
                 await message.reply(
-                    "Sᴏʀʀʏ, I ɴᴇᴠᴇʀ sᴀᴡ ᴛʜᴀᴛ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴏʀ I ᴀᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғᴇᴛᴄʜ ᴛʜᴇ ID."
+                    "Sorry, I never saw that user's message or I am unable to fetch the ID."
                 )
             else:
                 await message.reply(
-                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>."
+                    f"user {message.reply_to_message.from_user.first_name}'s ID is <code>{message.reply_to_message.from_user.id}</code>."
                 )
         elif message.reply_to_message.sticker:
             if message.reply_to_message.forward_from_chat:
                 await message.reply(
-                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from_chat.id}</code> \nᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>"
+                    f"The forwarded {str(message.reply_to_message.forward_from_chat.type)[9:].lower()}, {message.reply_to_message.forward_from_chat.title} has an ID of <code>{message.reply_to_message.forward_from_chat.id}</code> \nand the replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>"
                 )
 
             elif message.reply_to_message.forward_from:
                 await message.reply(
-                    f"Tʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴜsᴇʀ, {message.reply_to_message.forward_from.first_name} ʜᴀs ᴀɴ ID ᴏғ <code>{message.reply_to_message.forward_from.id}</code> \nᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
+                    f"The forwarded user, {message.reply_to_message.forward_from.first_name} has an ID of <code>{message.reply_to_message.forward_from.id}</code> \nand the replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
 
             elif message.reply_to_message.forward_sender_name:
                 await message.reply(
-                    "Sᴏʀʀʏ, I ɴᴇᴠᴇʀ sᴀᴡ ᴛʜᴀᴛ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴏʀ I ᴀᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғᴇᴛᴄʜ ᴛʜᴇ ID."
+                    "Sorry, I never saw that user's message or I am unable to fetch the ID."
                 )
 
             else:
                 await message.reply(
-                    f"ᴜsᴇʀ {message.reply_to_message.from_user.first_name}'s ID ɪs <code>{message.reply_to_message.from_user.id}</code>\n ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ sᴛɪᴄᴋᴇʀ ID ɪs <code>{message.reply_to_message.sticker.file_id}</code>."
+                    f"user {message.reply_to_message.from_user.first_name}'s ID is <code>{message.reply_to_message.from_user.id}</code>\n and the replied sticker ID is <code>{message.reply_to_message.sticker.file_id}</code>."
                 )
         else:
             await message.reply(
-                f"User {message.reply_to_message.from_user.first_name}'s ᴜsᴇʀ ID ɪs <code>{message.reply_to_message.from_user.id}</code>."
+                f"User {message.reply_to_message.from_user.first_name}'s user ID is <code>{message.reply_to_message.from_user.id}</code>."
             )
     except Exception as r:
-        await message.reply(f"Aɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ɢᴇᴛᴛɪɴɢ ᴛʜᴇ ID. {r}")
+        await message.reply(f"An error occurred while getting the ID. {r}")
 
 __MODULE__ = "UserID"
 __HELP__ = """
-**ɪᴅ ʀᴇᴛʀɪᴇᴠᴇʀ:**
+**id retriever:**
 
 • `/id`: Retrieve user and chat IDs.
 """

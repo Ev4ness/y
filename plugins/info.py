@@ -24,7 +24,7 @@ async def userstatus(user_id):
         elif x == enums.UserStatus.ONLINE:
             return "Online."
     except:
-        return "**sᴏᴍᴇᴛʜɪɴɢ ᴡʀᴏɴɢ ʜᴀᴘᴘᴇɴᴇᴅ !**"
+        return "**something wrong happened !**"
 
 
 async def get_user_info(user, already=False):
@@ -43,15 +43,15 @@ async def get_user_info(user, already=False):
     is_sudo = user_id in SUDOERS
     is_premium = user.is_premium
     body = {
-        "ɴᴀᴍᴇ": [first_name],
-        "ᴜsᴇʀɴᴀᴍᴇ": [("@" + username) if username else "Null"],
-        "ɪᴅ": user_id,
-        "ᴅᴄ ɪᴅ": dc_id,
-        "ᴍᴇɴᴛɪᴏɴ": [mention],
-        "ᴘʀᴇɪᴍɪᴜᴍ": is_premium,
-        "ʟᴀsᴛ sᴇᴇɴ" : online,
+        "name": [first_name],
+        "username": [("@" + username) if username else "Null"],
+        "id": user_id,
+        "dc id": dc_id,
+        "mention": [mention],
+        "preimium": is_premium,
+        "last seen" : online,
     }
-    caption = section("ᴜsᴇʀ ɪɴғᴏ", body)
+    caption = section("user info", body)
     return [caption, photo_id]
 
 
@@ -62,21 +62,21 @@ async def get_chat_info(chat):
     photo_id = chat.photo.big_file_id if chat.photo else None
     info = f"""
     
-    ᴄʜᴀᴛ ɪɴғᴏ 
+    chat info 
 
-➻ ᴄʜᴀᴛ ɪᴅ ‣ {chat.id}
-➻ ɴᴀᴍᴇ ‣ {chat.title}
-➻ ᴜsᴇʀɴᴀᴍᴇ ‣ {chat.username}
-➻ ᴅᴄ ɪᴅ ‣ {chat.dc_id}
-➻ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ  ‣ {chat.description}
-➻ ᴄʜᴀᴛᴛʏᴘᴇ ‣ {chat.type}
-➻ ɪs ᴠᴇʀɪғɪᴇᴅ ‣ {chat.is_verified}
-➻ ɪs ʀᴇsᴛʀɪᴄᴛᴇᴅ ‣ {chat.is_restricted}
-➻ ɪs ᴄʀᴇᴀᴛᴏʀ ‣ {chat.is_creator}
-➻ ɪs sᴄᴀᴍ ‣ {chat.is_scam}
-➻ ɪs ғᴀᴋᴇ ‣ {chat.is_fake}
-➻ ᴍᴇᴍʙᴇʀ's ᴄᴏᴜɴᴛ ‣ {chat.members_count}
-➻ ʟɪɴᴋ ‣ {link}
+➻ chat id ‣ {chat.id}
+➻ name ‣ {chat.title}
+➻ username ‣ {chat.username}
+➻ dc id ‣ {chat.dc_id}
+➻ description  ‣ {chat.description}
+➻ chattype ‣ {chat.type}
+➻ is verified ‣ {chat.is_verified}
+➻ is restricted ‣ {chat.is_restricted}
+➻ is creator ‣ {chat.is_creator}
+➻ is scam ‣ {chat.is_scam}
+➻ is fake ‣ {chat.is_fake}
+➻ member's count ‣ {chat.members_count}
+➻ link ‣ {link}
 
 """
 
@@ -96,9 +96,9 @@ async def info_func(_, message: Message):
         elif user_input.startswith('@'):
             user = user_input
         else:
-            return await message.reply_text("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴜsᴇʀ's ᴜsᴇʀ ɪᴅ ᴏʀ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ ᴛᴏ ɢᴇᴛ ɪɴғᴏ")
+            return await message.reply_text("please provide a user's user id or username or reply to a user to get info")
 
-    m = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+    m = await message.reply_text("processing...")
 
     try:
         info_caption, photo_id = await get_user_info(user)
@@ -141,8 +141,8 @@ async def chat_info_func(_, message: Message):
 
 __MODULE__ = "Info"
 __HELP__ = """
-**ᴜsᴇʀ & ᴄʜᴀᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ:**
+**user & chat information:**
 
-• `/info`: Gᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴜsᴇʀ. Usᴇʀɴᴀᴍᴇ, ID, ᴀɴᴅ ᴍᴏʀᴇ.
-• `/chatinfo [ᴜsᴇʀɴᴀᴍᴇ|ɪᴅ]`: Gᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴄʜᴀᴛ. ᴍᴇᴍʙᴇʀ ᴄᴏᴜɴᴛ, ɪs ᴠᴇʀɪғɪᴇᴅ, ɪɴᴠɪᴛᴇ ʟɪɴᴋ, ᴀɴᴅ ᴍᴏʀᴇ.
+• `/info`: Get information about the user. Username, ID, and more.
+• `/chatinfo [username|id]`: Get information about the chat. member count, is verified, invite link, and more.
 """

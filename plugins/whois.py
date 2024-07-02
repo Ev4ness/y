@@ -19,11 +19,11 @@ def ReplyCheck(message: Message):
 
 infotext = (
     "[{full_name}](tg://user?id={user_id})\n\n"
-    "ᴜsᴇʀ ɪᴅ: `{user_id}`\n"
-    "ғɪʀsᴛ ɴᴀᴍᴇ: `{first_name}`\n"
-    "ʟᴀsᴛ ɴᴀᴍᴇ: `{last_name}`\n"
-    "ᴜsᴇʀɴᴀᴍᴇ: `@{username}`\n"
-    "ʟᴀsᴛ sᴇᴇɴ: `{last_online}`"
+    "user id: `{user_id}`\n"
+    "first name: `{first_name}`\n"
+    "last name: `{last_name}`\n"
+    "username: `@{username}`\n"
+    "last seen: `{last_online}`"
 )
 
 
@@ -31,15 +31,15 @@ def LastOnline(user: User):
     if user.is_bot:
         return ""
     elif user.status == "recently":
-        return "ʀᴇᴄᴇɴᴛʟʏ"
+        return "recently"
     elif user.status == "within_week":
-        return "ᴡɪᴛʜɪɴ ᴛʜᴇ ʟᴀsᴛ ᴡᴇᴇᴋ"
+        return "within the last week"
     elif user.status == "within_month":
-        return "ᴡɪᴛʜɪɴ ᴛʜᴇ ʟᴀsᴛ ᴍᴏɴᴛʜ"
+        return "within the last month"
     elif user.status == "long_time_ago":
-        return "ᴀ ʟᴏɴɢ ᴛɪᴍᴇ ᴀɢᴏ :("
+        return "a long time ago :("
     elif user.status == "online":
-        return "ᴄᴜʀʀᴇɴᴛʟʏ ᴏɴʟɪɴᴇ"
+        return "currently online"
     elif user.status == "offline":
         return datetime.fromtimestamp(user.status.date).strftime(
             "%a, %d %b %Y, %H:%M:%S"
@@ -79,24 +79,24 @@ async def whois(client, message):
             last_name=user.last_name if user.last_name else "",
             username=user.username if user.username else "",
             last_online=LastOnline(user),
-            bio=desc if desc else "ᴇᴍᴩᴛʏ.",
+            bio=desc if desc else "emᴩty.",
         ),
         disable_web_page_preview=True,
     )
 __HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅ:**
+**command:**
 
-• /whois - **ᴄʜᴇᴄᴋ ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.**
+• /whois - **check user information.**
 
-**ɪɴғᴏ:**
+**info:**
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴄʜᴇᴄᴋ ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.
-- ᴜsᴇ /whois ᴄᴏᴍᴍᴀɴᴅ ғᴏʟʟᴏᴡᴇᴅ ʙʏ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴏʀ ᴀ ᴜsᴇʀ ɪᴅ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴜsᴇʀ.
+- this bot provides a command to check user information.
+- use /whois command followed by a reply to a message or a user id to get information about the user.
 
-**ɴᴏᴛᴇ:**
+**note:**
 
-- ᴛʜᴇ /whois ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ʀᴇᴛʀɪᴇᴠᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ᴜsᴇʀ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
-- ᴛʜᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ɪɴᴄʟᴜᴅᴇs ᴜsᴇʀ ɪᴅ, ғɪʀsᴛ ɴᴀᴍᴇ, ʟᴀsᴛ ɴᴀᴍᴇ, ᴜsᴇʀɴᴀᴍᴇ, ᴀɴᴅ ʟᴀsᴛ sᴇᴇɴ sᴛᴀᴛᴜs.
+- the /whois command can be used to retrieve information about a user in the chat.
+- the information includes user id, first name, last name, username, and last seen status.
 """
 
 __MODULE__ = "WhoIs"

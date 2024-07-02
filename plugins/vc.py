@@ -113,15 +113,15 @@ __MODULE__ = "VcTool"
 __HELP__ = """
 **COMMANDS:**
 
-• /vcstart - **sᴛᴀʀᴛs ᴀ ɴᴇᴡ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
-• /vcend - **ᴇɴᴅs ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
-• /vcuser - **ɢᴇᴛs ᴛʜᴇ ᴜsᴇʀs ɪɴ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.**
+• /vcstart - **starts a new voice chat.**
+• /vcend - **ends the current voice chat.**
+• /vcuser - **gets the users in the voice chat.**
 
 **INFO:**
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ sᴛᴀʀᴛ, ᴇɴᴅ, ᴀɴᴅ ɢᴇᴛ ᴛʜᴇ ᴜsᴇʀs ɪɴ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.
+- this bot provides a command to start, end, and get the users in the voice chat.
 
 **NOTE:**
 
-- ᴛʜɪs ᴀssɪsᴛᴀɴᴛ ᴍᴜsᴛ ʙᴇ ᴀɴ ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀ ᴏғ ᴛʜᴇ ᴄʜᴀᴛ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴄᴏᴍᴍᴀɴᴅs.
+- this assistant must be an administrator of the chat to use the voice chat commands.
 """

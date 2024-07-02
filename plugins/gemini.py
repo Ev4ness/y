@@ -23,7 +23,7 @@ async def gemini_handler(client, message):
         if len(message.command) > 1:
             user_input = " ".join(message.command[1:])
         else:
-            await message.reply_text("ᴇxᴀᴍᴘʟᴇ :- `/gemini who is lord ram`")
+            await message.reply_text("example :- `/gemini who is lord ram`")
             return
 
     try:

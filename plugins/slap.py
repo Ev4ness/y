@@ -6,14 +6,14 @@ import nekos
 async def slap(client, message):
     try:
         if message.reply_to_message:
-            await message.reply_video(nekos.img("slap"), caption=f"{message.from_user.mention} sʟᴀᴘᴘᴇᴅ {message.reply_to_message.from_user.mention}")
+            await message.reply_video(nekos.img("slap"), caption=f"{message.from_user.mention} slapped {message.reply_to_message.from_user.mention}")
         else:
             await message.reply_video(nekos.img("slap"))
     except Exception as e:
         await message.reply_text(f"Error: {e}")
 
 __HELP__ = """
-Aᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs:
-- /sʟᴀᴘ: Sʟᴀᴘs sᴏᴍᴇᴏɴᴇ. Iғ ᴜsᴇᴅ ᴀs ᴀ ʀᴇᴘʟʏ, sʟᴀᴘs ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴜsᴇʀ.
+Available commands:
+- /slap: Slaps someone. If used as a reply, slaps the replied user.
 """
 __MODULE__ = "Slap"

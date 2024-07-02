@@ -52,17 +52,17 @@ async def save_filters(_, message):
     try:
         if len(message.command) < 2:
             return await message.reply_text(
-                "**ᴜsᴀsɢᴇ:**\nʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ  /filter [FILTER_NAME] [CONTENT] ᴛᴏ sᴇᴛ ᴀ ɴᴇᴡ ғɪʟᴛᴇʀ."
+                "**usasge:**\nreply to a message with  /filter [FILTER_NAME] [CONTENT] to set a new filter."
             )
         replied_message = message.reply_to_message
         if not replied_message:
             replied_message = message
         data, name = await get_data_and_name(replied_message, message)
         if len(name) < 2:
-            return await message.reply_text(f"ᴛᴏ ғɪʟᴛᴇʀ ᴛʜᴇ {name} ᴍᴜsᴛ ʙᴇ ɢʀᴇᴀᴛᴇʀ ᴛʜᴇɴ 𝟸 ᴡᴏʀᴅs")
+            return await message.reply_text(f"to filter the {name} must be greater then 𝟸 words")
         if data == "error":
             return await message.reply_text(
-                "**ᴜsᴀsɢᴇ:**\n__/filter [FILTER_NAME] [CONTENT]__\n`-----------OR-----------`\nʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ. \n/filter [FILTER_NAME]."
+                "**usasge:**\n__/filter [FILTER_NAME] [CONTENT]__\n`-----------OR-----------`\nreply to a message with. \n/filter [FILTER_NAME]."
             )
         if replied_message.text:
             _type = "text"
@@ -102,7 +102,7 @@ async def save_filters(_, message):
             data = await check_format(ikb, data)
             if not data:
                 return await message.reply_text(
-                    "**ᴡʀᴏɴɢ ғᴏʀᴍᴀᴛᴛɪɴɢ, ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ.**"
+                    "**wrong formatting, check the help section.**"
                 )
         name = name.replace("_", " ")
         _filter = {
@@ -113,10 +113,10 @@ async def save_filters(_, message):
         
         chat_id = message.chat.id
         await save_filter(chat_id, name, _filter)
-        return await message.reply_text(f"__**sᴀᴠᴇᴅ ғɪʟᴛᴇʀ {name}.**__")
+        return await message.reply_text(f"__**saved filter {name}.**__")
     except UnboundLocalError:
         return await message.reply_text(
-            "**ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ ɪs ɪɴᴀᴄᴇssᴀʙʟᴇ.\n`ғᴏʀᴡᴀʀᴅ ᴛʜᴇ ᴍᴇssᴀɢᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.`**"
+            "**replied message is inacessable.\n`forward the message and try again.`**"
         )
 
 
@@ -125,9 +125,9 @@ async def save_filters(_, message):
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
-        return await message.reply_text("**ɴᴏ ғɪʟᴛᴇʀs ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.**")
+        return await message.reply_text("**no filters in the chat.**")
     _filters.sort()
-    msg = f"ʟɪsᴛ ᴏғ ғɪʟᴛᴇʀs ɪɴ ᴛʜᴇ **{message.chat.title}** :\n"
+    msg = f"list of filters in the **{message.chat.title}** :\n"
     for _filter in _filters:
         msg += f"**-** `{_filter}`\n"
     await message.reply_text(msg)
@@ -252,20 +252,20 @@ async def filters_re(_, message):
 async def stop_all(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
-        await message.reply_text("**ɴᴏ ғɪʟᴛᴇʀs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.**")
+        await message.reply_text("**no filters in this chat.**")
     else:
         keyboard = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ʏᴇs, ᴅᴏ ɪᴛ", callback_data="stop_yes"
+                        "yes, do it", callback_data="stop_yes"
                     ),
-                    InlineKeyboardButton("ɴᴏ, ᴅᴏɴ'ᴛ ᴅᴏ ɪᴛ", callback_data="stop_no"),
+                    InlineKeyboardButton("no, don't do it", callback_data="stop_no"),
                 ]
             ]
         )
         await message.reply_text(
-            "**ᴀʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴀʟʟ ᴛʜᴇ ғɪʟᴛᴇʀs ɪɴ ᴛʜɪs ᴄʜᴀᴛ ғᴏʀᴇᴠᴇʀ ?.**",
+            "**are you sure you want to delete all the filters in this chat forever ?.**",
             reply_markup=keyboard,
         )
 
@@ -278,7 +278,7 @@ async def stop_all_cb(_, cb):
     permission = "can_change_info"
     if permission not in permissions:
         return await cb.answer(
-            f"ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀᴇᴄǫᴜʀɪᴇᴅ ᴘᴇʀᴍɪssɪᴏɴ.\n ᴘᴇʀᴍɪssɪᴏɴ: {permission}",
+            f"you don't have the recquried permission.\n permission: {permission}",
             show_alert=True,
         )
     input = cb.data.split("_", 1)[1]
@@ -286,7 +286,7 @@ async def stop_all_cb(_, cb):
         stoped_all = await deleteall_filters(chat_id)
         if stoped_all:
             return await cb.message.edit(
-                "**sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴅᴇᴅ ᴀʟʟ ғɪʟᴛᴇʀ's ᴏɴ ᴛʜɪs ᴄʜᴀᴛ.**"
+                "**sucessfully deleded all filter's on this chat.**"
             )
     if input == "no":
         await cb.message.reply_to_message.delete()

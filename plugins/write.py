@@ -12,9 +12,9 @@ async def write(client, message):
         txt = message.text.split(None, 1)[1]
     else:
         return await message.reply(
-            "Pʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴏʀ ᴡʀɪᴛᴇ ᴀғᴛᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴜsᴇ ᴡʀɪᴛᴇ CMD"
+            "Please reply to message or write after command to use write CMD"
         )
-    nan = await message.reply_text("Pʀᴏᴄᴇssɪɴɢ...")
+    nan = await message.reply_text("Processing...")
     try:
         img = api.write(txt)
         await message.reply_photo(img)
@@ -25,13 +25,13 @@ async def write(client, message):
 __MODULE__ = "Write"
 __HELP__ = """
 **COMMANDS**:
-- /write: ᴡʀɪᴛᴇ ᴛᴇxᴛ ᴏɴ ᴀɴ ᴄʟᴏᴜᴅ ᴀɴᴅ ɢᴇᴛ ᴀɴ ᴇᴅɪᴛᴇᴅ ᴘʜᴏᴛᴏ.
+- /write: write text on an cloud and get an edited photo.
 
 **INFO**:
-- ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ: ᴡʀɪᴛᴇ
-- ᴅᴇsᴄʀɪᴘᴛɪᴏɴ: ᴡʀɪᴛᴇ ᴛᴇxᴛ ᴏɴ ᴀɴ ᴄʟᴏᴜᴅ ᴀɴᴅ ɢᴇᴛ ᴀɴ ᴇᴅɪᴛᴇᴅ ᴘʜᴏᴛᴏ.
-- ᴄᴏᴍᴍᴀɴᴅs: /write
-- ᴘᴇʀᴍɪssɪᴏɴs ɴᴇᴇᴅᴇᴅ: ɴᴏɴᴇ
+- module name: write
+- description: write text on an cloud and get an edited photo.
+- commands: /write
+- permissions needed: none
 
 **NOTE**:
-- ᴜsᴇ ᴅɪʀᴇᴄᴛʟʏ ɪɴ ᴀ ɢʀᴏᴜᴘ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ғᴏʀ ᴛʜᴇ ʙᴇsᴛ ʀᴇsᴜʟᴛs."""
+- use directly in a group chat with me for the best results."""

@@ -119,23 +119,23 @@ async def remove_warns(chat_id: int, name: str) -> bool:
 async def kickFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text("ɪ ᴄᴀɴ'ᴛ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ")
+        return await message.reply_text("i can't find that user")
     if user_id == app.id:
         return await message.reply_text(
-            "ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴍʏsᴇʟғ, ɪ ᴄᴀɴ ʟᴇᴀᴠᴇ ɪғ ʏᴏᴜ ᴡᴀɴᴛ."
+            "i can't kick myself, i can leave if you want."
         )
     if user_id in SUDOERS:
-        return await message.reply_text("ʏᴏᴜ ᴡᴀɴɴᴀ ᴋɪᴄᴋ ᴛʜᴇ ᴇʟᴇᴠᴀᴛᴇᴅ ᴏɴᴇ ?")
+        return await message.reply_text("you wanna kick the elevated one ?")
     if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
 )]:
         return await message.reply_text(
-            "ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴀɴ ᴀᴅᴍɪɴ, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, sᴏ ᴅᴏ ɪ "
+            "i can't kick an admin, you know the rules, you know the rules, so do i "
         )
     mention = (await app.get_users(user_id)).mention
     msg = f"""
-**ᴋɪᴄᴋᴇᴅ ᴜsᴇʀ:** {mention}
-**ᴋɪᴄᴋᴇᴅ ʙʏ:** {message.from_user.mention if message.from_user else 'ᴀɴᴏɴᴍᴏᴜs'}
-**ʀᴇᴀsᴏɴ:** {reason or 'ɴᴏ ʀᴇᴀsᴏɴ ᴘʀᴏᴠɪᴅᴇᴅ'}"""
+**kicked user:** {mention}
+**kicked by:** {message.from_user.mention if message.from_user else 'anonmous'}
+**reason:** {reason or 'no reason provided'}"""
     await message.chat.ban_member(user_id)
     replied_message = message.reply_to_message
     if replied_message:
@@ -396,16 +396,16 @@ async def demote(_, message: Message):
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if message.command[0] == "unpinall":
-        return await message.reply_text("Aʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜɴᴘɪɴ ᴀʟʟ ᴍᴇssᴀɢᴇs?",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="ʏᴇs", callback_data="unpin_yes"),InlineKeyboardButton(text="ɴᴏ", callback_data="unpin_no")],]))
+        return await message.reply_text("Are you sure you want to unpin all messages?",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="yes", callback_data="unpin_yes"),InlineKeyboardButton(text="no", callback_data="unpin_no")],]))
 
 
 @app.on_callback_query(filters.regex(r"unpin_(yes|no)"))
 async def callback_query_handler(_, query: CallbackQuery):
     if query.data == "unpin_yes":
         await app.unpin_all_chat_messages(query.message.chat.id)
-        return await query.message.edit_text("Aʟʟ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇs ʜᴀᴠᴇ ʙᴇᴇɴ ᴜɴᴘɪɴɴᴇᴅ.")
+        return await query.message.edit_text("All pinned messages have been unpinned.")
     elif query.data == "unpin_no":
-        return await query.message.edit_text("Uɴᴘɪɴ ᴏғ ᴀʟʟ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇs ʜᴀs ʙᴇᴇɴ ᴄᴀɴᴄᴇʟʟᴇᴅ.")
+        return await query.message.edit_text("Unpin of all pinned messages has been cancelled.")
 
 
 @app.on_message(filters.command(["pin", "unpin"]) & ~filters.private & ~BANNED_USERS)
@@ -504,26 +504,26 @@ async def warn_user(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     chat_id = message.chat.id
     if not user_id:
-        return await message.reply_text("ɪ ᴄᴀɴᴛ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ")
+        return await message.reply_text("i cant find that user")
     if user_id == app.id:
         return await message.reply_text(
-            "ɪ ᴄᴀɴ'ᴛ ᴡᴀʀɴ ᴍʏsᴇʟғ, ɪ ᴄᴀɴ ʟᴇᴀᴠᴇ ɪғ ʏᴏᴜ ᴡᴀɴᴛ."
+            "i can't warn myself, i can leave if you want."
         )
     if user_id in SUDOERS:
         return await message.reply_text(
-            "ɪ ᴄᴀɴ'ᴛ ᴡᴀʀɴ ᴍʏ ᴍᴀɴᴀɢᴇʀ's, ʙᴇᴄᴀᴜsᴇ ʜᴇ ᴍᴀɴᴀɢᴇ ᴍᴇ!"
+            "i can't warn my manager's, because he manage me!"
         )
     if user_id in [member.user.id async for member  in app.get_chat_members(chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
 )]:
         return await message.reply_text(
-            "ɪ ᴄᴀɴ'ᴛ ᴡᴀʀɴ ᴀɴ ᴀᴅᴍɪɴ, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs sᴏ ᴅᴏ ɪ."
+            "i can't warn an admin, you know the rules so do i."
         )
     user, warns = await asyncio.gather(
         app.get_users(user_id),
         get_warn(chat_id, await int_to_alpha(user_id)),
     )
     mention = user.mention
-    keyboard = ikb({"🚨  ʀᴇᴍᴏᴠᴇ ᴡᴀʀɴ  🚨": f"unwarn_{user_id}"})
+    keyboard = ikb({"🚨  remove warn  🚨": f"unwarn_{user_id}"})
     if warns:
         warns = warns["warns"]
     else:
@@ -534,16 +534,16 @@ async def warn_user(_, message: Message):
     if warns >= 2:
         await message.chat.ban_member(user_id)
         await message.reply_text(
-            f"ɴᴜᴍʙᴇʀ ᴏғ ᴡᴀʀɴs ᴏғ {mention} ᴇxᴄᴇᴇᴅᴇᴅ, ʙᴀɴɴᴇᴅ!"
+            f"number of warns of {mention} exceeded, banned!"
         )
         await remove_warns(chat_id, await int_to_alpha(user_id))
     else:
         warn = {"warns": warns + 1}
         msg = f"""
-**ᴡᴀʀɴᴇᴅ ᴜsᴇʀ:** {mention}
-**ᴡᴀʀɴᴇᴅ ʙʏ:** {message.from_user.mention if message.from_user else 'ᴀɴᴏɴᴍᴏᴜs'}
-**ʀᴇᴀsᴏɴ :** {reason or 'ɴᴏ ʀᴇᴀsᴏɴ ᴘʀᴏᴠᴏᴅᴇᴅ'}
-**ᴡᴀʀɴs:** {warns + 1}/3"""
+**warned user:** {mention}
+**warned by:** {message.from_user.mention if message.from_user else 'anonmous'}
+**reason :** {reason or 'no reason provoded'}
+**warns:** {warns + 1}/3"""
         replied_message = message.reply_to_message
         if replied_message:
             message = replied_message
@@ -559,8 +559,8 @@ async def remove_warning(_, cq: CallbackQuery):
     permission = "can_restrict_members"
     if permission not in permissions:
         return await cq.answer(
-            "ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴇɴᴏᴜɢʜ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ᴘᴇʀғᴏʀᴍ ᴛʜɪs ᴀᴄᴛɪᴏɴ\n"
-            + f"ᴘᴇʀᴍɪssɪᴏɴ ɴᴇᴇᴅᴇᴅ: {permission}",
+            "you don't have enough permissions to perform this action\n"
+            + f"permission needed: {permission}",
             show_alert=True,
         )
     user_id = cq.data.split("_")[1]
@@ -568,12 +568,12 @@ async def remove_warning(_, cq: CallbackQuery):
     if warns:
         warns = warns["warns"]
     if not warns or warns == 0:
-        return await cq.answer("ᴜsᴇʀ ʜᴀs ɴᴏ ᴡᴀʀɴɪɴɢs.")
+        return await cq.answer("user has no warnings.")
     warn = {"warns": warns - 1}
     await add_warn(chat_id, await int_to_alpha(user_id), warn)
     text = cq.message.text.markdown
     text = f"~~{text}~~\n\n"
-    text += f"__ᴡᴀʀɴ ʀᴇᴍᴏᴠᴇᴅ ʙʏ {from_user.mention}__"
+    text += f"__warn removed by {from_user.mention}__"
     await cq.message.edit(text)
 
 @app.on_message(filters.command("rmwarns") & ~filters.private & ~BANNED_USERS)
@@ -588,24 +588,24 @@ async def remove_warnings(_, message: Message):
     if warns:
         warns = warns["warns"]
     if warns == 0 or not warns:
-        await message.reply_text(f"{mention} ʜᴀs ɴᴏ ᴡᴀʀɴɪɴɢs.")
+        await message.reply_text(f"{mention} has no warnings.")
     else:
         await remove_warns(chat_id, await int_to_alpha(user_id))
-        await message.reply_text(f"ʀᴇᴍᴏᴠᴇᴅ ᴡᴀʀɴɪɴɢs ᴏғ {mention}.")
+        await message.reply_text(f"removed warnings of {mention}.")
 
 @app.on_message(filters.command("warns") & ~filters.private & ~BANNED_USERS)
 @capture_err
 async def check_warns(_, message: Message):
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text("ɪ ᴄᴀɴ'ᴛ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
+        return await message.reply_text("i can't find that user.")
     warns = await get_warn(message.chat.id, await int_to_alpha(user_id))
     mention = (await app.get_users(user_id)).mention
     if warns:
         warns = warns["warns"]
     else:
-        return await message.reply_text(f"{mention} ʜᴀs ɴᴏ ᴡᴀʀɴɪɴɢs.")
-    return await message.reply_text(f"{mention} ʜᴀs {warns}/3 ᴡᴀʀɴɪɴɢs")
+        return await message.reply_text(f"{mention} has no warnings.")
+    return await message.reply_text(f"{mention} has {warns}/3 warnings")
  
 @app.on_message(filters.command("link") & ~BANNED_USERS)
 @adminsOnly("can_invite_users")
@@ -614,7 +614,7 @@ async def invite(_, message):
         link = (await app.get_chat(message.chat.id)).invite_link
         if not link:
             link = await app.export_chat_invite_link(message.chat.id)
-        text = f"ʜᴇʀᴇ's ᴛʜᴇ ɢʀᴏᴜᴘ ɪɴᴠɪᴛᴇ ʟɪɴᴋ \n\n{link}"
+        text = f"here's the group invite link \n\n{link}"
         if message.reply_to_message:
             await message.reply_to_message.reply_text(
                 text, disable_web_page_preview=True

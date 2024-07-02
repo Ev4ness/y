@@ -28,25 +28,25 @@ async def fkadress(_, message):
         gender = fk["gender"]
 
         fkinfo = f"""
-**ɴᴀᴍᴇ** ⇢ `{name}`
-**ɢᴇɴᴅᴇʀ** ⇢ `{gender}`
-**ᴀᴅᴅʀᴇss** ⇢ `{address}`
-**ᴄᴏᴜɴᴛʀʏ** ⇢ `{country}`
-**ᴄɪᴛʏ** ⇢ `{city}`
-**ɢᴇɴᴅᴇʀ** ⇢ `{gender}`
-**sᴛᴀᴛᴇ** ⇢ `{state}`
-**ᴘᴏsᴛᴀʟ** ⇢ `{postal}`
-**ᴇᴍᴀɪʟ** ⇢ `{email}`
-**ᴘʜᴏɴᴇ** ⇢ `{phone}`
+**name** ⇢ `{name}`
+**gender** ⇢ `{gender}`
+**address** ⇢ `{address}`
+**country** ⇢ `{country}`
+**city** ⇢ `{city}`
+**gender** ⇢ `{gender}`
+**state** ⇢ `{state}`
+**postal** ⇢ `{postal}`
+**email** ⇢ `{email}`
+**phone** ⇢ `{phone}`
 
         """
 
         await message.reply_photo(photo=picture, caption=fkinfo)
     else:
-        await message.reply_text("ᴏᴏᴘs ɴᴏᴛ ғᴏᴜɴᴅ ᴀɴʏ ᴀᴅᴅʀᴇss.\nᴛʀʏ ᴀɢᴀɪɴ")
+        await message.reply_text("oops not found any address.\ntry again")
 
 
 __MODULE__ = "Fake"
 __HELP__ = """
 
-/fake [ᴄᴏᴜɴᴛʀʏ ɴᴀᴍᴇ ] - ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴀᴅᴅʀᴇss"""
+/fake [country name ] - to get random address"""

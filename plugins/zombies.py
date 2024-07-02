@@ -26,17 +26,17 @@ async def remove(client, message):
             bot = await app.get_chat_member(message.chat.id, "self")
             if bot.status == ChatMemberStatus.MEMBER:
                 await message.reply(
-                    "➠ | ɪ ɴᴇᴇᴅ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs."
+                    "➠ | i need admin permissions to remove deleted accounts."
                 )
             else:
                 if len(chatQueue) > 30:
                     await message.reply(
-                        "➠ | ɪ'ᴍ ᴀʟʀᴇᴀᴅʏ ᴡᴏʀᴋɪɴɢ ᴏɴ ᴍʏ ᴍᴀxɪᴍᴜᴍ ɴᴜᴍʙᴇʀ ᴏғ 30 ᴄʜᴀᴛs ᴀᴛ ᴛʜᴇ ᴍᴏᴍᴇɴᴛ. ᴘʟᴇᴀsᴇ ᴛʀʏ ᴀɢᴀɪɴ sʜᴏʀᴛʟʏ."
+                        "➠ | i'm already working on my maximum number of 30 chats at the moment. please try again shortly."
                     )
                 else:
                     if message.chat.id in chatQueue:
                         await message.reply(
-                            "➠ | ᴛʜᴇʀᴇ's ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴏɴɢɪɪɴɢ ᴘʀᴏᴄᴇss ɪɴ ᴛʜɪs ᴄʜᴀᴛ. ᴘʟᴇᴀsᴇ [ /stop ] ᴛᴏ sᴛᴀʀᴛ ᴀ ɴᴇᴡ ᴏɴᴇ."
+                            "➠ | there's already an ongiing process in this chat. please [ /stop ] to start a new one."
                         )
                     else:
                         chatQueue.append(message.chat.id)
@@ -48,14 +48,14 @@ async def remove(client, message):
                                 pass
                         lenDeletedList = len(deletedList)
                         if lenDeletedList == 0:
-                            await message.reply("⟳ | ɴᴏ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.")
+                            await message.reply("⟳ | no deleted accounts in this chat.")
                             chatQueue.remove(message.chat.id)
                         else:
                             k = 0
                             processTime = lenDeletedList * 1
                             temp = await app.send_message(
                                 message.chat.id,
-                                f"🧭 | ᴛᴏᴛᴀʟ ᴏғ {lenDeletedList} ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ʜᴀs ʙᴇᴇɴ ᴅᴇᴛᴇᴄᴛᴇᴅ.\n🥀 | ᴇsᴛɪᴍᴀᴛᴇᴅ ᴛɪᴍᴇ: {processTime} sᴇᴄᴏɴᴅs ғʀᴏᴍ ɴᴏᴡ.",
+                                f"🧭 | total of {lenDeletedList} deleted accounts has been detected.\n🥀 | estimated time: {processTime} seconds from now.",
                             )
                             if stopProcess:
                                 stopProcess = False
@@ -71,18 +71,18 @@ async def remove(client, message):
                                 await asyncio.sleep(10)
                             if k == lenDeletedList:
                                 await message.reply(
-                                    f"✅ | sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇᴍᴏᴠᴇᴅ ᴀʟʟ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄɪᴜɴᴛs ғʀᴏᴍ ᴛʜɪs ᴄʜᴀᴛ."
+                                    f"✅ | successfully removed all deleted acciunts from this chat."
                                 )
                                 await temp.delete()
                             else:
                                 await message.reply(
-                                    f"✅ | sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇᴍᴏᴠᴇᴅ {k} ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜɪs ᴄʜᴀᴛ."
+                                    f"✅ | successfully removed {k} deleted accounts from this chat."
                                 )
                                 await temp.delete()
                             chatQueue.remove(message.chat.id)
         else:
             await message.reply(
-                "👮🏻 | sᴏʀʀʏ, **ᴏɴʟʏ ᴀᴅᴍɪɴ** ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ."
+                "👮🏻 | sorry, **only admin** can execute this command."
             )
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -90,13 +90,13 @@ async def remove(client, message):
 __MODULE__ = "Zombies"
 __HELP__ = """
 **commands:**
-- /zombies: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
+- /zombies: remove deleted accounts from the group.
 
 **info:**
-- ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs
-- ᴅᴇsᴄʀɪᴘᴛɪᴏɴ: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
-- ᴄᴏᴍᴍᴀɴᴅs: /zombies
-- ᴘᴇʀᴍɪssɪᴏɴs ɴᴇᴇᴅᴇᴅ: ᴄᴀɴ ʀᴇsᴛʀɪᴄᴛ ᴍᴇᴍʙᴇʀs
+- module name: remove deleted accounts
+- description: remove deleted accounts from the group.
+- commands: /zombies
+- permissions needed: can restrict members
 
 **note:**
-- ᴜsᴇ ᴅɪʀᴇᴄᴛʟʏ ɪɴ ᴀ ɢʀᴏᴜᴘ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ғᴏʀ ʙᴇsᴛ ᴇғғᴇᴄᴛ. ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ."""
+- use directly in a group chat with me for best effect. only admins can execute this command."""

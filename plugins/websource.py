@@ -53,17 +53,17 @@ def web_download(client, message):
 
 __MODULE__ = "Web"
 __HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅ:**
+**command:**
 
-• /webdl - **ᴅᴏᴡɴʟᴏᴀᴅ ᴡᴇʙsɪᴛᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.**
+• /webdl - **download website source code.**
 
-**ɪɴғᴏ:**
+**info:**
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ ᴀ ᴡᴇʙsɪᴛᴇ.
-- ᴜsᴇ /webdl ᴄᴏᴍᴍᴀɴᴅ ᴡɪᴛʜ ᴀ ᴜʀʟ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ.
+- this bot provides a command to download the source code of a website.
+- use /webdl command with a url to download the source code of the website.
 
-**ɴᴏᴛᴇ:**
+**note:**
 
-- ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴡᴇʙsɪᴛᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.
-- ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴡɪʟʟ ʙᴇ sᴀᴠᴇᴅ ᴀs ᴀ ᴅᴏᴄᴜᴍᴇɴᴛ ᴀɴᴅ sᴇɴᴛ ᴀs ᴀ ᴅᴏᴄᴜᴍᴇɴᴛ ᴛᴏ ᴛʜᴇ ᴄʜᴀᴛ.
+- this command can be used to download website source code.
+- the source code will be saved as a document and sent as a document to the chat.
 """

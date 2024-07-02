@@ -11,21 +11,21 @@ async def deletechatphoto(_, message):
 
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ....**")
+    msg = await message.reply_text("**processing....**")
     admin_check = await app.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !**")
+        await msg.edit("**this command work on groups !**")
     try:
         if admin_check.privileges.can_change_info:
             await app.delete_chat_photo(chat_id)
             await msg.edit(
-                "**ɢʀᴏᴜᴘs  ᴘʀᴏғɪʟᴇ ᴘʜᴏᴛᴏ ʀᴇᴍᴏᴠᴇᴅ  !\nʙʏ** {}".format(
+                "**groups  profile photo removed  !\nby** {}".format(
                     message.from_user.mention
                 )
             )
     except:
         await msg.edit(
-            "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ʀᴇᴍᴏᴠᴇ ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ !**"
+            "**the user most need change info admin rights to remove group photo !**"
         )
 
 
@@ -37,28 +37,28 @@ async def setchatphoto(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+    msg = await message.reply_text("processing...")
     admin_check = await app.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("`ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !`")
+        await msg.edit("`this command work on groups !`")
     elif not reply:
-        await msg.edit("**ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴅᴏᴄᴜᴍᴇɴᴛ.**")
+        await msg.edit("**reply to a photo or document.**")
     elif reply:
         try:
             if admin_check.privileges.can_change_info:
                 photo = await reply.download()
                 await message.chat.set_photo(photo=photo)
                 await msg.edit_text(
-                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ᴘʀᴏғɪʟᴇ ᴘʜᴏᴛᴏ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
+                    "**new group profile photo changed !\nby** {}".format(
                         message.from_user.mention
                     )
                 )
             else:
-                await msg.edit("**sᴏᴍᴇᴛʜɪɴɢ ᴡʀᴏɴɢ ʜᴀᴘᴘᴇɴᴇᴅ ᴛʀʏ ᴀɴᴏᴛʜᴇʀ ᴘʜᴏᴛᴏ !**")
+                await msg.edit("**something wrong happened try another photo !**")
 
         except:
             await msg.edit(
-                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ !**"
+                "**the user most need change info admin rights to change group photo !**"
             )
 
 
@@ -70,9 +70,9 @@ async def setgrouptitle(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+    msg = await message.reply_text("processing...")
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !**")
+        await msg.edit("**this command work on groups !**")
     elif reply:
         try:
             title = message.reply_to_message.text
@@ -80,13 +80,13 @@ async def setgrouptitle(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
-                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ɴᴀᴍᴇ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
+                    "**new group name changed !\nby** {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ **ᴄʜᴀɴɢᴇ ɪɴғᴏ** ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ !"
+                "the user most need **change info** admin rights to change group title !"
             )
     elif len(message.command) > 1:
         try:
@@ -95,18 +95,18 @@ async def setgrouptitle(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
-                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ɴᴀᴍᴇ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
+                    "**new group name changed !\nby** {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ !**"
+                "**the user most need change info admin rights to change group title !**"
             )
 
     else:
         await msg.edit(
-            "**ʏᴏᴜ ɴᴇᴇᴅ ʀᴇᴘʟʏ ᴛᴏ ᴛᴇxᴛ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ **"
+            "**you need reply to text or give some text to change group title **"
         )
 
 
@@ -118,9 +118,9 @@ async def setg_discription(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ...**")
+    msg = await message.reply_text("**processing...**")
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋs ᴏɴ ɢʀᴏᴜᴘs!**")
+        await msg.edit("**this command works on groups!**")
     elif reply:
         try:
             discription = message.reply_to_message.text
@@ -128,13 +128,13 @@ async def setg_discription(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
-                    "**ɴᴇᴡ ᴅɪsᴄʀɪᴘᴛɪᴏɴ ᴏғ ɢʀᴏᴜᴘ ᴄʜᴀɴɢᴇᴅ!**\nʙʏ {}".format(
+                    "**new discription of group changed!**\nby {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴜsᴛ ʜᴀᴠᴇ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛɪᴏɴ!**"
+                "**the user must have change info admin rights to change group discription!**"
             )
     elif len(message.command) > 1:
         try:
@@ -143,15 +143,15 @@ async def setg_discription(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
-                    "**ɴᴇᴡ ᴅɪsᴄʀɪᴘᴛɪᴏɴ ᴏғ ɢʀᴏᴜᴘ ᴄʜᴀɴɢᴇᴅ!**\nʙʏ {}".format(
+                    "**new discription of group changed!**\nby {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴜsᴛ ʜᴀᴠᴇ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛɪᴏɴ!**"
+                "**the user must have change info admin rights to change group discription!**"
             )
     else:
         await msg.edit(
-            "**ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴛᴇxᴛ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛᴏɴ!**"
+            "**you need to reply to text or give some text to change group discripton!**"
         )

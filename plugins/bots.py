@@ -16,21 +16,21 @@ async def bots(client, message):
         ):
             botList.append(bot.user)
         lenBotList = len(botList)
-        text3 = f"**ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n"
+        text3 = f"**bot list - {message.chat.title}**\n\n🤖 bots\n"
         while len(botList) > 1:
             bot = botList.pop(0)
             text3 += f"├ @{bot.username}\n"
         else:
             bot = botList.pop(0)
             text3 += f"└ @{bot.username}\n\n"
-            text3 += f"**ᴛᴏᴛᴀʟ ɴᴜᴍʙᴇʀ ᴏғ ʙᴏᴛs**: {lenBotList}**"
+            text3 += f"**total number of bots**: {lenBotList}**"
             await app.send_message(message.chat.id, text3)
     except FloodWait as e:
         await asyncio.sleep(e.value)
 
 __MODULE__ = "Bot"
 __HELP__ = """
-**ʙᴏᴛs**
+**bots**
 
-• /bots - ɢᴇᴛ ᴀ ʟɪsᴛ ᴏғ ʙᴏᴛs ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.
+• /bots - get a list of bots in the group.
 """

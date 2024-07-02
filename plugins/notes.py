@@ -373,11 +373,11 @@ async def delete_all_cb(_, cb):
 
 __MODULE__ = "Notes"
 __HELP__ = """
-**ɴᴏᴛᴇꜱ:**
+**noteꜱ:**
 
-• `/save [NOTE_NAME] [CONTENT]`: Sᴀᴠᴇs ᴀ ɴᴏᴛᴇ ᴡɪᴛʜ ᴛʜᴇ ɢɪᴠᴇɴ ɴᴀᴍᴇ ᴀɴᴅ ᴄᴏɴᴛᴇɴᴛ.
-• `/notes`: Sʜᴏᴡs ᴀʟʟ sᴀᴠᴇᴅ ɴᴏᴛᴇꜱ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
-• `/get [NOTE_NAME]`: Gᴇᴛs ᴛʜᴇ ᴄᴏɴᴛᴇɴᴛ ᴏғ ᴀ sᴀᴠᴇᴅ ɴᴏᴛᴇ.
-• `/delete [NOTE_NAME]`: Dᴇʟᴇᴛᴇs ᴀ sᴀᴠᴇᴅ ɴᴏᴛᴇ.
-• `/deleteall`: Dᴇʟᴇᴛᴇs ᴀʟʟ sᴀᴠᴇᴅ ɴᴏᴛᴇꜱ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
+• `/save [NOTE_NAME] [CONTENT]`: Saves a note with the given name and content.
+• `/notes`: Shows all saved noteꜱ in the chat.
+• `/get [NOTE_NAME]`: Gets the content of a saved note.
+• `/delete [NOTE_NAME]`: Deletes a saved note.
+• `/deleteall`: Deletes all saved noteꜱ in the chat.
 """

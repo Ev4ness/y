@@ -27,15 +27,15 @@ async def pypi_info_command(client, message):
 
         if pypi_info:
             info_message = (
-                f"ᴅᴇᴀʀ {message.from_user.mention} \n "
-                f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ᴘᴀᴋᴀɢᴇ ᴅᴇᴛᴀɪʟs \n\n "
-                f"ᴘᴀᴋᴀɢᴇ ɴᴀᴍᴇ ➪ {pypi_info['info']['name']}\n\n"
-                f"ʟᴀᴛᴇsᴛ ᴠᴇʀsɪᴏɴ ➪ {pypi_info['info']['version']}\n\n"
-                f"ᴅᴇsᴄʀɪᴘᴛɪᴏɴ ➪ {pypi_info['info']['summary']}\n\n"
-                f"ᴘʀᴏJᴇᴄᴛ ᴜʀʟ ➪ {pypi_info['info']['project_urls']['Homepage']}"
+                f"dear {message.from_user.mention} \n "
+                f"here is your pakage details \n\n "
+                f"pakage name ➪ {pypi_info['info']['name']}\n\n"
+                f"latest version ➪ {pypi_info['info']['version']}\n\n"
+                f"description ➪ {pypi_info['info']['summary']}\n\n"
+                f"proJect url ➪ {pypi_info['info']['project_urls']['Homepage']}"
             )
             close_markup = InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="〆 ᴄʟᴏsᴇ 〆", callback_data="close")]]
+                [[InlineKeyboardButton(text="〆 close 〆", callback_data="close")]]
             )
             await message.reply_text(info_message, reply_markup=close_markup)
         else:
@@ -50,12 +50,12 @@ async def pypi_info_command(client, message):
 
 __MODULE__ = "Pypi"
 __HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅs:**
+**commands:**
 • /pypi <package_name>`: Get details about a specified Python package from PyPI.
 
-**ɪɴғᴏ:**
-ᴛʜɪs ᴍᴏᴅᴜʟᴇ ᴀʟʟᴏᴡs ᴜsᴇʀs ᴛᴏ ғᴇᴛᴄʜ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴘʏᴛʜᴏɴ ᴘᴀᴄᴋᴀɢᴇs ғʀᴏᴍ ᴘʏᴘɪ, ɪɴᴄʟᴜᴅɪɴɢ ᴛʜᴇ ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ, ʟᴀᴛᴇsᴛ ᴠᴇʀsɪᴏɴ, ᴅᴇsᴄʀɪᴘᴛɪᴏɴ, ᴀɴᴅ ᴘʀᴏᴊᴇᴄᴛ ᴜʀʟ.
+**info:**
+this module allows users to fetch information about python packages from pypi, including the package name, latest version, description, and project url.
 
-**ɴᴏᴛᴇ:**
-ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ ᴀғᴛᴇʀ ᴛʜᴇ `/pypi` ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ʀᴇᴛʀɪᴇᴠᴇ ᴘᴀᴄᴋᴀɢᴇ ᴅᴇᴛᴀɪʟs.
+**note:**
+please provide a valid package name after the `/pypi` command to retrieve package details.
 """

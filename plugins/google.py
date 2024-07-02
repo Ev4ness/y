@@ -16,7 +16,7 @@ async def google(bot, message):
         user_input = message.reply_to_message.text
     else:
         user_input = " ".join(message.command[1:])
-    b = await message.reply_text("**Sᴇᴀʀᴄʜɪɴɢ ᴏɴ Gᴏᴏɢʟᴇ....**")
+    b = await message.reply_text("**Searching on Google....**")
     try:
         a = search(user_input, advanced=True)
         txt = f"Search Query: {user_input}\n\nresults"
@@ -41,7 +41,7 @@ async def app(bot, message):
         user_input = message.reply_to_message.text
     else:
         user_input = " ".join(message.command[1:])
-    cbb = await message.reply_text("**Sᴇᴀʀᴄʜɪɴɢ ᴏɴ Pʟᴀʏ Sᴛᴏʀᴇ....**")
+    cbb = await message.reply_text("**Searching on Play Store....**")
     a = await api.apps(user_input, 1)
     b = a["results"][0]
     icon = b["icon"]
@@ -50,7 +50,7 @@ async def app(bot, message):
     ca = b["description"]
     title = b["title"]
     dev = b["developer"]
-    info = f"<b>[ᴛɪᴛʟᴇ : {title}]({link})</b>\n<b>ɪᴅ</b>: <code>{id}</code>\n<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ</b> : {dev}\n<b>ᴅᴇsᴄʀɪᴘᴛɪᴏɴ </b>: {ca}"
+    info = f"<b>[title : {title}]({link})</b>\n<b>id</b>: <code>{id}</code>\n<b>developer</b> : {dev}\n<b>description </b>: {ca}"
     try:
         await message.reply_photo(icon, caption=info)
         await cbb.delete()
@@ -59,5 +59,5 @@ async def app(bot, message):
 
 
 __MODULE__ = "Google"
-__HELP__ = """/google [ǫᴜᴇʀʏ] - ᴛᴏ sᴇᴀʀᴄʜ ᴏɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ɢᴇᴛ ʀᴇsᴜʟᴛs
-/app | /apps [ᴀᴘᴘ ɴᴀᴍᴇ] - ᴛᴏ ɢᴇᴛ ᴀᴘᴘ ɪɴғᴏ ᴛʜᴀᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴘʟᴀʏsᴛᴏʀᴇ"""
+__HELP__ = """/google [query] - to search on google and get results
+/app | /apps [app name] - to get app info that available on playstore"""

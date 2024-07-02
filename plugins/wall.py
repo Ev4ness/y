@@ -16,7 +16,7 @@ async def wall(_, message: Message):
         text = None
     if not text:
         return await message.reply_text("`Please give some query to search.`")
-    m = await message.reply_text("sᴇᴀʀᴄʜɪɴɢ...")
+    m = await message.reply_text("searching...")
     try:
         url = requests.get(f"https://api.safone.dev/wall?query={text}").json()[
             "results"
@@ -24,31 +24,31 @@ async def wall(_, message: Message):
         ran = random.randint(0, 7)
         await message.reply_photo(
             photo=url[ran]["imageUrl"],
-            caption=f"ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}",
+            caption=f"requested by : {message.from_user.mention}",
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("ʟɪɴᴋ", url=url[ran]["imageUrl"])],
+                    [InlineKeyboardButton("link", url=url[ran]["imageUrl"])],
                 ]
             ),
         )
         await m.delete()
     except Exception as e:
         await m.edit_text(
-            f"`ᴡᴀʟʟᴘᴀᴘᴇʀ ɴᴏᴛ ғᴏᴜɴᴅ ғᴏʀ : `{text}`",
+            f"`wallpaper not found for : `{text}`",
         )
 
 __MODULE__ = "Wall"
 __HELP__ = """
 **COMMANDS:**
 
-• /WALL - **ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.**
+• /WALL - **download and send wallpaper.**
 
 **INFO:**
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.
-- ᴜsᴇ /WALL ᴄᴏᴍᴍᴀɴᴅ ᴡɪᴛʜ ᴀ ᴛᴇxᴛ ᴛᴏ sᴇᴀʀᴄʜ ғᴏʀ ᴡᴀʟʟᴘᴀᴘᴇʀ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ᴛʜᴇ ᴄʜᴀᴛ.
+- this bot provides a command to download and send wallpaper.
+- use /WALL command with a text to search for wallpaper and send it to the chat.
 
 **NOTE:**
 
-- ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.
+- this command can be used to download and send wallpaper.
 """

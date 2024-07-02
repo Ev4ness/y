@@ -17,13 +17,13 @@ async def hastag(bot, message):
         return await message.reply_text("Example:\n\n/hastag python")
 
     await message.reply_text(
-        f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ  ʜᴀsᴛᴀɢ :\n<pre>{hashtags}</pre>", quote=True
+        f"here is your  hastag :\n<pre>{hashtags}</pre>", quote=True
     )
 
 
 __MODULE__ = "Hastag"
 __HELP__ = """
-**ʜᴀsʜᴛᴀɢ ɢᴇɴᴇʀᴀᴛᴏʀ:**
+**hashtag generator:**
 
-• `/hashtag [text]`: Gᴇɴᴇʀᴀᴛᴇ ʜᴀsʜᴛᴀɢs ғᴏʀ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ.
+• `/hashtag [text]`: Generate hashtags for the given text.
 """

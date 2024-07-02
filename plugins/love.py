@@ -49,7 +49,7 @@ def love_command(client, message):
 
 __MODULE__ = "Love"
 __HELP__ = """
-**ʟᴏᴠᴇ ᴄᴀʟᴄᴜʟᴀᴛᴏʀ:**
+**love calculator:**
 
-• `/love [name1] [name2]`: Cᴀʟᴄᴜʟᴀᴛᴇs ᴛʜᴇ ᴘᴇʀᴄᴇɴᴛᴀɢᴇ ᴏғ ʟᴏᴠᴇ ʙᴇᴛᴡᴇᴇɴ ᴛᴡᴏ ᴘᴇᴏᴘʟᴇ.
+• `/love [name1] [name2]`: Calculates the percentage of love between two people.
 """

@@ -251,7 +251,7 @@ def isArgInt(txt) -> list:
 
 @app.on_message(filters.command(["q", "r"]) & filters.reply)
 async def msg_quotly_cmd(self: app, ctx: Message):
-    ww = await ctx.reply_text("ᴡᴀɪᴛ ᴀ sᴇᴄᴏɴᴅ......")
+    ww = await ctx.reply_text("wait a second......")
     is_reply = False
     if ctx.command[0].endswith("r"):
         is_reply = True
@@ -305,20 +305,20 @@ async def msg_quotly_cmd(self: app, ctx: Message):
 
 
 __HELP__ = """
-**ǫᴜᴏᴛᴇ ɢᴇɴᴇʀᴀᴛɪᴏɴ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs**
+**quote generation bot commands**
 
-ᴜsᴇ ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏ ᴄʀᴇᴀᴛᴇ ǫᴜᴏᴛᴇs ғʀᴏᴍ ᴍᴇssᴀɢᴇs:
+use these commands to create quotes from messages:
 
-- `/q`: ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ᴀ sɪɴɢʟᴇ ᴍᴇssᴀɢᴇ.
-- `/r`: ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ᴀ sɪɴɢʟᴇ ᴍᴇssᴀɢᴇ ᴀɴᴅ ɪᴛs ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ.
+- `/q`: create a quote from a single message.
+- `/r`: create a quote from a single message and its replied message.
 
-**ᴇxᴀᴍᴘʟᴇs:**
-- `/q `: ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇs.
+**examples:**
+- `/q `: create a quote from replied messages.
 
-- `/r `: ᴄʀᴇᴀᴛᴇ ᴀ ǫᴜᴏᴛᴇ ғʀᴏᴍ ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇs.
+- `/r `: create a quote from replied messages.
 
-**ɴᴏᴛᴇ:**
-ᴍᴀᴋᴇ sᴜʀᴇ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ғᴏʀ ᴛʜᴇ ǫᴜᴏᴛᴇ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴡᴏʀᴋ.
+**note:**
+make sure to reply to a message for the quote command to work.
 """
 
 __MODULE__ = "Qoute"
