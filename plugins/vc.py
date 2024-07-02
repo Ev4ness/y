@@ -12,8 +12,8 @@ from pyrogram.raw.functions.phone import (
 )
 from pyrogram.types import Message
 
-from YukkiMusic import app
-from YukkiMusic.utils.database import get_assistant
+from DanteMusic import app
+from DanteMusic.utils.database import get_assistant
 
 
 @app.on_message(filters.command(["vcstart", "onvc", "vcon", "startvc"]) & filters.group)

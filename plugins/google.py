@@ -3,7 +3,7 @@ import logging
 from googlesearch import search
 from pyrogram import filters
 
-from YukkiMusic import api, app
+from DanteMusic import api, app
 
 
 @app.on_message(filters.command(["google", "gle"]))

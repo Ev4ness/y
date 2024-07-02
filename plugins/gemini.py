@@ -3,7 +3,7 @@ from MukeshAPI import api
 from pyrogram import filters
 from pyrogram.enums import ChatAction
 
-from YukkiMusic import app
+from DanteMusic import app
 
 x = None
 

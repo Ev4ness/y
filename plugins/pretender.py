@@ -5,8 +5,8 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from config import MONGO_DB_URI
-from YukkiMusic import app
-from YukkiMusic.utils.filter import admin_filter
+from DanteMusic import app
+from DanteMusic.utils.filter import admin_filter
 
 mongo = MongoCli(MONGO_DB_URI).Rankings
 

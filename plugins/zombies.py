@@ -3,8 +3,8 @@ import asyncio
 from pyrogram import enums, filters
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import FloodWait
-from YukkiMusic import app
-from YukkiMusic.utils.permissions import adminsOnly
+from DanteMusic import app
+from DanteMusic.utils.permissions import adminsOnly
 
 chatQueue = []
 

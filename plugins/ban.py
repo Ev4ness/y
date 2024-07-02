@@ -16,18 +16,18 @@ from pyrogram.types import (
 from string import ascii_lowercase
 from typing import Dict, List, Union
 
-from YukkiMusic import app
-from YukkiMusic.misc import SUDOERS
-from YukkiMusic.core.mongo import mongodb
+from DanteMusic import app
+from DanteMusic.misc import SUDOERS
+from DanteMusic.core.mongo import mongodb
 from utils.error import capture_err
-from YukkiMusic.utils.keyboard import ikb
-from YukkiMusic.utils.database import save_filter
-from YukkiMusic.utils.functions import (
+from DanteMusic.utils.keyboard import ikb
+from DanteMusic.utils.database import save_filter
+from DanteMusic.utils.functions import (
     extract_user,
     extract_user_and_reason,
     time_converter,
 )
-from YukkiMusic.utils.permissions import adminsOnly, member_permissions
+from DanteMusic.utils.permissions import adminsOnly, member_permissions
 from config import adminlist, BANNED_USERS
 warnsdb = mongodb.warns
 

@@ -3,7 +3,7 @@ import requests
 from pyrogram.types import InputMediaPhoto
 from bing_image_urls import bing_image_urls
 from config import BANNED_USERS
-from YukkiMusic import app
+from DanteMusic import app
 from pyrogram import filters
 from pyrogram.errors.exceptions.flood_420 import FloodWait
  

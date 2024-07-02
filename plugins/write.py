@@ -1,7 +1,7 @@
 from pyrogram import filters
 from TheApi import api
 
-from YukkiMusic import app
+from DanteMusic import app
 
 
 @app.on_message(filters.command(["write"]))

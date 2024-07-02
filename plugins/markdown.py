@@ -2,8 +2,8 @@ from pyrogram.enums import ChatType, ParseMode
 from pyrogram.filters import command
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from YukkiMusic import app
-from YukkiMusic.utils.functions import MARKDOWN
+from DanteMusic import app
+from DanteMusic.utils.functions import MARKDOWN
 
 
 @app.on_message(command("markdownhelp"))
