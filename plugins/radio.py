@@ -189,4 +189,4 @@ async def radio(client, message: Message):
 
 
 __MODULE__ = "Radio"
-__HELP__ = f"\n/radio [station name] - to play **radio in voice chat**\n\nbelow are some station name:\n{valid_stations}"
+__HELP__ = f"<blockquote><b>\n/radio [station name] - to play **radio in voice chat**\n\nbelow are some station name:\n{valid_stations} </b></blockquote>"
