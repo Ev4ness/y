@@ -23,7 +23,7 @@ async def text_to_speech(client, message):
     audio_file.name = "audio.mp3"
     await message.reply_audio(audio_file)
 
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **text to speech bot command**
 
 use the `/tts` command to convert text into speech.
@@ -34,7 +34,7 @@ use the `/tts` command to convert text into speech.
 - `/tts `
 
 **note:**
-make sure to provide some text after the `/tts` command.
+make sure to provide some text after the `/tts` command.</b></blockquote>
 """
 
 __MODULE__ = "Tts"
