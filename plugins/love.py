@@ -48,8 +48,8 @@ def love_command(client, message):
     app.send_message(message.chat.id, response)
 
 __MODULE__ = "Love"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **love calculator:**
 
 • `/love [name1] [name2]`: Calculates the percentage of love between two people.
-"""
+</b></blockquote>"""
