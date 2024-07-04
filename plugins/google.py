@@ -59,5 +59,5 @@ async def app(bot, message):
 
 
 __MODULE__ = "Google"
-__HELP__ = """/google [query] - to search on google and get results
-/app | /apps [app name] - to get app info that available on playstore"""
+__HELP__ = """<blockquote><b>/google [query] - to search on google and get results
+/app | /apps [app name] - to get app info that available on playstore</b></blockquote>"""
