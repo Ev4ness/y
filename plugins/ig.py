@@ -28,10 +28,10 @@ async def download_instagram_video(client, message):
         await a.edit("Failed to download reel")
 
 __MODULE__ = "Reel"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **instagram reel downloader:**
 
 • `/ig [URL]`: download instagram reels. Provide the instagram reel URL after the command.
 • `/instagram [URL]`: download instagram reels. Provide the instagram reel URL after the command.
 • `/reel [URL]`: download instagram reels. Provide the instagram reel URL after the command.
-"""
+</b></blockquote>"""
