@@ -31,7 +31,7 @@ from config import BANNED_USERS
 
 
 __MODULE__ = "Filters"
-__HELP__ = """/filters To Get All The Filters In The Chat.
+__HELP__ = """<blockquote><b>/filters To Get All The Filters In The Chat.
 /filter [FILTER_NAME] To Save A Filter(reply to a message).
 
 Supported filter types are Text, Animation, Photo, Document, Video, video notes, Audio, Voice.
@@ -45,7 +45,7 @@ To use more words in a filter use.
 You can use markdown or html to save text too.
 
 Checkout /markdownhelp to know more about formattings and other syntax.
-"""
+</b></blockquote>"""
 @app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_change_info")
 async def save_filters(_, message):
