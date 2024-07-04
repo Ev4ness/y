@@ -12,8 +12,8 @@ async def slap(client, message):
     except Exception as e:
         await message.reply_text(f"Error: {e}")
 
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 Available commands:
 - /slap: Slaps someone. If used as a reply, slaps the replied user.
-"""
+</b></blockquote>"""
 __MODULE__ = "Slap"
