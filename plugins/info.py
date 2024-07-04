@@ -64,19 +64,19 @@ async def get_chat_info(chat):
     
     chat info 
 
-➻ chat id ‣ {chat.id}
-➻ name ‣ {chat.title}
-➻ username ‣ {chat.username}
-➻ dc id ‣ {chat.dc_id}
-➻ description  ‣ {chat.description}
-➻ chattype ‣ {chat.type}
-➻ is verified ‣ {chat.is_verified}
-➻ is restricted ‣ {chat.is_restricted}
-➻ is creator ‣ {chat.is_creator}
-➻ is scam ‣ {chat.is_scam}
-➻ is fake ‣ {chat.is_fake}
-➻ member's count ‣ {chat.members_count}
-➻ link ‣ {link}
+chat id {chat.id}
+name {chat.title}
+username {chat.username}
+dc id {chat.dc_id}
+description {chat.description}
+chattype {chat.type}
+is verified {chat.is_verified}
+is restricted {chat.is_restricted}
+is creator {chat.is_creator}
+is scam {chat.is_scam}
+is fake {chat.is_fake}
+member's count {chat.members_count}
+link {link}
 
 """
 
@@ -140,9 +140,9 @@ async def chat_info_func(_, message: Message):
 
 
 __MODULE__ = "Info"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **user & chat information:**
 
 • `/info`: Get information about the user. Username, ID, and more.
 • `/chatinfo [username|id]`: Get information about the chat. member count, is verified, invite link, and more.
-"""
+</b></blockquote>"""
