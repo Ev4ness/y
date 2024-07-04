@@ -206,7 +206,7 @@ async def manual(app, cb):
 
 
 __MODULE__ = "Approve"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 command: /autoapprove
 
 This module helps to automatically accept chat ioin request send by a user through invitation link of your group
@@ -219,5 +219,5 @@ when you send /autoapprove in your group you see turn on button if auttoprove no
 
 ¤ Manual - a message will be send to the chat by tagging the admins. the admins can accept or decline the requests.
 
-Use: /clearpending command to remove all pending user id from db. this will allow the user to send request again.
+Use: /clearpending command to remove all pending user id from db. this will allow the user to send request again.</b></blockquote>
 """
