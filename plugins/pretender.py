@@ -139,5 +139,5 @@ async def set_mataa(_, message: Message):
         await message.reply("**detected pretender usage:\n/pretender on|off**")
 
 __MODULE__ = "Tender"
-__HELP__ = """
-/pretender - [On / off]  - to turn on or off pretender for you chat if any user change her username, name , bio bot will send message in your chat"""
+__HELP__ = """<blockquote><b>
+/pretender - [On / off]  - to turn on or off pretender for you chat if any user change her username, name , bio bot will send message in your chat</b></blockquote>"""
