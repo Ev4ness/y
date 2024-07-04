@@ -83,7 +83,7 @@ async def whois(client, message):
         ),
         disable_web_page_preview=True,
     )
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **command:**
 
 • /whois - **check user information.**
@@ -96,7 +96,7 @@ __HELP__ = """
 **note:**
 
 - the /whois command can be used to retrieve information about a user in the chat.
-- the information includes user id, first name, last name, username, and last seen status.
+- the information includes user id, first name, last name, username, and last seen status.</b></blockquote>
 """
 
 __MODULE__ = "WhoIs"
