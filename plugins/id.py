@@ -54,8 +54,8 @@ async def get_id(client, message):
         await message.reply(f"An error occurred while getting the ID. {r}")
 
 __MODULE__ = "UserID"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **id retriever:**
 
 • `/id`: Retrieve user and chat IDs.
-"""
+</b></blockquote>"""
