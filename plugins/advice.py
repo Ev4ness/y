@@ -27,6 +27,6 @@ async def advice(_, message):
 
 
 __MODULE__ = "Device"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 /advice - Get random advice
-/astronomical - to get today's astronomical  fact"""
+/astronomical - to get today's astronomical  fact</b></blockquote>"""
