@@ -211,7 +211,7 @@ async def get_welcome_func(_, message):
 
 
 __MODULE__ = "Welcome"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 /setwelcome - Reply this to a message containing correct
 format for a welcome message, check end of this message.
 
@@ -234,5 +234,5 @@ Button=[Duck, https://duckduckgo.com]
 Button2=[Github, https://github.com]
 **NOTES ->**
 
-Checkout /markdownhelp to know more about formattings and other syntax.
+Checkout /markdownhelp to know more about formattings and other syntax.</b></blockquote>
 """
