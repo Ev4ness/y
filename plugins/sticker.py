@@ -310,7 +310,7 @@ async def kang(client, message: Message):
 
 
 __MODULE__ = "Sticker"
-__HELP__ = """
+__HELP__ = """<blockquote><b>
 **COMMANDS:**
 
 • /stickerid - **gets the file id of any replied sticker.**
@@ -320,4 +320,4 @@ __HELP__ = """
 **INFO:**
 
 - this bot allows users to get the file id or the image of any sticker that is replied to a message, and also allows users to kang any sticker in the chat and add it to a sticker pack.
-"""
+</b></blockquote>"""
