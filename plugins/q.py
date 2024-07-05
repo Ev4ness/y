@@ -284,7 +284,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
                 return await ctx.reply_sticker(bio_sticker)
             except Exception:
                 await ww.delete()
-                return await ctx.reply_message("🤷🏻‍♂️")
+                return await ctx.reply_text("🤷🏻‍♂️")
     try:
         messages_one = await self.get_messages(
             chat_id=ctx.chat.id, message_ids=ctx.reply_to_message.id, replies=-1
@@ -292,7 +292,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         messages = [messages_one]
     except Exception:
         await ww.delete()
-        return await ctx.reply_message("🤷🏻‍♂️")
+        return await ctx.reply_text("🤷🏻‍♂️")
     try:
         make_quotly = await pyrogram_to_quotly(messages, is_reply=is_reply)
         bio_sticker = BytesIO(make_quotly)
