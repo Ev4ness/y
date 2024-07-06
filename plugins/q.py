@@ -249,9 +249,9 @@ def isArgInt(txt) -> list:
         return [False, 0]
 
 
-@app.on_message(filters.command(["q", "r"]) & filters.reply)
+@app.on_message(filters.command(["q"]) & filters.reply)
 async def msg_quotly_cmd(self: app, ctx: Message):
-    ww = await ctx.reply_text("wait a second......")
+    ww = await ctx.reply_text("Tunggu sedang dibuat......")
     is_reply = False
     if ctx.command[0].endswith("r"):
         is_reply = True
@@ -260,7 +260,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         if check_arg[0]:
             if check_arg[1] < 2 or check_arg[1] > 10:
                 await ww.delete()
-                return await ctx.reply_message("Invalid range", del_in=6)
+                return await ctx.reply_text("Invalid range", del_in=6)
             try:
                 messages = [
                     i
@@ -301,7 +301,7 @@ async def msg_quotly_cmd(self: app, ctx: Message):
         return await ctx.reply_sticker(bio_sticker)
     except Exception as e:
         await ww.delete()
-        return await ctx.reply_message(f"ERROR: {e}")
+        return await ctx.reply_text(f"ERROR: {e}")
 
 
 __HELP__ = """<blockquote><b>
