@@ -66,7 +66,7 @@ async def send_left_message(chat: Chat, user_id: int, delete: bool = False, noth
         await set_greetings_on(chat.id, "goodbye")
         goodbye = "Animation"
         raw_text = "hii {NAME}  welcome to the {GROUPNAME}\nif you have any problem or questions you can ask here"
-        file_id = "CgACAgIAAyEFAASFqsojAAIPgGZwFG2XMOMlaC9jgKZSvUtqYchzAALbEgACGtVYSAGHbztDEjlEHgQ"
+        file_id = "CAACAgUAAx0Cfld0gAABAn25ZotwgWb3w8bg9vzHO23Ek3Ho6koAAs8KAALTvLlVK98vc1SalTUeBA"
         return await set_goodbye(chat.id, goodbye, raw_text, file_id)
 
     if not ison and not nothing:
