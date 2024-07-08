@@ -8,7 +8,7 @@ from DanteMusic import api, app
 async def bard(bot, message):
     if len(message.command) < 2 and not message.reply_to_message:
         await message.reply_text(
-            "Example:\n\n`/bard tell me about lord rama and sita in brief `"
+            "Example:\n\n`/bard ceritakan padaku tentang tuan rama dan sita secara singkat `"
         )
         return
 
