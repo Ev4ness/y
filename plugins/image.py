@@ -12,19 +12,19 @@ from pyrogram.errors.exceptions.flood_420 import FloodWait
 )
 async def image_from_bing(_, message):
     if len(message.command) < 2 and not message.reply_to_message:
-        return await message.reply_text("**give image name for search 🔍**")
+        return await message.reply_text("<b>give image name for search 🔍</b>")
     
     if message.reply_to_message and message.reply_to_message.text:
         query = message.reply_to_message.text
     else:
         query = " ".join(message.command[1:])
 
-    messagesend = await message.reply_text("**🔍 searching for images...**")
+    messagesend = await message.reply_text("<b>🔍 searching for images...</b>")
 
     media_group = []
     for url in bing_image_urls(query, limit=6):
         media_group.append(InputMediaPhoto(media=url))
-    await messagesend.edit(f"**uploading...**")
+    await messagesend.edit(f"<b>uploading...</b>")
     try:
         await app.send_media_group(message.chat.id, media_group)
         await messagesend.delete()
