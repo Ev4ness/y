@@ -49,13 +49,13 @@ async def pypi_info_command(client, message):
         )
 
 __MODULE__ = "Pypi"
-__HELP__ = """<blockquote><b>
-**commands:**
-• /pypi <package_name>`: Get details about a specified Python package from PyPI.
+__HELP__ = """<blockquote>
+<b>commands:
+• <code>/pypi <package_name></code>: Get details about a specified Python package from PyPI.
 
-**info:**
+info:
 this module allows users to fetch information about python packages from pypi, including the package name, latest version, description, and project url.
 
-**note:**
-please provide a valid package name after the `/pypi` command to retrieve package details.
+note:
+please provide a valid package name after the <code>/pypi</code> command to retrieve package details.
 </b></blockquote>"""
