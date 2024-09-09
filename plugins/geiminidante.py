@@ -6,7 +6,9 @@ from pyrogram import Client, filters
 
 # MongoDB setup
 DATABASE = MongoClient(MONGO_DB_URI)
+
 db = DATABASE["MAIN"]["USERS"]
+
 collection = db["members"]
 
 # Function to add user to database
@@ -55,16 +57,9 @@ from DanteMusic import app
 
 @app.on_message(filters.command("geminisearch", ["/"]))
 async def gptAi(client, message):
-    """
-    Command handler for /geminisearch.
-
-    Parameters:
-    - client (pyrogram.Client): Pyrogram client instance.
-    - message (pyrogram.types.Message): Incoming message object.
-    """
     split_text = message.text.split(None, 1)
     if len(split_text) < 2:
-        await message.reply_text("Ex: /geminisearch [contoh]")
+        await message.reply_text(f"/geminisearch {text}")
     else:
         response = await chat_with_api("gemini", split_text[1])
         await message.reply_text(response)
