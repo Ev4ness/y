@@ -5,6 +5,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegraph import upload_file
 
 from DanteMusic import app
+from TheApi import api
 
 
 @app.on_message(filters.command(["tgm", "tgt", "telegraph", "tl"]))
@@ -13,40 +14,59 @@ async def get_link_group(client, message):
         return await message.reply_text(
             "please reply to a media to upload on telegraph"
         )
+
+    media = message.reply_to_message
+    file_size = 0
+    if media.photo:
+        file_size = media.photo.file_size
+    elif media.video:
+        file_size = media.video.file_size
+    elif media.document:
+        file_size = media.document.file_size
+
+    if file_size > 15 * 1024 * 1024:
+        return await message.reply_text("do not use high size.")
+
     try:
-        text = await message.reply("processing...")
+        text = await message.reply("proses...")
 
         async def progress(current, total):
-            await text.edit_text(f"📥 downloading... {current * 100 / total:.1f}%")
+            try:
+                await text.edit_text(f"📥 Downloads... {current * 100 / total:.1f}%")
+            except Exception:
+                pass
 
         try:
-            local_path = await message.reply_to_message.download( progress=progress
-            )
-            await text.edit_text("📤 uploading to telegraph...")
-            upload_path = upload_file(local_path)
+            local_path = await media.download(progress=progress)
+            await text.edit_text("📤 Uploads...")
+
+            upload_path = api.upload_image(local_path)
+
             await text.edit_text(
-                f"🌐 | [telegraph link](https://telegra.ph{upload_path[0]})",
+                f"🌐 | [COPY LINK]({upload_path})",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                "telegraph link",
-                                url=f"https://telegra.ph{upload_path[0]}",
+                                "Upload File",
+                                url=upload_path,
                             )
                         ]
                     ]
                 ),
             )
+
             try:
                 os.remove(local_path)
             except Exception:
-               pass
+                pass
+
         except Exception as e:
-            await text.edit_text(f"❌ |file upload failed \n\n<i>reason: {e}</i>")
+            await text.edit_text(f"❌ failed to upload file\n\n<i>use media not text!: {e}</i>")
             try:
                 os.remove(local_path)
             except Exception:
-               pass
+                pass
             return
     except Exception:
         pass
